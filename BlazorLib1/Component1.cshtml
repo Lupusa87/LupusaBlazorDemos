@@ -1,0 +1,31 @@
+﻿@inherits Component1_Logic
+@implements IDisposable
+
+<h2>@city.Name</h2>
+
+@*<br />*@
+
+<h2>@CurrentTime</h2>
+@*<h5>@city.ID</h5>
+
+<h5>@city.CanvasID</h5>
+<p>Current count: @currentCount</p>
+
+<p>log2: @_log2 </p>
+<p>log: @_log </p>*@
+
+@*<img src="content/1.png" alt="Smiley face">*@
+
+
+
+<br />
+
+<canvas id="@city.CanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" />
+
+
+<br />
+
+@*<button class="btn btn-primary" onclick=@(() => OnRemoveComponent(this.city.ID))>delete2</button>*@
+
+@*<button class="btn btn-primary" onclick="@EventOnDelete">Delete</button>*@
+
