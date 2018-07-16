@@ -1,4 +1,4 @@
-# LupusaBlazorProjects
+# Lupusa Blazor Projects
 
 At this moment there is available only **clock component**, next weeks/months we will add more components, small canvas based games and etc.
 
