@@ -2,7 +2,7 @@
 
 At this moment there is available only clock component, next weeks/months we will add more components, small canvas based games and etc.
 
-For now best performance has Firefox and Edge, please browse demo(http://lupusablazordemos.azurewebsites.net) from them.
+For now best performance has Firefox and Edge, please browse [demo](http://lupusablazordemos.azurewebsites.net) from them.
 
 All activities, contributions are welcome and we are open for bussines/result oriented communication.
 
