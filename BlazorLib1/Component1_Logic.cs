@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorLib1.Classes;
@@ -26,9 +27,14 @@ namespace BlazorLib1
         [Parameter]
         public City city { get; set; }
 
+
+      
+
+        bool OnlyOneDraw = false;
+
         bool FastMode = true;
-        int FastMode_Increment = 100;
-        bool SecondOnlyOneStep = true;  // if it is true timeinterval should be 1000
+        int FastMode_Increment = 1;
+        bool SecondOnlyOneStep = false;  // if it is true timeinterval should be 1000
         int timerInterval = 1;
 
 
@@ -60,9 +66,7 @@ namespace BlazorLib1
 
         bool IsPageLoaded = false;
 
-        bool IsFirstDraw = true;
-
-
+       
         #endregion
 
 
@@ -90,17 +94,31 @@ namespace BlazorLib1
         protected async override void OnAfterRender()
         {
            
-
-
             if (!IsPageLoaded)
             {
+                IsPageLoaded = true;
+
+
+
                 await Preload_Image();
 
-                canvas_1 = new LupCanvas(city.CanvasID);
 
-                canvas_1.Add_Canvas(city.CanvasID);
+                FastMode = city.FastMode;
+                FastMode_Increment = city.FastMode_Increment;
+              
+                int timerInterval = city.TimerInterval;
 
-               // canvas_1.Load_Image_From_Path("content/1.png", "cornerShape");
+
+
+
+                canvas_1 = new LupCanvas(city.CanvasID, city.BgCanvasID, city.TopCanvasID);
+
+                canvas_1.Add_Canvas();
+
+                
+
+
+                // canvas_1.Load_Image_From_Path("content/1.png", "cornerShape");
 
 
                 StartDate = DateTime.Now.AddHours(city.TimeDiff);
@@ -110,68 +128,112 @@ namespace BlazorLib1
                 //    StartDate = StartDate.AddSeconds(LocalData.rnd1.Next(10000, 5000000));
                 //}
 
-                IsPageLoaded = true;
-
-
-
                 stopwatch_1.Start();
 
-                _log2 += DateTime.Now.ToShortTimeString() + "- OnAfterRender";
 
-
-                IsFirstDraw = true;
-
-
-                //UC1
                 radius_2 = city.WidthAndHeight;
                 radius_Origin = radius_2 / 2;
                 radius_90_Percent = (float)(radius_Origin * 0.9);
 
+
+                
+
+                Cmd_Draw_BG_Canvas();
+
+
+               
+
+                Cmd_Draw_Top_Canvas();
+              
+
+                canvas_1.Swith_To_Canvas(ClockCanvasType.Middle);
+
+                canvas_1.SB_Append(" ", true);
                 canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineCap.ToString(), LineCap.Round.ToString().ToLower()));
+                canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", Clock.Clock_Center_Small_Point_Color));
+                canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.textBaseline.ToString(), TextBaseline.Middle.ToString().ToLower()));
+                canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.textAlign.ToString(), TextAlign.Center.ToString().ToLower()));
 
-
-
+                canvas_1.SB_Execute();
 
                 Cmd_Draw_Clock();
 
-
-                if (SecondOnlyOneStep)
+                if (!OnlyOneDraw)
                 {
-                    timer = new Timer(TimeCallBack, null, 0, 1000);
-                }
-                else
-                {
-                    timer = new Timer(TimeCallBack, null, 0, timerInterval);
-                }
 
+                    if (SecondOnlyOneStep)
+                    {
+                        timer = new Timer(TimeCallBack, null, 0, 1000);
+                    }
+                    else
+                    {
+                        timer = new Timer(TimeCallBack, null, 0, timerInterval);
+                    }
 
+                }
             }
 
 
 
         }
 
-        void Cmd_Clear_Canvas()
+
+        void Cmd_Draw_BG_Canvas()
         {
-            canvas_1.SetTransform();
+            canvas_1.Swith_To_Canvas(ClockCanvasType.Background);
 
-            canvas_1.ClearRect();
+            canvas_1.SB_Append(" ", true);
+            canvas_1.ClearCanvas();
 
-            canvas_1.FillRect();
+            canvas_1.DrawFullSizeRect(Clock.BG_Color);
+
 
             canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(radius_Origin, radius_Origin, radius_Origin, radius_Origin, radius_Origin, radius_Origin * 1.05));
             canvas_1.GradientAddColorStop(0, Clock.Clock_Border_Color);
-            canvas_1.GradientAddColorStop(1, "LightSkyBlue ");
+            canvas_1.GradientAddColorStop(1, "LightSkyBlue");
             canvas_1.GradientSetStokeOrFillStyle(true);
 
             canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_Origin * 0.01).ToString()));
 
-            canvas_1.StrokeRect(new TransferRectParameters(0,0,radius_Origin*2, radius_Origin*2));
-          
+            canvas_1.StrokeRect(new TransferRectParameters(0, 0, radius_Origin * 2, radius_Origin * 2));
+
+
+
+            Draw_Corners();
+
+
+
+            canvas_1.SB_Execute();
+
+
+
+
+        }
+
+        void Cmd_Draw_Top_Canvas()
+        {
+            canvas_1.Swith_To_Canvas(ClockCanvasType.ForeGround);
+            canvas_1.SB_Append(" ", true);
+            canvas_1.ClearCanvas();
+
+
+            canvas_1.Translate(radius_Origin, radius_Origin);
+
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineCap.ToString(), LineCap.Round.ToString().ToLower()));
+
+
+            drawClockBorder();
+
+            cmd_Draw_60_Lines();
+
+            drawFace();
+
+            canvas_1.SB_Execute();
         }
 
 
-        async Task<string> Preload_Image()
+
+            async Task<string> Preload_Image()
         {
           
             return await JsInterop.Preload_Image();
@@ -203,6 +265,8 @@ namespace BlazorLib1
         void Cmd_Draw_Clock()
         {
 
+            canvas_1.SB_Append(" ", true);
+
             radius_90_Percent = (float)(radius_Origin * 0.9);
 
 
@@ -214,41 +278,21 @@ namespace BlazorLib1
 
             Cmd_Log_Time();
 
+            canvas_1.ClearCanvas();
 
-
-
-            Cmd_Clear_Canvas();
-
-           
-            //if (IsFirstDraw)
-            //{
-
-          
-           
-
-            IsFirstDraw = false;
-
-
-
-            Draw_Corners();
-
-           
-
-            drawClockBorder();
-
-           
             Cmd_Draw_Clock_Background();
 
-
-                  
-            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle",Clock.Clock_Center_Small_Point_Color));
-
+   
+            
             cmd_drawTime();
           
-            drawFace();
+            
 
-           
 
+
+            canvas_1.RenderToUI();
+
+            canvas_1.SB_Execute();
             this.StateHasChanged();
         }
 
@@ -258,7 +302,7 @@ namespace BlazorLib1
             if (currentCount % 100 == 0)
             {
 
-                _log = "StopWatch: " + stopwatch_1.Elapsed.ToString(@"mm\:ss\.ff") + " - updated " + DateTime.Now.ToShortTimeString();
+                _log = "StopWatch: " + stopwatch_1.Elapsed.ToString(@"mm\:ss\.ff");
 
                 stopwatch_1.Restart();
             }
@@ -268,6 +312,13 @@ namespace BlazorLib1
         {
             canvas_1.SetTransform();
             canvas_1.Translate(radius_Origin, radius_Origin);
+
+
+            canvas_1.Begin_Path();
+            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", "Gainsboro"));
+            canvas_1.FillCircle(new TransferParameters(0, 0, (float)(radius_90_Percent), 0, (float)(2.0 * Math.PI)));
+            canvas_1.Fill();
+
 
             radius_90_Percent = (float)(radius_90_Percent * 0.9);
 
@@ -289,17 +340,13 @@ namespace BlazorLib1
         void drawClockBorder()
         {
 
-         
-            canvas_1.Begin_Path();
-
-
             float a = (float)(radius_90_Percent);
 
 
             canvas_1.Begin_Path();
-            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", "Gainsboro "));
+            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", "Gainsboro"));
             canvas_1.FillCircle(new TransferParameters(0, 0, a, 0, (float)(2.0 * Math.PI)));
-            canvas_1.Fill();
+            //canvas_1.Fill();
           
 
             canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(0,0,a * 0.92,0,0, a * 1.05));
@@ -338,70 +385,80 @@ namespace BlazorLib1
         }
 
 
-        void cmd_draw_Numbers()
+        void cmd_draw_Numbers(double second)
         {
-            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", Clock.Clock_Center_Small_Point_Color));
-
-
-
-            canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
-  
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.textBaseline.ToString(), TextBaseline.Middle.ToString().ToLower()));
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.textAlign.ToString(), TextAlign.Center.ToString().ToLower()));
-
+            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle",Clock.Clock_Center_Small_Point_Color));
+            string a = string.Empty;
 
             float ang;
-            
 
-            double Curr_Number = DateTime.Now.AddHours(city.TimeDiff).Second / 5.0;
+            float f = (float)(radius_90_Percent * 0.80);
+
+            double c = second / 5.0;
+
+
 
            
-
-            _log2 = Curr_Number.ToString();
-            this.StateHasChanged();
-
             for (int num = 0; num < 12; num++)
             {
-               
-                
 
-                if (Curr_Number - num == 0)
+                if (Math.Abs(c - num) < 0.3)
                 {
                     canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha","1.0"));
+                   
 
-                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), radius_90_Percent * 0.20 + "px arial"));
+                   canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), radius_90_Percent * 0.20 + "px arial"));
+                   
+
                     if (num % 3 == 0)
                     {
                         canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), "bold " + radius_90_Percent * 0.25 + "px arial"));
+                       
                     }
                 }
                 else
                 {
+                    canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "0.7"));
+                 
                     canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), radius_90_Percent * 0.15 + "px arial"));
+                    
+
                     if (num % 3 == 0)
                     {
                         canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), "bold " + radius_90_Percent * 0.2 + "px arial"));
+                       
                     }
-                    canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "0.7"));
+
                 }
 
                 ang = (float)(num * Math.PI / 6);
-                canvas_1.Rotate(ang);
-                canvas_1.Translate(0, (float)(-radius_90_Percent * 0.80));
-                canvas_1.Rotate(-ang);
+
+
+
                 if (num == 0)
                 {
-                    canvas_1.Fill_Text(new TransferFillTextParameters("12", 0, 0));
+                    a = "12";
                 }
                 else
                 {
-                    canvas_1.Fill_Text(new TransferFillTextParameters(num.ToString(), 0, 0));
+                    a = num.ToString();
                 }
+
+
+
+
                 canvas_1.Rotate(ang);
-                canvas_1.Translate(0, (float)(radius_90_Percent * 0.80));
+                canvas_1.Translate(0, -f);
+                canvas_1.Rotate(-ang);
+
+                canvas_1.Fill_Text(new TransferFillTextParameters(a, 0, 0));
+
+                canvas_1.Rotate(ang);
+                canvas_1.Translate(0, f);
                 canvas_1.Rotate(-ang);
             }
+
+            
         }
 
 
@@ -409,15 +466,15 @@ namespace BlazorLib1
         public void cmd_Draw_60_Lines()
         {
 
-            canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
+           
 
+            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Center_Small_Point_Color));
 
             double s = 0;
 
             
 
-            double lenght = radius_90_Percent;
+            double lenght = radius_90_Percent*0.9;
 
 
             for (int i = 1; i <= 60; i++)
@@ -437,23 +494,20 @@ namespace BlazorLib1
 
         public void cmd_draw_Second_Shadow_Lines(double second)
         {
-           
-            canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
-
+          
 
             canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.01).ToString()));
+            
+
             double s = 0;
 
             int k = 6;
 
             double transp = 1.0;
             canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "1.0"));
-
+           
             double lenght = radius_90_Percent * 0.64;
 
-
-      
             for (int i = k; i > 0; i--)
             {
                 
@@ -471,6 +525,7 @@ namespace BlazorLib1
                 transp = Math.Round((1.0/(k+2) * (k - i)),2);
              
                 canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", transp.ToString()));
+               
                 drawHandEnd(s, lenght, k - i);
 
                 s = 0;
@@ -478,9 +533,9 @@ namespace BlazorLib1
 
 
             canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "1.0"));
-           
+            
 
-         
+            
         }
 
 
@@ -489,7 +544,7 @@ namespace BlazorLib1
         {
 
 
-            canvas_1.Begin_Path();
+            
 
             double k = length * 0.05;
 
@@ -514,9 +569,9 @@ namespace BlazorLib1
                 canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "0.7"));
             }
 
-            
 
 
+            canvas_1.Begin_Path();
             canvas_1.Move_To(0, 0);
 
             canvas_1.Rotate((float)pos);
@@ -538,34 +593,31 @@ namespace BlazorLib1
         void drawHandEnd(double pos, double length, double q)
         {
 
-            
             canvas_1.Begin_Path();
-
+            
             double k = length * q * 0.07;
 
-
             canvas_1.Move_To(0, 0);
-          
             canvas_1.Rotate((float)pos);
             canvas_1.Move_To(0, (float)(-length + k));
-            canvas_1.Line_To(0, (float)(-length));
+            canvas_1.Line_To(0, (float)(-length)); 
             canvas_1.Stroke();
             canvas_1.Rotate((float)-pos);
+           
         }
 
 
         void drawHand2(double pos, double k)
         {
             canvas_1.Begin_Path();
-
-       
             canvas_1.Move_To(0, 0);
-
             canvas_1.Rotate((float)pos);
-            canvas_1.Move_To(0, (float)(-radius_90_Percent *(k-0.01)));
-            canvas_1.Line_To(0, (float)(-radius_90_Percent *k));
+            canvas_1.Move_To(0, (float)(-radius_90_Percent * (k - 0.01)));
+            canvas_1.Line_To(0, (float)(-radius_90_Percent * k));
             canvas_1.Stroke();
             canvas_1.Rotate((float)-pos);
+
+
         }
 
         public void cmd_drawTime()
@@ -591,43 +643,39 @@ namespace BlazorLib1
                
             }
 
-            drawGauge(second, "lightblue", Second_Hand_Lenght);
-            drawGauge(minute + second / 60.0, "yellow", Minute_Hand_Lenght*1.03);
-            drawGauge((hour + minute / 60.0) * 5.0, "green", Hour_Hand_Lenght*1.08);
+
            
             
 
+            drawGauge(second, "lightblue", Second_Hand_Lenght);
+            drawGauge(minute + second / 60.0, "yellow", Minute_Hand_Lenght * 1.03);
+            drawGauge((hour + minute / 60.0) * 5.0, "green", Hour_Hand_Lenght * 1.08);
+           
+            cmd_draw_Numbers(second);
+            
 
-
-            cmd_draw_Numbers();
-
-            cmd_Draw_60_Lines();
-
+           
             canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "1.0"));
-
-
+           
             canvas_1.SetTransform();
             canvas_1.Translate(radius_Origin, radius_Origin);
-                       
-
+        
             CurrentTime = now.ToString(@"hh:mm:ss");
 
-
-            
-
-           
-            
             hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60.0)) + (second * Math.PI / (360 * 60));
+
             canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.05).ToString()));
+
             drawHand(hour, radius_90_Percent * Hour_Hand_Lenght);
             drawHand2(hour, 1.045);
 
 
 
             canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.04).ToString()));
+            
             minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60.0));
             drawHand(minute, radius_90_Percent * Minute_Hand_Lenght);
-            drawHand2(minute,1.045);
+            drawHand2(minute, 1.045);
 
             canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Second_Arrow_Color));
             
@@ -635,46 +683,42 @@ namespace BlazorLib1
 
             second = (second * Math.PI / 30);
             canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.02).ToString()));
+            
             drawHand(second, radius_90_Percent * Second_Hand_Lenght);
 
             drawHand2(second,1.045);
 
-            
-           
 
             canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Center_Small_Point_Color));
-
-
-
-            canvas_1.SetTransform();
-
            
+          
+
         }
 
 
 
         void drawGauge(double k, string color, double lenght)
         {
-          
-            canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
 
             canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", (k / 60).ToString()));
+            
+           
 
             canvas_1.FillGauge(color, new TransferParameters(0, 0, (float)(radius_90_Percent * lenght), (float)(1.5 * Math.PI), (float)(Math.PI*k/30) + (float)(1.5 * Math.PI)));
+           
+
         }
 
         void drawHand(double pos, double length)
         {
             canvas_1.Begin_Path();
-
-
-
             canvas_1.Move_To(0, 0);
             canvas_1.Rotate((float)pos);
             canvas_1.Line_To(0, (float)(-length));
             canvas_1.Stroke();
             canvas_1.Rotate((float)-pos);
+
+
         }
 
 
@@ -714,12 +758,7 @@ namespace BlazorLib1
 
         }
 
-        void Cmd_Clear_Image()
-        {
-
-            Cmd_Clear_Canvas();
-
-        }
+    
 
 
         void SaveImage()

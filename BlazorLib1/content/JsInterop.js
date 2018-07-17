@@ -22,19 +22,27 @@ Blazor.registerFunction('BlazorLib1.JsInterop.Log_Canvas_Array', () => {
 
 
 
-Blazor.registerFunction('BlazorLib1.JsInterop.Add_Canvas', (canvasID) => {
+Blazor.registerFunction('BlazorLib1.JsInterop.Add_Canvas', (obj) => {
 
-    var a = document.getElementById(canvasID);
+    
+
+    var a = document.getElementById(obj["canvasID"]);
    
+    var offscreenCanvas = document.createElement('canvas');
+    offscreenCanvas.width = a.clientWidth;
+    offscreenCanvas.height = a.clientHeight;
+  
     var b = {
         id: a.id,
-        canvasWidth: a.clientWidth,
-        canvasHeight: a.clientHeight,
-        ctx: a.getContext("2d"),
+        ctxTop: document.getElementById(obj["topCanvasID"]).getContext("2d"),
+        ctxBG: document.getElementById(obj["bgCanvasID"]).getContext("2d"),
+        ctxReal: a.getContext("2d"),
+        ctxOffScreen: offscreenCanvas.getContext('2d'),
     };
 
     canvas_array.push(b);
 
+   
     return true;
 });
 
@@ -143,6 +151,7 @@ Blazor.registerFunction('BlazorLib1.JsInterop.Fill_Text', (obj) => {
 
 Blazor.registerFunction('BlazorLib1.JsInterop.Set_Property', (obj) => {
 
+   
     var prt = obj["transferCanvasProperty"].propertyName;
 
     if (prt) {
@@ -153,40 +162,58 @@ Blazor.registerFunction('BlazorLib1.JsInterop.Set_Property', (obj) => {
 });
 
 
-Blazor.registerFunction('BlazorLib1.JsInterop.Draw_Rect', (obj) => {
+Blazor.registerFunction('BlazorLib1.JsInterop.draw_Full_Size_Rect', (obj) => {
 
-    draw_Rect(canvas(obj["canvasID"]), obj["color"]);
 
+    var ctx1 = ctx(obj["canvasID"]);
+
+    ctx1.beginPath();
+    ctx1.fillStyle = obj["color"];
+    ctx1.fillRect(0, 0, ctx1.canvas.clientWidth, ctx1.canvas.clientHeight);
+   
     return true;
 });
 
 
 Blazor.registerFunction('BlazorLib1.JsInterop.Clear_Canvas', (canvasID) => {
-
-
-    var canvas1 = canvas(canvasID);
    
-    canvas1.ctx.setTransform(1, 0, 0, 1, 0, 0);
-    canvas1.ctx.clearRect(0, 0, canvas1.canvasWidth, canvas1.canvasHeight);
+    var ctx1 = ctx(canvasID);
 
+
+    ctx1.setTransform(1, 0, 0, 1, 0, 0);
+    ctx1.clearRect(0, 0, ctx1.canvas.clientWidth, ctx1.canvas.clientHeight);
+  
     return true;
 });
 
 
-function canvas(canvasID) {
-
-    var index = canvas_array.findIndex(x => x.id === canvasID);
-
-    return canvas_array[index];
-
-}
 
 
-function ctx(canvasID) {
+function ctx(canvasID, RealOrOffScreen=false) {
 
-    var index = canvas_array.findIndex(x => x.id === canvasID);
+    var index = -1;
+   
 
-    return canvas_array[index].ctx; 
+    if (canvasID.includes("Bg")) {
+        index = canvas_array.findIndex(x => x.id === canvasID.replace("Bg", ""));
+        return canvas_array[index].ctxBG;
+    }
+    else if (canvasID.includes("Top")) {
+        index = canvas_array.findIndex(x => x.id === canvasID.replace("Top", ""));
+        return canvas_array[index].ctxTop;
+    }
+    else
+    {
+        index = canvas_array.findIndex(x => x.id === canvasID);
+
+        if (RealOrOffScreen) {
+            return canvas_array[index].ctxReal;
+        }
+        else {
+            return canvas_array[index].ctxOffScreen;
+        }
+    }
+   
 
 }
 
@@ -267,13 +294,6 @@ Blazor.registerFunction('BlazorLib1.JsInterop.Stroke_Rect', (obj) => {
 });
 
 
-function draw_Rect(canvas, color) {
-
-    canvas.ctx.beginPath();
-    canvas.ctx.fillStyle = color;
-    canvas.ctx.fillRect(0, 0, canvas.canvasWidth, canvas.canvasHeight);
-    canvas.ctx.fill();
-}
 
 
 
@@ -337,3 +357,25 @@ Blazor.registerFunction('BlazorLib1.JsInterop.Gradient_Set_Stoke_Or_Fill_Style',
 
     return true;
 });
+
+
+
+
+
+Blazor.registerFunction('BlazorLib1.JsInterop.Render_To_UI', function (canvasID) {
+
+    ctx(canvasID, true).drawImage(ctx(canvasID).canvas, 0, 0);
+
+    return true;
+});
+
+
+Blazor.registerFunction('BlazorLib1.JsInterop.Execute_Dynamic_Script', function (cmd) {
+
+    var f = new Function(cmd);
+    f(); 
+
+    return true;
+});
+
+

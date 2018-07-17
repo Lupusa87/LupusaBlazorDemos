@@ -29,6 +29,13 @@ namespace BlazorLib1
                 "BlazorLib1.JsInterop.Log_Canvas_Array");
         }
 
+        public static bool Render_To_UI(string canvasID)
+        {
+
+            return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.Render_To_UI", canvasID);
+        }
+
+        
 
         public static bool Draw_Circle(string canvasID, TransferParameters transferParameters)
         {
@@ -128,10 +135,10 @@ namespace BlazorLib1
             return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.Fill", canvasID);
         }
 
-        public static bool Draw_Rect(string canvasID, string color)
+        public static bool Draw_Full_Size_Rect(string canvasID, string color)
         {
 
-            return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.Draw_Rect",new { canvasID, color });
+            return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.draw_Full_Size_Rect", new { canvasID, color });
         }
 
 
@@ -165,10 +172,10 @@ namespace BlazorLib1
         }
 
 
-        public static bool Add_Canvas(string canvasID)
+        public static bool Add_Canvas(string canvasID, string BgCanvasID, string TopCanvasID)
         {
 
-            return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.Add_Canvas", canvasID);
+            return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.Add_Canvas",new { canvasID, BgCanvasID, TopCanvasID });
 
 
         }
@@ -211,7 +218,11 @@ namespace BlazorLib1
                 new { canvasID, StrokeOrFill });
         }
 
+        public static bool Execute_Dynamic_Script(string cmd)
+        {
 
+            return RegisteredFunction.Invoke<bool>("BlazorLib1.JsInterop.Execute_Dynamic_Script", cmd);
+        }
 
     }
 }

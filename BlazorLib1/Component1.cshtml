@@ -14,15 +14,14 @@
 <p>log2: @_log2 </p>
 <p>log: @_log </p>*@
 
-@*<img src="content/1.png" alt="Smiley face">*@
-
 
 
 <br />
-
-<canvas id="@city.CanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" />
-
-
+<div style="@city.DivClass">
+    <canvas id="@city.TopCanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" style="position: absolute; z-index: 3" />
+    <canvas id="@city.CanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" style="position: absolute; z-index: 2" />
+    <canvas id="@city.BgCanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" style="position: absolute; z-index: 1" />
+</div>
 <br />
 
 @*<button class="btn btn-primary" onclick=@(() => OnRemoveComponent(this.city.ID))>delete2</button>*@
