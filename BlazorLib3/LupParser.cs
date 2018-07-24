@@ -215,7 +215,7 @@ namespace BlazorLib3
 
             //     _MyItems_List.RemoveAll(x => x.IsContent);
 
-            Print_List();
+            // Print_List();
         }
 
 
@@ -240,7 +240,7 @@ namespace BlazorLib3
             }
 
 
-            Console.WriteLine(a + Par_Item.Name + Par_Item.Content);
+            Console.WriteLine(a + Par_Item.Name + " " + Par_Item.Content);
 
             if (Par_Item.children.Any())
             {

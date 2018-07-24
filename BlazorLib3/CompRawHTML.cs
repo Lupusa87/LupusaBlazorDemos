@@ -13,9 +13,42 @@ namespace BlazorLib3
         [Parameter]
         public string RawHTML { get; set; }
 
+        [Parameter]
+        private Action<string> RawHTMLChanged { get; set; }
+
+        protected override void OnInit()
+        {
+            Console.WriteLine("CompRawHTML OnInit fired ");
+        }
+
+
+        public override void SetParameters(ParameterCollection parameters)
+        {
+
+
+            string a = string.Empty;
+
+            parameters.TryGetValue("RawHTML", out a);
+            Console.WriteLine("CompRawHTML SetParameters fired " + a);
+
+           base.SetParameters(parameters);
+        }
+
+        protected override bool ShouldRender()
+        {
+            Console.WriteLine("CompRawHTML ShouldRender fired");
+
+            var renderUI = true;
+
+            return renderUI;
+        }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+
+            Console.WriteLine("CompRawHTML BuildRenderTree fired");
+            Console.WriteLine(RawHTML);
+
             LupParser lp1 = new LupParser(RawHTML);
 
 
@@ -33,29 +66,6 @@ namespace BlazorLib3
 
 
             int k = 0;
-
-            //builder.OpenElement(k++, "style");
-            //string a = @"table {
-            //                    font-family: arial, sans-serif;
-            //                    border-collapse: collapse;
-            //                    width: 100%;
-            //                }
-
-            //                    td, th {
-            //                    border: 1px solid #dddddd;
-            //                    text-align: left;
-            //                    padding: 8px;
-            //                }
-
-            //                tr:nth-child(even)
-            //                {
-            //                    background - color: #dddddd;
-            //                }";
-
-            //builder.AddContent(k++, a);
-            //builder.CloseElement();
-
-
 
             foreach (var item in lp1.HtmlElements_List)
             {

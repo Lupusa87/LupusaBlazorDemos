@@ -4,6 +4,9 @@
 @using BlazorLib3
 
 
+
+
+
 <h5>You can watch 4 mins <a href="https://www.youtube.com/watch?v=KjeL3H04bIU" target="_blank">video demonstration</a></h5>
 
 
@@ -18,7 +21,7 @@
 
     <button class="btn btn-primary" onclick="@cmd_convert">Run</button>
     <button class="btn btn-primary" onclick="@cmd_clear">Clear</button>
-    <h6 style="color:green;">refresh page for new test</h6>
+   
 </div>
 
 <br />
@@ -28,19 +31,20 @@
 <div>
 
 
+    <CompRawHTML2 RawHTML="@_RawHTML"></CompRawHTML2>
+
+    @*<CompRawHTML bind-RawHTML="@_RawHTML"></CompRawHTML>*@
+    @*@foreach (var item in tmp_List)
+        {
+
+            <div>
+
+                <CompRawHTML RawHTML="@item"></CompRawHTML>
+
+            </div>
 
 
-    @foreach (var item in tmp_List)
-    {
-
-        <div>
-
-            <CompRawHTML RawHTML="@item"></CompRawHTML>
-
-        </div>
-
-
-    }
+        }*@
 
 
 
@@ -51,21 +55,48 @@
 
 @functions{
 
+    //   @import CompRawHTML
 
-    List<string> tmp_List = new List<string>();
 
-    string _RawHTML = "<h2>hello</h2>";
+    // List<string> tmp_List = new List<string>();
 
+
+    [Parameter]
+    private string _RawHTML { get; set; } = "<h2>hello</h2>";
+
+
+
+    //protected override void OnInit()
+    //{
+    //    Console.WriteLine("RawHTML OnInit fired ");
+    //}
+
+    //public override void SetParameters(ParameterCollection parameters)
+    //{
+
+
+    //    string a = string.Empty;
+
+    //    parameters.TryGetValue("_RawHTML", out a);
+    //    Console.WriteLine("RawHTML SetParameters fired " + a);
+
+    //    base.SetParameters(parameters);
+    //}
+
+    //protected override bool ShouldRender()
+    //{
+    //    Console.WriteLine("RawHTML ShouldRender fired");
+
+    //    var renderUI = true;
+
+    //    return renderUI;
+    //}
 
     void cmd_convert()
     {
 
 
-        tmp_List = new List<string>();
         StateHasChanged();
-        tmp_List.Add(_RawHTML);
-
-
 
     }
 
@@ -73,12 +104,8 @@
     {
 
         _RawHTML = string.Empty;
-        tmp_List = new List<string>();
+
         StateHasChanged();
-     
-
-
 
     }
-
 }
