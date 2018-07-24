@@ -4,9 +4,9 @@ At this moment there is available only **clock component**, next weeks/months we
 
 For now best performance has Firefox and Edge, please browse [demo](http://lupusablazordemos.azurewebsites.net) from them.
 
-All activities, contributions are welcome and we are open for bussines/result oriented communication.
+All activities, contributions are welcome, we're open for bussines/result oriented communication.
 
-Our goal is to experiment blazor, acquire knowledge by doing wide spectre, practical projects, give accessibility on practical solutions for new **blazor citizens** and to develop blazor experience ready fast moving in production.
+Our goal is to experiment blazor, acquire knowledge by doing wide spectre, practical projects, give accessibility on practical solutions for new **blazor citizens** and to develop blazor experience ready for fast moving in production.
 
 We understand that today our code is wors than it will be tommorow :)
 
