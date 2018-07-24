@@ -1,0 +1,81 @@
+﻿@page "/rawhtml"
+
+@addTagHelper *, BlazorLib3
+@using BlazorLib3
+
+
+<h4 style="color:blue;">Input Raw html</h4>
+<br />
+<div>
+
+    <textarea bind="@_RawHTML" rows="4" cols="50">
+</textarea>
+
+    @* <input bind="@_RawHTML" type="text" width="500" height="200" placeholder="enter raw html" />*@
+
+    <button class="btn btn-primary" onclick="@cmd_convert">Run</button>
+    <button class="btn btn-primary" onclick="@cmd_clear">Clear</button>
+    <h6 style="color:green;">refresh page for new test</h6>
+</div>
+
+<br />
+
+<h3 style="color:red;">Result:</h3>
+<br />
+<div>
+
+
+
+
+    @foreach (var item in tmp_List)
+    {
+
+        <div>
+
+            <CompRawHTML RawHTML="@item"></CompRawHTML>
+
+        </div>
+
+
+    }
+
+
+
+</div>
+
+
+
+
+@functions{
+
+
+    List<string> tmp_List = new List<string>();
+
+    string _RawHTML = "<h2>hello</h2>";
+
+
+    void cmd_convert()
+    {
+
+
+        tmp_List = new List<string>();
+        StateHasChanged();
+        tmp_List.Add(_RawHTML);
+
+
+
+    }
+
+    void cmd_clear()
+    {
+
+        _RawHTML = string.Empty;
+        tmp_List = new List<string>();
+        StateHasChanged();
+     
+
+
+
+    }
+
+}

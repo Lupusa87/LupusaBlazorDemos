@@ -9,133 +9,120 @@
     <link href="css/site.css" rel="stylesheet" />
 </head>
 <body>
+
     <app>Loading...</app>
 
     <script type="blazor-boot">
     </script>
-
+    
 
     <script>
 
-        window.onload = Preload_Image_Corner();
+                //window.onload = Preload_Image_Corner();
 
-        function Preload_Image_Corner() {
-            img_Corner_Shape = new Image();
+                //function Preload_Image_Corner() {
+                //    img_Corner_Shape = new Image();
 
-            img_Corner_Shape.onload = function () {
-                ImgIsLoaded = true;
-                   
-            };
-            img_Corner_Shape.onerror = function () {
+                //    img_Corner_Shape.onload = function () {
+                //        ImgIsLoaded = true;
 
-                console.log("error loading image");
+                //    };
+                //    img_Corner_Shape.onerror = function () {
 
-            };
-            img_Corner_Shape.src = '/content/1.png';
+                //        console.log("error loading image");
 
-
-            return true;
-        }
+                //    };
+                //    img_Corner_Shape.src = '/content/1.png';
 
 
-        Blazor.registerFunction('JavaScriptDrawCanvas', (CanvasID) => {
-
-           
-            var c = document.getElementById(CanvasID);
-            var ctx = c.getContext("2d");
-
-            ctx.font = "20px Georgia";
-            ctx.fillText("Hello World!", 10, 50);
-
-            ctx.font = "30px Verdana";
-
-            ctx.fillStyle = "red";
-            ctx.fillText("I am " + CanvasID, 10, 100);
-          
-        });
-            
+                //    return true;
+                //}
 
 
-
-        var MyData;
-
-          Blazor.registerFunction('JavaScriptSaveCanvasImage', (CanvasName) => {
-              
-              var canvas = document.getElementsByTagName("canvas")[0];
-           
-               // localStorage.setItem("abc", canvas.toDataURL());
-              MyData = canvas.toDataURL();
-
-                return true;
-            });
-
-            Blazor.registerFunction('JavaScriptLoadCanvasImage', (CanvasName) => {
-
-                var canvas = document.getElementsByTagName("canvas")[0];
-                var ctx = canvas.getContext("2d");
- 
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-          //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+                //Blazor.registerFunction('JavaScriptDrawCanvas', (CanvasID) => {
 
 
-                //var dataURL = localStorage.getItem("abc");
+                //    var c = document.getElementById(CanvasID);
+                //    var ctx = c.getContext("2d");
 
-                var img = new Image;
+                //    ctx.font = "20px Georgia";
+                //    ctx.fillText("Hello World!", 10, 50);
+
+                //    ctx.font = "30px Verdana";
+
+                //    ctx.fillStyle = "red";
+                //    ctx.fillText("I am " + CanvasID, 10, 100);
+
+                //});
 
 
 
 
-                //img.src = dataURL;
+                //var MyData;
 
-                img.src = MyData;
-                img.onload = function () {
-                    ctx.drawImage(img, 0, 0);
+                //Blazor.registerFunction('JavaScriptSaveCanvasImage', (CanvasName) => {
 
+                //    var canvas = document.getElementsByTagName("canvas")[0];
 
-                    abc();
+                //    // localStorage.setItem("abc", canvas.toDataURL());
+                //    MyData = canvas.toDataURL();
 
+                //    return true;
+                //});
 
-                };
+                //Blazor.registerFunction('JavaScriptLoadCanvasImage', (CanvasName) => {
 
-                function abc() {
+                //    var canvas = document.getElementsByTagName("canvas")[0];
+                //    var ctx = canvas.getContext("2d");
 
-                   
-                        Blazor.invokeDotNetMethod({
-                            type: {
-                                assembly: 'BlazorApp1',
-                                name: 'BlazorApp1.Pages.Counter'
+                //    ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-                            },
-                            method: {
-                                name: 'cmd_drawTime'
-                            }
-                    })
-
-                   
-                }
+                //    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 
-           
+                //    //var dataURL = localStorage.getItem("abc");
 
-                return true;
-        });
-
-
-        /////////////////////////////////////////////////////
+                //    var img = new Image;
 
 
 
-        Blazor.registerFunction('JavaScriptDrawPieChart', (CanvasName) => {
 
-           
+                //    //img.src = dataURL;
 
-            return true;
-        });
+                //    img.src = MyData;
+                //    img.onload = function () {
+                //        ctx.drawImage(img, 0, 0);
+
+
+                //        abc();
+
+
+                //    };
+
+                //    function abc() {
+
+
+                //        Blazor.invokeDotNetMethod({
+                //            type: {
+                //                assembly: 'BlazorApp1',
+                //                name: 'BlazorApp1.Pages.Counter'
+
+                //            },
+                //            method: {
+                //                name: 'cmd_drawTime'
+                //            }
+                //        })
+
+
+                //    }
 
 
 
-     
+
+                //    return true;
+                //});
+
+
 
     </script>
 

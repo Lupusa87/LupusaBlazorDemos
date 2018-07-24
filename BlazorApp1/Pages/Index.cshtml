@@ -1,10 +1,15 @@
 ﻿
 @addTagHelper *, BlazorLib1
+@addTagHelper *, BlazorLib2
 @using BlazorLib1
+@using BlazorLib2
 @using BlazorLib1.Classes
+@using BlazorLib2.Classes
 @using Microsoft.AspNetCore.Blazor.Browser.Interop;
 @using Microsoft.AspNetCore.Blazor.Components;
 @using Microsoft.AspNetCore.Blazor.RenderTree;
+
+
 @page "/"
 
 <style>
@@ -24,8 +29,11 @@
 </style>
 
 
-
 <h2>Hello, welcome to my experiment :)</h2>
+
+
+
+
 
 <br>
 
@@ -38,9 +46,11 @@
 
 <h6>Feel free to <a href="mailto:VakhtangiAbashidze@gmail.com" target="_blank">contact</a> me</h6>
 
+<h6>Projects github repo is <a href="https://github.com/Lupusa87/LupusaBlazorProjects" target="_blank">here </a></h6>
+
 <br>
 
-
+@*<ClockSVG clSettings="@Curr_clockSettings"/>*@
 
 
 <div class="flex-container">
@@ -53,7 +63,7 @@
 
         <div>
 
-            <Component1 city="@city" ref="@city.component1_related"/>
+            <Component1 city="@city" ref="@city.component1_related" />
 
         </div>
 
@@ -110,72 +120,72 @@
 @functions {
 
 
-            bool IsPageLoaded = false;
+        bool IsPageLoaded = false;
+
+        clockSettings Curr_clockSettings = new clockSettings() {  width = 400, heigh = 400};
 
 
+        City Curr_City = new City();
 
 
-            City Curr_City = new City();
-
-
-            List<City> Cities_List = new List<City>() {
-  new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
-      DivClass ="position:relative; width:400px; height:400px;"},
- // new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
- // new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
+        List<City> Cities_List = new List<City>() {
+new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
+DivClass ="position:relative; width:400px; height:400px;"},
+// new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
+// new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
 };
 
 
-    void abc()
-    {
-
-        RegisteredFunction.Invoke<bool>("JavaScriptDrawCanvas", "canvas1");
-
-    }
-
-    void Add_Clock()
-    {
-        if (Cities_List.Count==5)
+        void abc()
         {
-            JsInterop.Alert("You can't add more than 5 clocks!");
-            return;
+
+            RegisteredFunction.Invoke<bool>("JavaScriptDrawCanvas", "canvas1");
+
         }
 
-        if (string.IsNullOrEmpty(Curr_City.Name))
+        void Add_Clock()
         {
-            JsInterop.Alert("City name is required!");
-        }
-        else
-        {
-
-
-
-            if (Cities_List.Any())
+            if (Cities_List.Count == 5)
             {
-                Curr_City.ID = Cities_List.Max(x => x.ID) + 1;
+                JsInterop.Alert("You can't add more than 5 clocks!");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(Curr_City.Name))
+            {
+                JsInterop.Alert("City name is required!");
             }
             else
             {
-                Curr_City.ID = 1;
 
+
+
+                if (Cities_List.Any())
+                {
+                    Curr_City.ID = Cities_List.Max(x => x.ID) + 1;
+                }
+                else
+                {
+                    Curr_City.ID = 1;
+
+                }
+
+                if (Curr_City.WidthAndHeight == 0)
+                {
+                    Curr_City.WidthAndHeight = 300;
+
+                }
+
+                Curr_City.DivClass = "position:relative; width:" + Curr_City.WidthAndHeight + "px; height:" + Curr_City.WidthAndHeight + "px;";
+
+
+                Cities_List.Add(Curr_City);
+                Curr_City = new City();
+
+
+                this.StateHasChanged();
             }
-
-            if (Curr_City.WidthAndHeight == 0)
-            {
-                Curr_City.WidthAndHeight = 300;
-
-            }
-
-            Curr_City.DivClass = "position:relative; width:" + Curr_City.WidthAndHeight + "px; height:" + Curr_City.WidthAndHeight + "px;";
-
-
-            Cities_List.Add(Curr_City);
-            Curr_City = new City();
-
-
-            this.StateHasChanged();
         }
-    }
 
 
     protected override void OnAfterRender()

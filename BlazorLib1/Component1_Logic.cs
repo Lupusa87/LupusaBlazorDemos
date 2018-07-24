@@ -9,6 +9,7 @@ using BlazorLib1.Classes;
 using Microsoft.AspNetCore.Blazor.Browser.Interop;
 using Microsoft.AspNetCore.Blazor.Components;
 
+
 namespace BlazorLib1
 {
     public class Component1_Logic : BlazorComponent
@@ -27,15 +28,15 @@ namespace BlazorLib1
         [Parameter]
         public City city { get; set; }
 
-
+        bool IsRunningProcess = false;
       
 
         bool OnlyOneDraw = false;
 
-        bool FastMode = true;
+        bool FastMode = false;
         int FastMode_Increment = 1;
         bool SecondOnlyOneStep = false;  // if it is true timeinterval should be 1000
-        int timerInterval = 1;
+        int timerInterval = 200;
 
 
         double Hour_Hand_Lenght = 0.35;
@@ -88,9 +89,6 @@ namespace BlazorLib1
         #region Methods
 
 
-        
-
-
         protected async override void OnAfterRender()
         {
            
@@ -99,14 +97,13 @@ namespace BlazorLib1
                 IsPageLoaded = true;
 
 
-
+               
                 await Preload_Image();
 
 
-                FastMode = city.FastMode;
-                FastMode_Increment = city.FastMode_Increment;
-              
-                int timerInterval = city.TimerInterval;
+                //FastMode = city.FastMode;
+                //FastMode_Increment = city.FastMode_Increment;
+                //timerInterval = city.TimerInterval;
 
 
 
@@ -157,6 +154,9 @@ namespace BlazorLib1
                 canvas_1.SB_Execute();
 
                 Cmd_Draw_Clock();
+                this.StateHasChanged();
+
+
 
                 if (!OnlyOneDraw)
                 {
@@ -265,6 +265,7 @@ namespace BlazorLib1
         void Cmd_Draw_Clock()
         {
 
+
             canvas_1.SB_Append(" ", true);
 
             radius_90_Percent = (float)(radius_Origin * 0.9);
@@ -293,7 +294,7 @@ namespace BlazorLib1
             canvas_1.RenderToUI();
 
             canvas_1.SB_Execute();
-            this.StateHasChanged();
+            
         }
 
 
@@ -346,7 +347,7 @@ namespace BlazorLib1
             canvas_1.Begin_Path();
             canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", "Gainsboro"));
             canvas_1.FillCircle(new TransferParameters(0, 0, a, 0, (float)(2.0 * Math.PI)));
-            //canvas_1.Fill();
+            
           
 
             canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(0,0,a * 0.92,0,0, a * 1.05));
@@ -360,6 +361,7 @@ namespace BlazorLib1
 
             canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", "red"));
         }
+
 
 
         void drawFace()
@@ -741,8 +743,17 @@ namespace BlazorLib1
 
         void TimeCallBack(object state)
         {
+            if (IsRunningProcess)
+            {
+                Console.WriteLine(IsRunningProcess + " " + DateTime.Now.ToString("hh:mm:ss.fff"));
+                return;
+            }
+
+            IsRunningProcess = true;
             Cmd_Draw_Clock();
             this.StateHasChanged();
+           
+            IsRunningProcess = false;
         }
 
         void IncrementCount()
