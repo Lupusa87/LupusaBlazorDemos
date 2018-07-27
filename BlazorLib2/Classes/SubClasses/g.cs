@@ -13,7 +13,7 @@ namespace BlazorLib2.Classes.SubClasses
         public string text_anchor { get; set; }
         
         public string fill { get; set; }
-
+        public string transform { get; set; }
         public ICollection<object> Children { get; set; } = new List<object>();
     }
 }

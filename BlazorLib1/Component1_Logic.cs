@@ -20,8 +20,6 @@ namespace BlazorLib1
         public bool IsSubscribedForOnDelete = false;
 
 
-
-
         #region Properties
         //[Parameter] public Action<int> OnRemoveComponent { get; set; }
 
@@ -31,37 +29,19 @@ namespace BlazorLib1
         bool IsRunningProcess = false;
       
 
-        bool OnlyOneDraw = false;
-
-        bool FastMode = false;
-        int FastMode_Increment = 1;
-        bool SecondOnlyOneStep = false;  // if it is true timeinterval should be 1000
-        int timerInterval = 200;
-
-
-        double Hour_Hand_Lenght = 0.35;
-        double Minute_Hand_Lenght = 0.55;
-        double Second_Hand_Lenght = 0.64;
-
-
-        public string CurrentTime;
-
-
         private LupCanvas canvas_1 = null;
 
         Timer timer = null;
 
-        DateTime StartDate = new DateTime();
+        public string CurrentTime;
 
-        public int currentCount = 0;
+
+      
 
         public string _log = string.Empty;
         public string _log2 = string.Empty;
 
-        float radius_Origin = 0;
-        float radius_2 = 0;
-        float radius_90_Percent = 0;
-
+       
 
         Stopwatch stopwatch_1 = new Stopwatch();
 
@@ -115,22 +95,12 @@ namespace BlazorLib1
                 
 
 
-                // canvas_1.Load_Image_From_Path("content/1.png", "cornerShape");
-
-
-                StartDate = DateTime.Now.AddHours(city.TimeDiff);
-
-                //if (Curr_Component_Index > 0)
-                //{
-                //    StartDate = StartDate.AddSeconds(LocalData.rnd1.Next(10000, 5000000));
-                //}
-
                 stopwatch_1.Start();
 
 
-                radius_2 = city.WidthAndHeight;
-                radius_Origin = radius_2 / 2;
-                radius_90_Percent = (float)(radius_Origin * 0.9);
+                ClockSettings.radius_2_Times = city.WidthAndHeight;
+                ClockSettings.radius_Origin = ClockSettings.radius_2_Times / 2;
+                ClockSettings.radius_90_Percent = (float)(ClockSettings.radius_Origin * 0.9);
 
 
                 
@@ -141,13 +111,13 @@ namespace BlazorLib1
                
 
                 Cmd_Draw_Top_Canvas();
-              
+            
 
                 canvas_1.Swith_To_Canvas(ClockCanvasType.Middle);
 
                 canvas_1.SB_Append(" ", true);
                 canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineCap.ToString(), LineCap.Round.ToString().ToLower()));
-                canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", Clock.Clock_Center_Small_Point_Color));
+                canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", ClockSettings.Clock_Center_Small_Point_Color));
                 canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.textBaseline.ToString(), TextBaseline.Middle.ToString().ToLower()));
                 canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.textAlign.ToString(), TextAlign.Center.ToString().ToLower()));
 
@@ -158,16 +128,16 @@ namespace BlazorLib1
 
 
 
-                if (!OnlyOneDraw)
+                if (!ClockSettings.OnlyOneDraw)
                 {
 
-                    if (SecondOnlyOneStep)
+                    if (ClockSettings.SecondOnlyOneStep)
                     {
                         timer = new Timer(TimeCallBack, null, 0, 1000);
                     }
                     else
                     {
-                        timer = new Timer(TimeCallBack, null, 0, timerInterval);
+                        timer = new Timer(TimeCallBack, null, 0, ClockSettings.timerInterval);
                     }
 
                 }
@@ -185,17 +155,17 @@ namespace BlazorLib1
             canvas_1.SB_Append(" ", true);
             canvas_1.ClearCanvas();
 
-            canvas_1.DrawFullSizeRect(Clock.BG_Color);
+            canvas_1.DrawFullSizeRect(ClockSettings.BG_Color);
 
 
-            canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(radius_Origin, radius_Origin, radius_Origin, radius_Origin, radius_Origin, radius_Origin * 1.05));
-            canvas_1.GradientAddColorStop(0, Clock.Clock_Border_Color);
+            canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(ClockSettings.radius_Origin, ClockSettings.radius_Origin, ClockSettings.radius_Origin, ClockSettings.radius_Origin, ClockSettings.radius_Origin, ClockSettings.radius_Origin * 1.05));
+            canvas_1.GradientAddColorStop(0, ClockSettings.Clock_Border_Color);
             canvas_1.GradientAddColorStop(1, "LightSkyBlue");
             canvas_1.GradientSetStokeOrFillStyle(true);
 
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_Origin * 0.01).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_Origin * 0.01).ToString()));
 
-            canvas_1.StrokeRect(new TransferRectParameters(0, 0, radius_Origin * 2, radius_Origin * 2));
+            canvas_1.StrokeRect(new TransferRectParameters(0, 0, ClockSettings.radius_Origin * 2, ClockSettings.radius_Origin * 2));
 
 
 
@@ -217,7 +187,7 @@ namespace BlazorLib1
             canvas_1.ClearCanvas();
 
 
-            canvas_1.Translate(radius_Origin, radius_Origin);
+            canvas_1.Translate(ClockSettings.radius_Origin, ClockSettings.radius_Origin);
 
             canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineCap.ToString(), LineCap.Round.ToString().ToLower()));
 
@@ -229,6 +199,8 @@ namespace BlazorLib1
             drawFace();
 
             canvas_1.SB_Execute();
+
+           
         }
 
 
@@ -246,7 +218,7 @@ namespace BlazorLib1
         {
            
 
-            float wh = (float)(radius_Origin * 0.6);
+            float wh = (float)(ClockSettings.radius_Origin * 0.6);
 
             canvas_1.SetTransform();
             canvas_1.Translate(0, 0);
@@ -255,9 +227,9 @@ namespace BlazorLib1
             for (int i = 1; i < 4; i++)
             {
                 canvas_1.SetTransform();
-                canvas_1.Translate(radius_Origin, radius_Origin);
+                canvas_1.Translate(ClockSettings.radius_Origin, ClockSettings.radius_Origin);
                 canvas_1.Rotate((float)(0.5 * i * Math.PI));
-                canvas_1.Draw_Image("content/1.png", new TransferImageParameters(-radius_Origin, -radius_Origin, wh, wh));
+                canvas_1.Draw_Image("content/1.png", new TransferImageParameters(-ClockSettings.radius_Origin, -ClockSettings.radius_Origin, wh, wh));
               
             }
         }
@@ -268,12 +240,12 @@ namespace BlazorLib1
 
             canvas_1.SB_Append(" ", true);
 
-            radius_90_Percent = (float)(radius_Origin * 0.9);
+            ClockSettings.radius_90_Percent = (float)(ClockSettings.radius_Origin * 0.9);
 
 
-            if (FastMode)
+            if (ClockSettings.FastMode)
             {
-                currentCount+=FastMode_Increment;
+                ClockSettings.currentCount += ClockSettings.FastMode_Increment;
             }
 
 
@@ -300,7 +272,7 @@ namespace BlazorLib1
 
         void Cmd_Log_Time()
         {
-            if (currentCount % 100 == 0)
+            if (ClockSettings.currentCount % 100 == 0)
             {
 
                 _log = "StopWatch: " + stopwatch_1.Elapsed.ToString(@"mm\:ss\.ff");
@@ -312,26 +284,26 @@ namespace BlazorLib1
         void Cmd_Draw_Clock_Background()
         {
             canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
+            canvas_1.Translate(ClockSettings.radius_Origin, ClockSettings.radius_Origin);
 
 
             canvas_1.Begin_Path();
             canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", "Gainsboro"));
-            canvas_1.FillCircle(new TransferParameters(0, 0, (float)(radius_90_Percent), 0, (float)(2.0 * Math.PI)));
+            canvas_1.FillCircle(new TransferParameters(0, 0, (float)(ClockSettings.radius_90_Percent), 0, (float)(2.0 * Math.PI)));
             canvas_1.Fill();
 
 
-            radius_90_Percent = (float)(radius_90_Percent * 0.9);
+            ClockSettings.radius_90_Percent = (float)(ClockSettings.radius_90_Percent * 0.9);
 
             canvas_1.Begin_Path();
-            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", Clock.Clock_BG_Color));
-            canvas_1.FillCircle(new TransferParameters(0, 0, radius_90_Percent, 0, (float)(2.0 * Math.PI)));
+            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle", ClockSettings.Clock_BG_Color));
+            canvas_1.FillCircle(new TransferParameters(0, 0, ClockSettings.radius_90_Percent, 0, (float)(2.0 * Math.PI)));
             canvas_1.Fill();
 
 
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_Origin * 0.01).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_Origin * 0.01).ToString()));
 
-            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Border_Color));
+            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", ClockSettings.Clock_Center_Small_Point_Color));
             canvas_1.Stroke();
 
          
@@ -341,7 +313,7 @@ namespace BlazorLib1
         void drawClockBorder()
         {
 
-            float a = (float)(radius_90_Percent);
+            float a = (float)(ClockSettings.radius_90_Percent);
 
 
             canvas_1.Begin_Path();
@@ -351,11 +323,11 @@ namespace BlazorLib1
           
 
             canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(0,0,a * 0.92,0,0, a * 1.05));
-            canvas_1.GradientAddColorStop(0, Clock.Clock_Border_Color);
-            canvas_1.GradientAddColorStop(1, Clock.BG_Color);
+            canvas_1.GradientAddColorStop(0, ClockSettings.Clock_Border_Color);
+            canvas_1.GradientAddColorStop(1, ClockSettings.BG_Color);
             canvas_1.GradientSetStokeOrFillStyle(true);
 
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_Origin * 0.06).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_Origin * 0.06).ToString()));
 
             canvas_1.Stroke();
 
@@ -367,16 +339,16 @@ namespace BlazorLib1
         void drawFace()
         {
             canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
+            canvas_1.Translate(ClockSettings.radius_Origin, ClockSettings.radius_Origin);
 
             canvas_1.Begin_Path();
 
 
-            float a = (float)(radius_90_Percent * 0.085);
+            float a = (float)(ClockSettings.radius_90_Percent * 0.085);
 
             canvas_1.CreateRadialGradient(new TransferRadialGradientParameters(0, 0, 0, 0, 0, a));
-            canvas_1.GradientAddColorStop(0, Clock.BG_Color);
-            canvas_1.GradientAddColorStop(1, Clock.Clock_Center_Small_Point_Color);
+            canvas_1.GradientAddColorStop(0, ClockSettings.BG_Color);
+            canvas_1.GradientAddColorStop(1, ClockSettings.Clock_Center_Small_Point_Color);
             canvas_1.GradientSetStokeOrFillStyle(false);
 
 
@@ -389,12 +361,12 @@ namespace BlazorLib1
 
         void cmd_draw_Numbers(double second)
         {
-            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle",Clock.Clock_Center_Small_Point_Color));
+            canvas_1.SetProperty(new TransferCanvasProperty("fillStyle",ClockSettings.Clock_Center_Small_Point_Color));
             string a = string.Empty;
 
             float ang;
 
-            float f = (float)(radius_90_Percent * 0.80);
+            float f = (float)(ClockSettings.radius_90_Percent * 0.80);
 
             double c = second / 5.0;
 
@@ -409,12 +381,12 @@ namespace BlazorLib1
                     canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha","1.0"));
                    
 
-                   canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), radius_90_Percent * 0.20 + "px arial"));
+                   canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), ClockSettings.radius_90_Percent * 0.20 + "px arial"));
                    
 
                     if (num % 3 == 0)
                     {
-                        canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), "bold " + radius_90_Percent * 0.25 + "px arial"));
+                        canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), "bold " + ClockSettings.radius_90_Percent * 0.25 + "px arial"));
                        
                     }
                 }
@@ -422,12 +394,12 @@ namespace BlazorLib1
                 {
                     canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "0.7"));
                  
-                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), radius_90_Percent * 0.15 + "px arial"));
+                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), ClockSettings.radius_90_Percent * 0.15 + "px arial"));
                     
 
                     if (num % 3 == 0)
                     {
-                        canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), "bold " + radius_90_Percent * 0.2 + "px arial"));
+                        canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.font.ToString(), "bold " + ClockSettings.radius_90_Percent * 0.2 + "px arial"));
                        
                     }
 
@@ -470,13 +442,13 @@ namespace BlazorLib1
 
            
 
-            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Center_Small_Point_Color));
+            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", ClockSettings.Clock_Center_Small_Point_Color));
 
             double s = 0;
 
             
 
-            double lenght = radius_90_Percent*0.9;
+            double lenght = ClockSettings.radius_90_Percent*0.9;
 
 
             for (int i = 1; i <= 60; i++)
@@ -498,7 +470,7 @@ namespace BlazorLib1
         {
           
 
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.01).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.01).ToString()));
             
 
             double s = 0;
@@ -508,7 +480,7 @@ namespace BlazorLib1
             double transp = 1.0;
             canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "1.0"));
            
-            double lenght = radius_90_Percent * 0.64;
+            double lenght = ClockSettings.radius_90_Percent * 0.64;
 
             for (int i = k; i > 0; i--)
             {
@@ -554,20 +526,20 @@ namespace BlazorLib1
             {
                 if (sec % 15 == 0)
                 {
-                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.02).ToString()));
+                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.02).ToString()));
                     canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "1.0"));
                     k = length * 0.07;
                 }
                 else
                 {
-                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.015).ToString()));
+                    canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.015).ToString()));
                     canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "0.8"));
                     k = length * 0.06;
                 }
             }
             else
             {
-                canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.01).ToString()));
+                canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.01).ToString()));
                 canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "0.7"));
             }
 
@@ -614,8 +586,8 @@ namespace BlazorLib1
             canvas_1.Begin_Path();
             canvas_1.Move_To(0, 0);
             canvas_1.Rotate((float)pos);
-            canvas_1.Move_To(0, (float)(-radius_90_Percent * (k - 0.01)));
-            canvas_1.Line_To(0, (float)(-radius_90_Percent * k));
+            canvas_1.Move_To(0, (float)(-ClockSettings.radius_90_Percent * (k - 0.01)));
+            canvas_1.Line_To(0, (float)(-ClockSettings.radius_90_Percent * k));
             canvas_1.Stroke();
             canvas_1.Rotate((float)-pos);
 
@@ -626,9 +598,12 @@ namespace BlazorLib1
         {
             DateTime now = DateTime.Now.AddHours(city.TimeDiff);
 
-            if (FastMode && !SecondOnlyOneStep)
+            CurrentTime = now.ToString(@"hh:mm:ss");
+
+
+            if (ClockSettings.FastMode && !ClockSettings.SecondOnlyOneStep)
             {
-                now = now.AddSeconds(currentCount);
+                now = now.AddSeconds(ClockSettings.currentCount);
             }
 
 
@@ -639,7 +614,7 @@ namespace BlazorLib1
             double second = now.Second;
             
 
-            if (!SecondOnlyOneStep)
+            if (!ClockSettings.SecondOnlyOneStep)
             {
                 second += now.Millisecond / 1000.0;
                
@@ -649,9 +624,9 @@ namespace BlazorLib1
            
             
 
-            drawGauge(second, "lightblue", Second_Hand_Lenght);
-            drawGauge(minute + second / 60.0, "yellow", Minute_Hand_Lenght * 1.03);
-            drawGauge((hour + minute / 60.0) * 5.0, "green", Hour_Hand_Lenght * 1.08);
+            drawGauge(second, "lightblue", ClockSettings.Second_Hand_Lenght);
+            drawGauge(minute + second / 60.0, "yellow", ClockSettings.Minute_Hand_Lenght * 1.03);
+            drawGauge((hour + minute / 60.0) * 5.0, "green", ClockSettings.Hour_Hand_Lenght * 1.08);
            
             cmd_draw_Numbers(second);
             
@@ -660,38 +635,39 @@ namespace BlazorLib1
             canvas_1.SetProperty(new TransferCanvasProperty("globalAlpha", "1.0"));
            
             canvas_1.SetTransform();
-            canvas_1.Translate(radius_Origin, radius_Origin);
+            canvas_1.Translate(ClockSettings.radius_Origin, ClockSettings.radius_Origin);
         
-            CurrentTime = now.ToString(@"hh:mm:ss");
+
+          
 
             hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60.0)) + (second * Math.PI / (360 * 60));
 
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.05).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.05).ToString()));
 
-            drawHand(hour, radius_90_Percent * Hour_Hand_Lenght);
+            drawHand(hour, ClockSettings.radius_90_Percent * ClockSettings.Hour_Hand_Lenght);
             drawHand2(hour, 1.045);
 
 
 
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.04).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.04).ToString()));
             
             minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60.0));
-            drawHand(minute, radius_90_Percent * Minute_Hand_Lenght);
+            drawHand(minute, ClockSettings.radius_90_Percent * ClockSettings.Minute_Hand_Lenght);
             drawHand2(minute, 1.045);
 
-            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Second_Arrow_Color));
+            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", ClockSettings.Clock_Second_Arrow_Color));
             
             cmd_draw_Second_Shadow_Lines(second);
 
             second = (second * Math.PI / 30);
-            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (radius_90_Percent * 0.02).ToString()));
+            canvas_1.SetProperty(new TransferCanvasProperty(CanvasProperty.lineWidth.ToString(), (ClockSettings.radius_90_Percent * 0.02).ToString()));
             
-            drawHand(second, radius_90_Percent * Second_Hand_Lenght);
+            drawHand(second, ClockSettings.radius_90_Percent * ClockSettings.Second_Hand_Lenght);
 
             drawHand2(second,1.045);
 
 
-            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", Clock.Clock_Center_Small_Point_Color));
+            canvas_1.SetProperty(new TransferCanvasProperty("strokeStyle", ClockSettings.Clock_Center_Small_Point_Color));
            
           
 
@@ -706,7 +682,7 @@ namespace BlazorLib1
             
            
 
-            canvas_1.FillGauge(color, new TransferParameters(0, 0, (float)(radius_90_Percent * lenght), (float)(1.5 * Math.PI), (float)(Math.PI*k/30) + (float)(1.5 * Math.PI)));
+            canvas_1.FillGauge(color, new TransferParameters(0, 0, (float)(ClockSettings.radius_90_Percent * lenght), (float)(1.5 * Math.PI), (float)(Math.PI*k/30) + (float)(1.5 * Math.PI)));
            
 
         }

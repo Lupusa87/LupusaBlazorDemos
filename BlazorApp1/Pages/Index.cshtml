@@ -46,11 +46,9 @@
 
 <h6>Feel free to <a href="mailto:VakhtangiAbashidze@gmail.com" target="_blank">contact</a> me</h6>
 
-<h6>Projects github repo is <a href="https://github.com/Lupusa87/LupusaBlazorProjects" target="_blank">here </a></h6>
-
 <br>
 
-@*<ClockSVG clSettings="@Curr_clockSettings"/>*@
+<ClockSVG WidthAndHeight="400" TimeDiff="-5"/>
 
 
 <div class="flex-container">
@@ -120,72 +118,71 @@
 @functions {
 
 
-        bool IsPageLoaded = false;
-
-        clockSettings Curr_clockSettings = new clockSettings() {  width = 400, heigh = 400};
+    bool IsPageLoaded = false;
 
 
-        City Curr_City = new City();
+
+    City Curr_City = new City();
 
 
-        List<City> Cities_List = new List<City>() {
-new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
-DivClass ="position:relative; width:400px; height:400px;"},
-// new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
-// new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
-};
+    List<City> Cities_List = new List<City>() {
+            new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
+            DivClass ="position:relative; width:400px; height:400px;"},
+            // new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
+            // new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
+        };
 
 
-        void abc()
+    void abc()
+    {
+
+        RegisteredFunction.Invoke<bool>("JavaScriptDrawCanvas", "canvas1");
+
+    }
+
+    void Add_Clock()
+    {
+        if (Cities_List.Count == 5)
         {
-
-            RegisteredFunction.Invoke<bool>("JavaScriptDrawCanvas", "canvas1");
-
+            JsInterop.Alert("You can't add more than 5 clocks!");
+            return;
         }
 
-        void Add_Clock()
+        if (string.IsNullOrEmpty(Curr_City.Name))
         {
-            if (Cities_List.Count == 5)
-            {
-                JsInterop.Alert("You can't add more than 5 clocks!");
-                return;
-            }
+            JsInterop.Alert("City name is required!");
+        }
+        else
+        {
 
-            if (string.IsNullOrEmpty(Curr_City.Name))
+
+
+            if (Cities_List.Any())
             {
-                JsInterop.Alert("City name is required!");
+                Curr_City.ID = Cities_List.Max(x => x.ID) + 1;
             }
             else
             {
+                Curr_City.ID = 1;
 
-
-
-                if (Cities_List.Any())
-                {
-                    Curr_City.ID = Cities_List.Max(x => x.ID) + 1;
-                }
-                else
-                {
-                    Curr_City.ID = 1;
-
-                }
-
-                if (Curr_City.WidthAndHeight == 0)
-                {
-                    Curr_City.WidthAndHeight = 300;
-
-                }
-
-                Curr_City.DivClass = "position:relative; width:" + Curr_City.WidthAndHeight + "px; height:" + Curr_City.WidthAndHeight + "px;";
-
-
-                Cities_List.Add(Curr_City);
-                Curr_City = new City();
-
-
-                this.StateHasChanged();
             }
+
+            if (Curr_City.WidthAndHeight == 0)
+            {
+                Curr_City.WidthAndHeight = 300;
+
+            }
+
+            Curr_City.DivClass = "position:relative; width:" + Curr_City.WidthAndHeight + "px; height:" + Curr_City.WidthAndHeight + "px;";
+
+
+            Cities_List.Add(Curr_City);
+            Curr_City = new City();
+
+
+            this.StateHasChanged();
         }
+    }
 
 
     protected override void OnAfterRender()

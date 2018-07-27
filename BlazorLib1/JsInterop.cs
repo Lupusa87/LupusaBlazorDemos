@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Blazor.Browser.Interop;
 
 namespace BlazorLib1
 {
-    public class JsInterop
+    public static class JsInterop
     {
         public static string Prompt(string message)
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorLib2.Classes
+namespace BlazorLib1
 {
     public static class ClockSettings
     {
@@ -13,9 +13,9 @@ namespace BlazorLib2.Classes
         public static string Image_Url { get; set; } = "content/1.png";
 
 
-        public static double radius_Origin { get; set; } = 0;
-        public static double radius_2_Times { get; set; } = 0;
-        public static double radius_90_Percent { get; set; } = 0;
+        public static float radius_Origin { get; set; } = 0;
+        public static float radius_2_Times { get; set; } = 0;
+        public static float radius_90_Percent { get; set; } = 0;
 
 
         public static int currentCount { get; set; } = 0;
@@ -28,8 +28,8 @@ namespace BlazorLib2.Classes
         public static string Clock_Second_Arrow_Color { get; set; } = "tomato"; // "DarkSlateBlue";
 
         public static string Clock_Numbers_Font { get; set; } = "10px arial";
-        //public static BlazorLib1.TextBaseline Clock_Numbers_TextBaseline { get; set; } = BlazorLib1.TextBaseline.Middle;
-        //public static BlazorLib1.TextAlign Clock_Numbers_TextAlign { get; set; } = BlazorLib1.TextAlign.Center;
+        public static BlazorLib1.TextBaseline Clock_Numbers_TextBaseline { get; set; } = BlazorLib1.TextBaseline.Middle;
+        public static BlazorLib1.TextAlign Clock_Numbers_TextAlign { get; set; } = BlazorLib1.TextAlign.Center;
 
 
         public static bool OnlyOneDraw { get; set; } = false;
@@ -44,6 +44,7 @@ namespace BlazorLib2.Classes
         public static double Minute_Hand_Lenght { get; set; } = 0.55;
         public static double Second_Hand_Lenght { get; set; } = 0.64;
 
+     
 
     }
 }

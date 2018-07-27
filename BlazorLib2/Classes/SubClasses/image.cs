@@ -13,5 +13,7 @@ namespace BlazorLib2.Classes.SubClasses
         public double height { get; set; }
         public string href { get; set; }
         public string transform { get; set; }
+        public double opacity { get; set; }
+        public ICollection<object> Children { get; set; } = new List<object>();
     }
 }
