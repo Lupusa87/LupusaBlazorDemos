@@ -7,23 +7,27 @@ namespace BlazorLib2.Classes.SubClasses
 {
     public class text
     {
-        public double x { get; set; }
-        public double y { get; set; }
-        //public int dx { get; set; }
-        //public int dy { get; set; }
-        public string fill { get; set; }
-        
+        public string id { get; set; } = null;
+        public double x { get; set; } = double.NaN;
+        public double y { get; set; } = double.NaN;
 
-        public double font_size { get; set; }
-        public string font_weight { get; set; }
+        public string fill { get; set; } = null;
 
-        public string text_anchor { get; set; }
-        public string dominant_baseline { get; set; }
-        public double opacity { get; set; }
 
-        public string transform { get; set; }
+        public double font_size { get; set; } = double.NaN;
+        public string font_weight { get; set; } = null;
+
+        public string text_anchor { get; set; } = null;
+        public string dominant_baseline { get; set; } = null;
+        public double opacity { get; set; } = double.NaN;
+
+
+        public string transform_origin { get; set; } = null;
+        public string transform { get; set; } = null;
+        public ICollection<object> Children { get; set; } = new List<object>();
+
 
         //should be on last position because renderer addcontent should happend after attributes set - lupusa 7/26/2018
-        public string content { get; set; }
+        public string content { get; set; } = null;
     }
 }

@@ -1,16 +1,13 @@
 ﻿
 @addTagHelper *, BlazorLib1
-@addTagHelper *, BlazorLib2
 @using BlazorLib1
-@using BlazorLib2
 @using BlazorLib1.Classes
-@using BlazorLib2.Classes
 @using Microsoft.AspNetCore.Blazor.Browser.Interop;
 @using Microsoft.AspNetCore.Blazor.Components;
 @using Microsoft.AspNetCore.Blazor.RenderTree;
 
 
-@page "/"
+@page "/ClockCanvas"
 
 <style>
     .flex-container {
@@ -37,8 +34,7 @@
 
 <br>
 
-
-<h3 style="color:darkred">This is <b>SVG</b> based Clock</h3>
+<h3 style="color:darkred">This is <b>Canvas</b> based Clock</h3>
 
 
 
@@ -58,27 +54,22 @@
 <br>
 
 
-
-
 <div class="flex-container">
 
+    @foreach (var city in Cities_List)
+    {
+        <button type="button" class="close" aria-label="Close" onclick=@(() => RemoveCity(city))>
+            <span aria-hidden="true">&times;</span>
+        </button>
 
-    <ClockSVG WidthAndHeight="400" TimeDiff="-5" />
+        <div>
 
-    @*@foreach (var city in Cities_List)
-        {
-            <button type="button" class="close" aria-label="Close" onclick=@(() => RemoveCity(city))>
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <Component1 city="@city" ref="@city.component1_related" />
 
-            <div>
-
-                <Component1 city="@city" ref="@city.component1_related" />
-
-            </div>
+        </div>
 
 
-        }*@
+    }
 
 
 
@@ -86,40 +77,39 @@
 
 
 
-@*<div class="flex-container">
+<div class="flex-container">
 
 
-        <div>
-            CityName
-            <input bind="@Curr_City.Name" type="text" placeholder="enter city name" />
-        </div>
-        <div>
-            time diff
-            <input bind="@Curr_City.TimeDiff" type="number" min="-12" max="14" />
-        </div>
-        <div>
-            width/height
-            <input bind="@Curr_City.WidthAndHeight" type="number" min="100" max="500" />
-        </div>
-        <div>
-            Timer Interval
-            <input bind="@Curr_City.TimerInterval" type="number" min="1" max="1000" />
-        </div>
-        <div>
-            Fast Mode
-            <input bind="@Curr_City.FastMode" type="checkbox" />
-        </div>
+    <div>
+        CityName
+        <input bind="@Curr_City.Name" type="text" placeholder="enter city name" />
+    </div>
+    <div>
+        time diff
+        <input bind="@Curr_City.TimeDiff" type="number" min="-12" max="14" />
+    </div>
+    <div>
+        width/height
+        <input bind="@Curr_City.WidthAndHeight" type="number" min="100" max="500" />
+    </div>
+    <div>
+        Timer Interval
+        <input bind="@Curr_City.TimerInterval" type="number" min="1" max="1000" />
+    </div>
+    <div>
+        Fast Mode
+        <input bind="@Curr_City.FastMode" type="checkbox" />
+    </div>
 
-        <div>
-            Fast mode add secconds count
-            <input bind="@Curr_City.FastMode_Increment" type="number" min="1" max="1000" />
-        </div>
-        <div>
-            <button class="btn btn-primary" onclick="@Add_Clock">Add Clock</button>
-        </div>
+    <div>
+        Fast mode add secconds count
+        <input bind="@Curr_City.FastMode_Increment" type="number" min="1" max="1000" />
+    </div>
+    <div>
+        <button class="btn btn-primary" onclick="@Add_Clock">Add Clock</button>
+    </div>
 
-    </div>*@
-
+</div>
 
 
 
@@ -135,11 +125,12 @@ City Curr_City = new City();
 
 
 List<City> Cities_List = new List<City>() {
-    new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
-    DivClass ="position:relative; width:400px; height:400px;"},
-    // new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
-    // new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
+new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
+DivClass ="position:relative; width:400px; height:400px;"},
+// new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
+// new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
 };
+
 
 
 

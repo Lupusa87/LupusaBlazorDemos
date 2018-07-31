@@ -37,7 +37,7 @@ namespace BlazorLib1
         public static bool FastMode { get; set; } = false;
         public static int FastMode_Increment { get; set; } = 1;
         public static bool SecondOnlyOneStep { get; set; } = false;  // if it is true timeinterval should be 1000
-        public static int timerInterval { get; set; } = 200;
+        public static int timerInterval { get; set; } = 100;
 
 
         public static double Hour_Hand_Lenght { get; set; } = 0.35;

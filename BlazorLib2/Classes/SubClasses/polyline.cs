@@ -7,7 +7,7 @@ namespace BlazorLib2.Classes.SubClasses
 {
     public class polyline
     {
-        public string points { get; set; }
-        public string style { get; set; }
+        public string points { get; set; } = null;
+        public string style { get; set; } = null;
     }
 }

@@ -7,12 +7,12 @@ namespace BlazorLib2.Classes.SubClasses
 {
     public class ellipse
     {
-        public int cx { get; set; }
-        public int cy { get; set; }
-        public int rx { get; set; }
-        public int ry { get; set; }
-        public string style { get; set; }
-        public string fill { get; set; }
-        
+        public double cx { get; set; } = double.NaN;
+        public double cy { get; set; } = double.NaN;
+        public double rx { get; set; } = double.NaN;
+        public double ry { get; set; } = double.NaN;
+        public string style { get; set; } = null;
+        public string fill { get; set; } = null;
+
     }
 }

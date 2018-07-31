@@ -7,11 +7,14 @@ namespace BlazorLib2.Classes.SubClasses
 {
     public class animateTransform
     {
-        public string attributeName { get; set; } = "transform";
-        public string attributeType { get; set; } = "xml";
-        public string type { get; set; } = "rotate";
-        public int by { get; set; } = 360;
-        public int dur { get; set; }
-        public string repeatCount { get; set; } = "indefinite";
+        public string id { get; set; } = null;
+        public string attributeName { get; set; } = null;
+        public string attributeType { get; set; } = null;
+        public string type { get; set; } = null;
+        public double by { get; set; } = double.NaN;
+        public double dur { get; set; } = double.NaN;
+        public string repeatCount { get; set; } = null;
+        public string values { get; set; } = null;
+        public string keyTimes { get; set; } = null;
     }
 }

@@ -8,12 +8,12 @@ namespace BlazorLib2.Classes.SubClasses
 {
     public class path:strokeBase
     {
-        public string id { get; set; }
-        public string d { get; set; }
-       
-        public string fill { get; set; }
+        public string id { get; set; } = null;
+        public string d { get; set; } = null;
 
-        public double opacity { get; set; }
-        
+        public string fill { get; set; } = null;
+
+        public double opacity { get; set; } = double.NaN;
+
     }
 }

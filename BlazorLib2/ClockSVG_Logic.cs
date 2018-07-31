@@ -35,8 +35,15 @@ namespace BlazorLib2
             svg _svg = Generate_Clock_SVG();
             Cmd_Render(_svg, 0, builder);
 
+            if (ClockSettings.FastMode)
+            {
 
-            JsInterop2.Run();
+                JsInterop2.Run(new TransferParameters(ClockSettings.timerInterval, ClockSettings.FastMode_Increment));
+            }
+            else
+            {
+                JsInterop2.Run(new TransferParameters(ClockSettings.timerInterval, 0));
+            }
         }
 
 
@@ -568,6 +575,20 @@ namespace BlazorLib2
 
         public void cmd_drawTime()
         {
+
+            double AnimationDurationCorrection = 1;
+
+            if (ClockSettings.FastMode)
+            {
+                if (!ClockSettings.SecondOnlyOneStep)
+                {
+                    if (ClockSettings.timerInterval != 1000)
+                    {
+                        AnimationDurationCorrection = 0.001 * ClockSettings.timerInterval;
+                    }
+                }
+            }
+
             //Console.WriteLine("hour" + DateTime.Now.Hour);
 
             DateTime now = DateTime.Now.AddHours(TimeDiff);
@@ -615,7 +636,7 @@ namespace BlazorLib2
                 ClockSettings.radius_90_Percent * 0.05,
                 1.042, 
                 1,
-                60*60*12);
+                43200 * AnimationDurationCorrection);
 
 
          
@@ -626,12 +647,12 @@ namespace BlazorLib2
                 ClockSettings.radius_90_Percent * 0.04,
                 1.041,
                 1,
-                60*60);
+                3600 * AnimationDurationCorrection);
 
 
-           
 
-            cmd_draw_Second_Shadow_Lines(second);
+
+            cmd_draw_Second_Shadow_Lines(second, 60 * AnimationDurationCorrection);
         
             drawHand(second,
                 ClockSettings.radius_90_Percent * ClockSettings.Second_Hand_Lenght,
@@ -639,13 +660,13 @@ namespace BlazorLib2
                 ClockSettings.radius_90_Percent * 0.02,
                 1.04,
                 1.5,
-                60);
+                60 * AnimationDurationCorrection);
 
 
         }
 
 
-        public void cmd_draw_Second_Shadow_Lines(double second)
+        public void cmd_draw_Second_Shadow_Lines(double second, double animationDuration)
         {
 
 
@@ -680,7 +701,9 @@ namespace BlazorLib2
                             lenght,
                             k - i,
                             ClockSettings.Clock_Second_Arrow_Color,
-                            ClockSettings.radius_90_Percent * 0.01, opacity);
+                            ClockSettings.radius_90_Percent * 0.01, 
+                            opacity,
+                            animationDuration);
 
                 s = 0;
             }
@@ -698,8 +721,11 @@ namespace BlazorLib2
                         double Line_Width,
                         double satelite_Pos, 
                         double satelite_R, 
-                        int animationDuration)
+                        double animationDuration)
         {
+
+           
+
 
             pos = pos * 6;
 
@@ -788,7 +814,7 @@ namespace BlazorLib2
 
         }
 
-        void drawHandEnd(double pos, double length, double q, string color, double Line_Width, double _opacity)
+        void drawHandEnd(double pos, double length, double q, string color, double Line_Width, double _opacity, double animationDuration)
         {
             pos = pos * 6;
 
@@ -832,7 +858,7 @@ namespace BlazorLib2
                 attributeName = "transform",
                 attributeType = "xml",
                 by = 360,
-                dur = 60,
+                dur = animationDuration,
                 repeatCount = "indefinite",
                 type = "rotate",
 
@@ -920,8 +946,9 @@ namespace BlazorLib2
               
                 MyPoint p = GetPoint(ang, r);
 
-                result.Children.Add(new text()
+                text t = new text()
                 {
+                    id = "Number" + a,
                     x = p.x,
                     y = p.y,
                     content = a,
@@ -930,9 +957,46 @@ namespace BlazorLib2
                     font_weight = _font_Bold ? "bold" : "normal",
                     text_anchor = "middle",
                     dominant_baseline = "middle",
+                    transform_origin = "center",
                     fill = ClockSettings.Clock_Center_Small_Point_Color,                   
-                });
-               
+                };
+
+                //t.Children.Add(new animateTransform()
+                //{
+                //    attributeName = "transform",
+                //    attributeType = "xml",
+                //    values = "1;1.1;1.1;1",
+                //    keyTimes = "0;0.2;0.8;1",
+                //    dur = 3,
+                //    type = "scale",
+                //    id = "ScaleNumber" + a,
+                //    repeatCount = "indefinite",
+                //});
+
+                //t.Children.Add(new animate()
+                //{
+                //    attributeName = "font-size",
+                //    attributeType = "xml",
+                //    values = _font_Size + ";" + (_font_Size * 1.2) + ";" + _font_Size,
+                //    //   keyTimes = "0;0.2;1",
+                //    dur = 3,
+                //    id = "fontSizeNumber" + a,
+                //    repeatCount = "indefinite",
+                //});
+                //t.Children.Add(new animate()
+                //{
+                //    attributeName = "opacity",
+                //    attributeType = "xml",
+                //    values = _opacity + ";1;1;" + _opacity,
+                //    //   keyTimes = "0;0.2;0.8;1",
+                //    dur = 3,
+                //    id = "OpacityNumber" + a,
+                //    repeatCount = "indefinite",
+                //});
+
+                result.Children.Add(t);
+
+
             }
 
             _Svg.Children.Add(result);
@@ -1136,24 +1200,42 @@ namespace BlazorLib2
             object _value;
             string _attrName = string.Empty;
 
+            bool IsAllowed = true;
+
+
             builder.OpenElement(k++, _Item.GetType().Name);
             //Console.WriteLine("open " + _Item.GetType().Name);
 
-            foreach (PropertyInfo pi in _Item.GetType().GetProperties().Where(x=> !x.PropertyType.Name.Contains("ICollection")))
+            foreach (PropertyInfo pi in _Item.GetType().GetProperties().Where(x => !x.PropertyType.Name.Contains("ICollection")))
             {
+                IsAllowed = true;
                 //Console.WriteLine("prop name - " + pi.Name +" ; type- " + pi.PropertyType.Name + " isclass = "+ pi.PropertyType.IsClass.ToString());
                 _value = pi.GetValue(_Item, null);
 
                 if (pi.PropertyType == typeof(double))
                 {
-                    _value = Math.Round((double)_value, 2);
+                    if (double.IsNaN((double)_value))
+                    {
+                        IsAllowed = false;
+
+                    }
+                    else
+                    {
+                        _value = Math.Round((double)_value, 2);
+                    }
+                }
+
+                if (IsAllowed)
+                {
+                    IsAllowed = _value != null && !string.IsNullOrEmpty(_value.ToString());
                 }
 
 
-                _attrName = pi.Name;
-
-                if (_value != null && !string.IsNullOrEmpty(_value.ToString()))
+                if (IsAllowed)
                 {
+                    _attrName = pi.Name;
+
+
                     if (_attrName.Equals("content"))
                     {
                         builder.AddContent(k++, _value.ToString());
@@ -1172,9 +1254,10 @@ namespace BlazorLib2
                         //}
 
                         builder.AddAttribute(k++, _attrName, _value.ToString());
-                       // Console.WriteLine("set attribute - " + _attrName + " = " + _value.ToString());
+                        // Console.WriteLine("set attribute - " + _attrName + " = " + _value.ToString());
                     }
-                    
+
+
                 }
             }
 
