@@ -18,7 +18,7 @@ namespace BlazorLib3
 
         protected override void OnInit()
         {
-            Console.WriteLine("CompRawHTML OnInit fired ");
+          //  Console.WriteLine("CompRawHTML OnInit fired ");
         }
 
 
@@ -29,14 +29,14 @@ namespace BlazorLib3
             string a = string.Empty;
 
             parameters.TryGetValue("RawHTML", out a);
-            Console.WriteLine("CompRawHTML SetParameters fired " + a);
+          //  Console.WriteLine("CompRawHTML SetParameters fired " + a);
 
            base.SetParameters(parameters);
         }
 
         protected override bool ShouldRender()
         {
-            Console.WriteLine("CompRawHTML ShouldRender fired");
+          //  Console.WriteLine("CompRawHTML ShouldRender fired");
 
             var renderUI = true;
 
@@ -46,8 +46,8 @@ namespace BlazorLib3
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
 
-            Console.WriteLine("CompRawHTML BuildRenderTree fired");
-            Console.WriteLine(RawHTML);
+           // Console.WriteLine("CompRawHTML BuildRenderTree fired");
+           // Console.WriteLine(RawHTML);
 
             LupParser lp1 = new LupParser(RawHTML);
 
@@ -81,7 +81,7 @@ namespace BlazorLib3
         {
 
             builder.OpenElement(k++, _item.Name);
-            Console.WriteLine("open " + _item.Name);
+           // Console.WriteLine("open " + _item.Name);
 
 
             if (_item.attributes.Any())
@@ -89,14 +89,14 @@ namespace BlazorLib3
                 foreach (var item in _item.attributes)
                 {
                     builder.AddAttribute(k++, item.Key, item.Value.Replace("|","/"));
-                    Console.WriteLine("set attribute - " + item.Key + " = " + item.Value);
+                   // Console.WriteLine("set attribute - " + item.Key + " = " + item.Value);
                 }
             }
 
             if (!string.IsNullOrEmpty(_item.Content))
             {
                 builder.AddContent(k++, _item.Content);
-                Console.WriteLine("set content - " + _item.Content);
+              //  Console.WriteLine("set content - " + _item.Content);
             }
 
         
@@ -111,7 +111,7 @@ namespace BlazorLib3
             }
 
             builder.CloseElement();
-            Console.WriteLine("close element " + _item.GetType().Name.ToLower());
+          //  Console.WriteLine("close element " + _item.GetType().Name.ToLower());
         }
 
 
