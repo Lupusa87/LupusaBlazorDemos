@@ -1,4 +1,4 @@
-﻿var TotalAddedSeconds=0;
+﻿var TotalAddedSeconds = 0;
 
 var svgClock;
 var seconds;
@@ -25,22 +25,22 @@ function setClock(date) {
     }
 
 
-    
+
 
 
     var s = (date.getUTCSeconds() + date.getMilliseconds() / 1000);
     var m = date.getUTCMinutes() + s / 60;
     var h = date.getUTCHours() - 5;
     if (h < 0) {
-        h=h+12
+        h = h + 12
     }
     h = h % 12;
     h = h + m / 60;
     h = h * 5;
-  
+
 
     adjust(seconds, s, radius90 * 0.64);
-    adjust(minutes, m, radius90 * 0.55*1.03);
+    adjust(minutes, m, radius90 * 0.55 * 1.03);
     adjust(hours, h, radius90 * 0.35 * 1.08);
 
 
@@ -50,7 +50,7 @@ function setClock(date) {
 function adjustNumber(s) {
 
 
-    var tmp_number; 
+    var tmp_number;
 
     var a;
     var _opacity = 1;
@@ -95,14 +95,13 @@ function adjustNumber(s) {
             a = num;
         }
 
-        tmp_number = document.getElementById("Number" + a);   
-      
+        tmp_number = document.getElementById("Number" + a);
 
-        if (tmp_number.getAttribute("opacity") != _opacity)
-        {
-            
+
+        if (tmp_number.getAttribute("opacity") != _opacity) {
+
             tmp_number.setAttribute("opacity", _opacity);
-           
+
         }
 
 
@@ -129,16 +128,16 @@ function adjustNumber(s) {
         }
 
 
-        
+
     }
 
 }
 
 
 function adjust(element, angle, r) {
-    
+
     var _opacity = angle / 60;
-  
+
 
     angle = angle * 6;
 
@@ -151,7 +150,7 @@ function adjust(element, angle, r) {
         a = 1;
     }
 
-    
+
 
     var p = GetPoint(angle, r, radius);
 
@@ -167,28 +166,27 @@ function adjust(element, angle, r) {
 
 }
 
-function GetPoint(angle, r, radiusOrigin)
-{
+function GetPoint(angle, r, radiusOrigin) {
     var radians = (angle - 90) * (Math.PI / 180);
 
-    
+
     var obj = {
         x: radiusOrigin + r * Math.cos(radians),
         y: radiusOrigin + r * Math.sin(radians),
     };
 
     return obj;
-  
+
 }
 
 
 
-Blazor.registerFunction('BlazorLib2.JsInterop2.Run', (obj) => {
+Blazor.registerFunction('ClockSVGComponent.JsInterop2.Run', (obj) => {
 
-    
+
     //setInterval("setClock()", obj["interval"]);
     setInterval("setClock()", 200);
-   
+
 
     return true;
 });

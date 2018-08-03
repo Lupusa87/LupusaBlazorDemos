@@ -17,8 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorLib1\BlazorLib1.csproj" />
-    <ProjectReference Include="..\BlazorLib2\BlazorLib2.csproj" />
     <ProjectReference Include="..\BlazorLib3\BlazorLib3.csproj" />
+    <ProjectReference Include="..\ClockSVGComponent\ClockSVGComponent.csproj" />
   </ItemGroup>
 
   <ItemGroup>
