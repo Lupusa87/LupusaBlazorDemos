@@ -33,7 +33,7 @@ namespace ClockSVGComponent
 
 
                 
-                SvgHelper.Cmd_Render(_svg, 0, builder);
+                SvgHelper.Cmd_Render(_Svg, 0, builder);
 
                 if (ClockSettings.FastMode)
                 {
