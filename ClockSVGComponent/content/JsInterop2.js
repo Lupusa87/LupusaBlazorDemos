@@ -202,7 +202,7 @@ window.JsInterop2 = {
         hours = document.getElementById("GaugeHour");
         
 
-        setInterval("setClock()", 2000);
+        setInterval("setClock()", 200);
 
 
         return true;
