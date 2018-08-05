@@ -102,9 +102,8 @@ function adjustNumber(s) {
         tmp_number = document.getElementById("Number" + a);
        
 
-        if (tmp_number != null) {
+        if (tmp_number !== null) {
 
-       
 
             if (tmp_number.getAttribute("opacity") !== _opacity) {
 
