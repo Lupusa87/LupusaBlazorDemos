@@ -31,23 +31,28 @@ namespace ClockSVGComponent
                 ClockSettings.radius_Origin = WidthAndHeight / 2;
                 ClockSettings.radius_90_Percent = ClockSettings.radius_Origin * 0.9;
 
+                Generate_Clock_SVG();
 
-                
+
                 SvgHelper.Cmd_Render(_Svg, 0, builder);
 
-                if (ClockSettings.FastMode)
-                {
-
-                    JsInterop2.Run(new TransferParameters(ClockSettings.timerInterval, ClockSettings.FastMode_Increment));
-                }
-                else
-                {
-                    JsInterop2.Run(new TransferParameters(ClockSettings.timerInterval, 0));
-                }
+             
             }
 
+        protected override void OnAfterRender()
+        {
+            if (ClockSettings.FastMode)
+            {
 
-            public void Generate_Clock_SVG()
+                JsInterop2.Run(new TransferParameters(ClockSettings.timerInterval, ClockSettings.FastMode_Increment));
+            }
+            else
+            {
+                JsInterop2.Run(new TransferParameters(ClockSettings.timerInterval, 0));
+            }
+        }
+
+        public void Generate_Clock_SVG()
             {
                 _Svg = new svg
                 {

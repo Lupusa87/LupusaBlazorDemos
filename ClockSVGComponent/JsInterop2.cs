@@ -1,5 +1,5 @@
 ﻿using ClockSVGComponent.Classes;
-using Microsoft.AspNetCore.Blazor.Browser.Interop;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +12,8 @@ namespace ClockSVGComponent
 
         public static bool Run(TransferParameters _params)
         {
-            return RegisteredFunction.Invoke<bool>(
-                "ClockSVGComponent.JsInterop2.Run", _params);
+            return (JSRuntime.Current as IJSInProcessRuntime).Invoke<bool>(
+                "JsInterop2.Run", _params);
         }
     }
 }

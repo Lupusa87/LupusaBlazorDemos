@@ -4,10 +4,13 @@ var svgClock;
 var seconds;
 var minutes;
 var hours;
+
+var tmp_number;
+
 var radius;
 var radius90;
 
-function setClock(date) {
+function setClock() {
 
 
     var date = new Date();
@@ -15,42 +18,41 @@ function setClock(date) {
     //date = new Date(date.getTime() + TotalAddedSeconds * 1000);
     //TotalAddedSeconds = TotalAddedSeconds + 1;
 
-    if (svgClock === undefined) {
-        svgClock = document.getElementById("svgclock");
-        radius = svgClock.getBBox().width / 2;
-        radius90 = radius * 0.81;
-        seconds = document.getElementById("GaugeSecond");
-        minutes = document.getElementById("GaugeMinute");
-        hours = document.getElementById("GaugeHour");
-    }
+    //if (typeof svgClock === 'undefined') {
+    //    svgClock = document.getElementById("svgclock");
+    //    radius = svgClock.getBBox().width / 2;
+    //    radius90 = radius * 0.81;
+    //    seconds = document.getElementById("GaugeSecond");
+    //    minutes = document.getElementById("GaugeMinute");
+    //    hours = document.getElementById("GaugeHour");
+    //}
 
 
 
+        var s = (date.getUTCSeconds() + date.getMilliseconds() / 1000);
+        var m = date.getUTCMinutes() + s / 60;
+        var h = date.getUTCHours() - 5;
+        if (h < 0) {
+            h = h + 12
+        }
+        h = h % 12;
+        h = h + m / 60;
+        h = h * 5;
 
 
-    var s = (date.getUTCSeconds() + date.getMilliseconds() / 1000);
-    var m = date.getUTCMinutes() + s / 60;
-    var h = date.getUTCHours() - 5;
-    if (h < 0) {
-        h = h + 12
-    }
-    h = h % 12;
-    h = h + m / 60;
-    h = h * 5;
+        adjust(seconds, s, radius90 * 0.64);
+        adjust(minutes, m, radius90 * 0.55 * 1.03);
+        adjust(hours, h, radius90 * 0.35 * 1.08);
 
 
-    adjust(seconds, s, radius90 * 0.64);
-    adjust(minutes, m, radius90 * 0.55 * 1.03);
-    adjust(hours, h, radius90 * 0.35 * 1.08);
-
-
-    adjustNumber(s);
+        adjustNumber(s);
+    
 }
 
 function adjustNumber(s) {
 
 
-    var tmp_number;
+   
 
     var a;
     var _opacity = 1;
@@ -68,7 +70,7 @@ function adjustNumber(s) {
             _font_Size = radius90 * 0.20;
 
 
-            if (num % 3 == 0) {
+            if (num % 3 === 0) {
                 _font_Bold = true;
                 _font_Size = radius90 * 0.25;
             }
@@ -79,7 +81,7 @@ function adjustNumber(s) {
             _font_Size = radius90 * 0.15;
 
 
-            if (num % 3 == 0) {
+            if (num % 3 === 0) {
                 _font_Bold = true;
                 _font_Size = radius90 * 0.2;
             }
@@ -88,46 +90,52 @@ function adjustNumber(s) {
 
 
 
-        if (num == 0) {
+        if (num === 0) {
             a = "12";
         }
         else {
             a = num;
         }
 
+
+      
         tmp_number = document.getElementById("Number" + a);
+       
+
+        if (tmp_number != null) {
+
+       
+
+            if (tmp_number.getAttribute("opacity") !== _opacity) {
+
+                tmp_number.setAttribute("opacity", _opacity);
+
+            }
 
 
-        if (tmp_number.getAttribute("opacity") != _opacity) {
+            if (tmp_number.getAttribute("font-size") !== _font_Size) {
 
-            tmp_number.setAttribute("opacity", _opacity);
+                tmp_number.setAttribute("font-size", _font_Size);
+
+            }
+
+
+
+            if (_font_Bold) {
+                _font_Bold_String = "bold";
+            }
+            else {
+                _font_Bold_String = "normal";
+            }
+
+
+            if (tmp_number.getAttribute("font-wight") !== _font_Bold_String) {
+
+                tmp_number.setAttribute("font-wight", _font_Bold_String);
+
+            }
 
         }
-
-
-        if (tmp_number.getAttribute("font-size") != _font_Size) {
-
-            tmp_number.setAttribute("font-size", _font_Size);
-
-        }
-
-
-
-        if (_font_Bold) {
-            _font_Bold_String = "bold";
-        }
-        else {
-            _font_Bold_String = "normal";
-        }
-
-
-        if (tmp_number.getAttribute("font-wight") != _font_Bold_String) {
-
-            tmp_number.setAttribute("font-wight", _font_Bold_String);
-
-        }
-
-
 
     }
 
@@ -180,13 +188,27 @@ function GetPoint(angle, r, radiusOrigin) {
 }
 
 
+window.JsInterop2 = {
 
-Blazor.registerFunction('ClockSVGComponent.JsInterop2.Run', (obj) => {
-
-
-    //setInterval("setClock()", obj["interval"]);
-    setInterval("setClock()", 200);
+    Run: function () {
 
 
-    return true;
-});
+
+        
+        svgClock = document.getElementById("svgclock");
+        radius = svgClock.getBBox().width / 2;
+        radius90 = radius * 0.81;
+        seconds = document.getElementById("GaugeSecond");
+        minutes = document.getElementById("GaugeMinute");
+        hours = document.getElementById("GaugeHour");
+        
+
+        setInterval("setClock()", 2000);
+
+
+        return true;
+    }
+
+};
+
+

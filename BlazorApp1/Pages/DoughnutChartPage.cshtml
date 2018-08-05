@@ -1,0 +1,81 @@
+﻿@addTagHelper *, DoughnutChartComponent
+@using DoughnutChartComponent;
+@using Microsoft.AspNetCore.Blazor.Browser;
+@using Microsoft.AspNetCore.Blazor.Components;
+@using Microsoft.AspNetCore.Blazor.RenderTree;
+
+
+@page "/DoughnutChartPage"
+
+<style>
+    .flex-container {
+        display: flex;
+        background-color: lightblue;
+        margin: 10px;
+        padding: 20px;
+    }
+
+        .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 12px;
+        }
+</style>
+
+
+<h4>Hello, welcome to my experiment :)</h4>
+
+
+
+
+
+<br>
+
+
+<h3 style="color:darkred">This is <b>Doughtnut</b> chart component</h3>
+
+
+
+
+
+<br>
+
+
+
+<h7>Feel free to <a href="mailto:VakhtangiAbashidze@gmail.com" target="_blank">contact</a> me</h7>
+
+<br>
+<h4>@CurrValue</h4>
+
+
+
+<div class="flex-container">
+
+    <div>
+
+
+
+        <CompDoughnutChart WidthAndHeight="400" bind-ActualValue="@CurrValue" />
+        <br>
+        <br>
+        <input type="range" min="1" width="400" max="100" bind="@CurrValue" />
+    </div>
+
+
+</div>
+
+
+
+
+@functions
+{
+int CurrValue = 75;
+
+
+
+
+}
+
+
+

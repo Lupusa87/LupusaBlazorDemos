@@ -5,7 +5,7 @@
 @using ClockSVGComponent
 @using BlazorLib1.Classes
 @using ClockSVGComponent.Classes
-@using Microsoft.AspNetCore.Blazor.Browser.Interop;
+@using Microsoft.AspNetCore.Blazor.Browser;
 @using Microsoft.AspNetCore.Blazor.Components;
 @using Microsoft.AspNetCore.Blazor.RenderTree;
 
@@ -62,7 +62,7 @@
 
 <div class="flex-container">
 
-
+  
     <ClockSVG WidthAndHeight="400" TimeDiff="-5" />
 
     @*@foreach (var city in Cities_List)
@@ -135,10 +135,10 @@ City Curr_City = new City();
 
 
 List<City> Cities_List = new List<City>() {
-    new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
-    DivClass ="position:relative; width:400px; height:400px;"},
-    // new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
-    // new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
+new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
+DivClass ="position:relative; width:400px; height:400px;"},
+// new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
+// new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
 };
 
 
