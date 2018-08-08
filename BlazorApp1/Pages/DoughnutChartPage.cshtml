@@ -36,7 +36,8 @@
 <h3 style="color:darkred">This is <b>Doughtnut</b> chart component</h3>
 
 
-
+<br>
+<h5>Use color pickers to set gradient, If you want solid set same color to both.</h5>
 
 
 <br>
@@ -54,12 +55,15 @@
 
     <div>
 
-
-
-        <CompDoughnutChart WidthAndHeight="400" bind-ActualValue="@CurrValue" />
+        <p>@Color1</p>
+        <p>@Color2</p>
+        <CompDoughnutChart WidthAndHeight="400" ForeColor1="@Color1" ForeColor2="@Color2" bind-ActualValue="@CurrValue" />
         <br>
         <br>
         <input type="range" min="1" width="400" max="100" bind="@CurrValue" />
+
+        <input id="color1" bind="@Color1" type="color" />
+        <input id="color2" bind="@Color2" type="color" />
     </div>
 
 
@@ -73,7 +77,8 @@
 int CurrValue = 75;
 
 
-
+string Color1 = "#fc3807";
+string Color2 = "#52d044";
 
 }
 
