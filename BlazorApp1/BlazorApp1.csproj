@@ -26,7 +26,7 @@
       <HintPath>..\..\BlazorCalculator\BlazorCalculatorComponent\bin\Release\netstandard2.0\BlazorCalculatorComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorPasswordPatternComponent">
-      <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Release\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
+      <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
     </Reference>
     <Reference Include="DoughnutChartComponent">
       <HintPath>..\..\BlazorDoughnutChartComponent\DoughnutChartComponent\bin\Release\netstandard2.0\DoughnutChartComponent.dll</HintPath>
