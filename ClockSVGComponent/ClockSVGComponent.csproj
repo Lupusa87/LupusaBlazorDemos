@@ -21,9 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorSvgHelper" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BlazorSvgHelper">
+      <HintPath>..\..\BlazorSvgHelper\BlazorSvgHelper\bin\Debug\netstandard2.0\BlazorSvgHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

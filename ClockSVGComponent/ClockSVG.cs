@@ -25,6 +25,8 @@ namespace ClockSVGComponent
             string CurrentTime = string.Empty;
 
 
+            SvgHelper SvgHelper1 = new SvgHelper();
+
             protected override void BuildRenderTree(RenderTreeBuilder builder)
             {
                 ClockSettings.radius_2_Times = WidthAndHeight;
@@ -34,7 +36,7 @@ namespace ClockSVGComponent
                 Generate_Clock_SVG();
 
 
-                SvgHelper.Cmd_Render(_Svg, 0, builder);
+                SvgHelper1.Cmd_Render(_Svg, 0, builder);
 
              
             }
