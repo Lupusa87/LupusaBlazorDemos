@@ -1,7 +1,7 @@
 ﻿@page "/rawhtml"
 
-@addTagHelper *, BlazorLib3
-@using BlazorLib3
+@addTagHelper *, BlazorRawHtmlRendererComponent
+@using BlazorRawHtmlRendererComponent
 
 
 
@@ -19,7 +19,7 @@
     <textarea bind="@_RawHTML" rows="4" cols="50">
 </textarea>
 
-    @* <input bind="@_RawHTML" type="text" width="500" height="200" placeholder="enter raw html" />*@
+  
 
     <button class="btn btn-primary" onclick="@cmd_convert">Run</button>
     <button class="btn btn-primary" onclick="@cmd_clear">Clear</button>
@@ -33,22 +33,8 @@
 <div>
 
 
-    <CompRawHTML2 RawHTML="@_RawHTML"></CompRawHTML2>
-
-    @*<CompRawHTML bind-RawHTML="@_RawHTML"></CompRawHTML>*@
-    @*@foreach (var item in tmp_List)
-        {
-
-            <div>
-
-                <CompRawHTML RawHTML="@item"></CompRawHTML>
-
-            </div>
-
-
-        }*@
-
-
+    <CompRawHTML bind-RawHTML="@_RawHTML"></CompRawHTML>
+    
 
 </div>
 
@@ -57,10 +43,7 @@
 
 @functions{
 
-    //   @import CompRawHTML
-
-
-    // List<string> tmp_List = new List<string>();
+  
 
 
     [Parameter]
@@ -68,31 +51,7 @@
 
 
 
-    //protected override void OnInit()
-    //{
-    //    Console.WriteLine("RawHTML OnInit fired ");
-    //}
-
-    //public override void SetParameters(ParameterCollection parameters)
-    //{
-
-
-    //    string a = string.Empty;
-
-    //    parameters.TryGetValue("_RawHTML", out a);
-    //    Console.WriteLine("RawHTML SetParameters fired " + a);
-
-    //    base.SetParameters(parameters);
-    //}
-
-    //protected override bool ShouldRender()
-    //{
-    //    Console.WriteLine("RawHTML ShouldRender fired");
-
-    //    var renderUI = true;
-
-    //    return renderUI;
-    //}
+   
 
     void cmd_convert()
     {

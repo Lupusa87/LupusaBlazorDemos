@@ -1,5 +1,5 @@
-﻿using BlazorLib1;
-using BlazorLib1.Classes;
+﻿using BlazorClockCanvasComponent;
+using BlazorClockCanvasComponent.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

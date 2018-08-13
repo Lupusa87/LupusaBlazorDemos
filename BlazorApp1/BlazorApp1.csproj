@@ -16,20 +16,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorLib1\BlazorLib1.csproj" />
-    <ProjectReference Include="..\BlazorLib3\BlazorLib3.csproj" />
-    <ProjectReference Include="..\ClockSVGComponent\ClockSVGComponent.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="BlazorCalculatorComponent">
       <HintPath>..\..\BlazorCalculator\BlazorCalculatorComponent\bin\Release\netstandard2.0\BlazorCalculatorComponent.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorClockCanvasComponent">
+      <HintPath>..\..\BlazorClockCanvas\BlazorClockCanvasComponent\bin\Debug\netstandard2.0\BlazorClockCanvasComponent.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorClockSvgComponent">
+      <HintPath>..\..\BlazorClockSVG\BlazorClockSvgComponent\bin\Debug\netstandard2.0\BlazorClockSvgComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorPasswordPatternComponent">
       <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorRawHtmlRendererComponent">
+      <HintPath>..\..\BlazorRawHtmlRenderer\BlazorRawHtmlRendererComponent\bin\Debug\netstandard2.0\BlazorRawHtmlRendererComponent.dll</HintPath>
+    </Reference>
     <Reference Include="DoughnutChartComponent">
-      <HintPath>..\..\BlazorDoughnutChartComponent\DoughnutChartComponent\bin\Release\netstandard2.0\DoughnutChartComponent.dll</HintPath>
+      <HintPath>..\..\BlazorDoughnutChartComponent\DoughnutChartComponent\bin\Debug\netstandard2.0\DoughnutChartComponent.dll</HintPath>
     </Reference>
   </ItemGroup>
 
