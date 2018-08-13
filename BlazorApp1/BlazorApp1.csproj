@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="BlazorCalculatorComponent">
-      <HintPath>..\..\BlazorCalculator\BlazorCalculatorComponent\bin\Release\netstandard2.0\BlazorCalculatorComponent.dll</HintPath>
+      <HintPath>..\..\BlazorCalculator\BlazorCalculatorComponent\bin\Debug\netstandard2.0\BlazorCalculatorComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorClockCanvasComponent">
       <HintPath>..\..\BlazorClockCanvas\BlazorClockCanvasComponent\bin\Debug\netstandard2.0\BlazorClockCanvasComponent.dll</HintPath>
