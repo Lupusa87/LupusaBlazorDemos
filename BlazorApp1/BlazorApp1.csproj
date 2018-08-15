@@ -25,6 +25,9 @@
     <Reference Include="BlazorClockSvgComponent">
       <HintPath>..\..\BlazorClockSVG\BlazorClockSvgComponent\bin\Debug\netstandard2.0\BlazorClockSvgComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorGameSnakeComponent">
+      <HintPath>..\..\BlazorGameSnake\BlazorGameSnakeComponent\bin\Debug\netstandard2.0\BlazorGameSnakeComponent.dll</HintPath>
+    </Reference>
     <Reference Include="BlazorPasswordPatternComponent">
       <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
     </Reference>
@@ -41,6 +44,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <LogicalName>blazor:file:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
     </Content>
+    <Content Update="wwwroot\sounds\abc.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\sounds\game_over.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\sounds\take_target.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\sounds\" />
   </ItemGroup>
 
 </Project>
