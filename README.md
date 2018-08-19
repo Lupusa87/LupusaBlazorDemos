@@ -1,6 +1,6 @@
 # Lupusa Blazor Projects
 
-At this moment there are available some samples **clock svg**, **clock canvas**, **calculator**, **doughtnut chart**, **game snake** next weeks/months we will add more samples.
+At this moment there are available some samples **clock svg**, **clock canvas**, **calculator**, **doughtnut chart**, **game snake**, **password pattern** next weeks/months we will add more samples.
 
 For now best performance has Firefox, you can look at [demo](http://lupusablazordemos.azurewebsites.net).
 
