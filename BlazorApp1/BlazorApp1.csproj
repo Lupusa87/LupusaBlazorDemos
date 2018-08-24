@@ -19,6 +19,9 @@
     <Reference Include="BlazorCalculatorComponent">
       <HintPath>..\..\BlazorCalculator\BlazorCalculatorComponent\bin\Debug\netstandard2.0\BlazorCalculatorComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorChessComponent">
+      <HintPath>..\..\BlazorChess\BlazorChessComponent\bin\Debug\netstandard2.0\BlazorChessComponent.dll</HintPath>
+    </Reference>
     <Reference Include="BlazorClockCanvasComponent">
       <HintPath>..\..\BlazorClockCanvas\BlazorClockCanvasComponent\bin\Debug\netstandard2.0\BlazorClockCanvasComponent.dll</HintPath>
     </Reference>
@@ -43,6 +46,42 @@
     <Content Update="wwwroot\content\1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <LogicalName>blazor:file:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\1A.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\1B.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\1K.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\1P.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\1Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\1R.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\2A.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\2B.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\2K.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\2P.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\2Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\content\images\style3\2R.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\sounds\abc.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
