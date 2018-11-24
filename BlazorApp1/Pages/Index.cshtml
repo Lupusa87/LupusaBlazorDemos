@@ -1,10 +1,10 @@
-﻿
+﻿@page "/"
 @addTagHelper *, BlazorClockSvgComponent
 @using BlazorClockSvgComponent
 
 
 
-@page "/"
+
 
 <style>
     .flex-container {
@@ -23,13 +23,6 @@
 </style>
 
 
-<h4>Hello, welcome to my experiment :)</h4>
-
-
-
-
-
-<br>
 
 
 <h3 style="color:darkred">This is <b>SVG</b> based Clock</h3>
@@ -40,23 +33,11 @@
 
 <br>
 
-<h5>My goal is not beauty, good colors and interface is designers job :) My goal is <b>complexity</b>, to touch more aspects of drawing.</h5>
-
-
-<br>
-
-<h6>You can watch youtube <a href="https://www.youtube.com/watch?v=fuZSaYmqgCs&t=7s" target="_blank">video</a> about this project</h6>
-
-<h7>Feel free to <a href="mailto:VakhtangiAbashidze@gmail.com" target="_blank">contact</a> me</h7>
-
-<br>
-
-
 
 
 <div class="flex-container">
 
-  
+
     <ClockSVG WidthAndHeight="400" TimeDiff="-5" />
 
     @*@foreach (var city in Cities_List)
@@ -121,120 +102,120 @@
 @functions {
 
 
-    //    bool IsPageLoaded = false;
+//    bool IsPageLoaded = false;
 
 
 
-    //    City Curr_City = new City();
+//    City Curr_City = new City();
 
 
-    //    List<City> Cities_List = new List<City>() {
-    //new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
-    //DivClass ="position:relative; width:400px; height:400px;"},
-    //// new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
-    //// new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
-    //};
-
-
-
-    void Add_Clock()
-    {
-        //if (Cities_List.Count == 5)
-        //{
-        //    JsInterop2.Alert("You can't add more than 5 clocks!");
-        //    return;
-        //}
-
-        //if (string.IsNullOrEmpty(Curr_City.Name))
-        //{
-        //    JsInterop2.Alert("City name is required!");
-        //}
-        //else
-        //{
+//    List<City> Cities_List = new List<City>() {
+//new City() { ID=1, Name = "New York", WidthAndHeight = 400, TimeDiff=-5,
+//DivClass ="position:relative; width:400px; height:400px;"},
+//// new City() { ID=2, Name = "Tbilisi", WidthAndHeight = 400, TimeDiff=3},
+//// new City() { ID=3, Name = "London", WidthAndHeight = 400, TimeDiff=1},
+//};
 
 
 
-        //    if (Cities_List.Any())
-        //    {
-        //        Curr_City.ID = Cities_List.Max(x => x.ID) + 1;
-        //    }
-        //    else
-        //    {
-        //        Curr_City.ID = 1;
-
-        //    }
-
-        //    if (Curr_City.WidthAndHeight == 0)
-        //    {
-        //        Curr_City.WidthAndHeight = 300;
-
-        //    }
-
-        //    Curr_City.DivClass = "position:relative; width:" + Curr_City.WidthAndHeight + "px; height:" + Curr_City.WidthAndHeight + "px;";
-
-
-        //    Cities_List.Add(Curr_City);
-        //    Curr_City = new City();
-
-
-        //    this.StateHasChanged();
-        //}
-    }
-
-
-    protected override void OnAfterRender()
-    {
-
-        //Console.WriteLine("       ------");
-        //Console.WriteLine("onafterrender ");
-        //foreach (var item in Cities_List)
-        //{
-        //    item.component1_related.Canvas_ID = item.component1_related.Canvas_ID;
-        //    Console.WriteLine(item.Name + " " + item.component1_related.city.Name + " " + item.component1_related.Canvas_ID);
-        //}
-        //Console.WriteLine("       ------");
-
-        //foreach (City city in Cities_List.Where(x => x.component1_related.IsSubscribedForOnDelete == false))
-        //{
-
-        //    city.component1_related.onDelete += HandleOnDelete;
-        //    city.component1_related.IsSubscribedForOnDelete = true;
-        //}
-
-
-
-    }
-
-
-    //void RemoveComponent(int ID)
+void Add_Clock()
+{
+    //if (Cities_List.Count == 5)
     //{
-
-    //    RemoveCity(ID);
-
+    //    JsInterop2.Alert("You can't add more than 5 clocks!");
+    //    return;
     //}
 
-    //void RemoveCity(City c)
+    //if (string.IsNullOrEmpty(Curr_City.Name))
+    //{
+    //    JsInterop2.Alert("City name is required!");
+    //}
+    //else
     //{
 
-    //    Cities_List.Remove(c);
+
+
+    //    if (Cities_List.Any())
+    //    {
+    //        Curr_City.ID = Cities_List.Max(x => x.ID) + 1;
+    //    }
+    //    else
+    //    {
+    //        Curr_City.ID = 1;
+
+    //    }
+
+    //    if (Curr_City.WidthAndHeight == 0)
+    //    {
+    //        Curr_City.WidthAndHeight = 300;
+
+    //    }
+
+    //    Curr_City.DivClass = "position:relative; width:" + Curr_City.WidthAndHeight + "px; height:" + Curr_City.WidthAndHeight + "px;";
+
+
+    //    Cities_List.Add(Curr_City);
+    //    Curr_City = new City();
+
+
     //    this.StateHasChanged();
-
     //}
+}
 
-    //void RemoveCity(int ID)
+
+protected override void OnAfterRender()
+{
+
+    //Console.WriteLine("       ------");
+    //Console.WriteLine("OnAfterRender");
+    //foreach (var item in Cities_List)
+    //{
+    //    item.component1_related.Canvas_ID = item.component1_related.Canvas_ID;
+    //    Console.WriteLine(item.Name + " " + item.component1_related.city.Name + " " + item.component1_related.Canvas_ID);
+    //}
+    //Console.WriteLine("       ------");
+
+    //foreach (City city in Cities_List.Where(x => x.component1_related.IsSubscribedForOnDelete == false))
     //{
 
-    //    City c = Cities_List.Single(X => X.ID == ID);
-
-    //    RemoveCity(c);
-
+    //    city.component1_related.onDelete += HandleOnDelete;
+    //    city.component1_related.IsSubscribedForOnDelete = true;
     //}
 
 
-    //void HandleOnDelete(object sender, EventArgs e)
-    //{
-    //    RemoveCity(((Component1)sender).city.ID);
-    //}
+
+}
+
+
+//void RemoveComponent(int ID)
+//{
+
+//    RemoveCity(ID);
+
+//}
+
+//void RemoveCity(City c)
+//{
+
+//    Cities_List.Remove(c);
+//    this.StateHasChanged();
+
+//}
+
+//void RemoveCity(int ID)
+//{
+
+//    City c = Cities_List.Single(X => X.ID == ID);
+
+//    RemoveCity(c);
+
+//}
+
+
+//void HandleOnDelete(object sender, EventArgs e)
+//{
+//    RemoveCity(((Component1)sender).city.ID);
+//}
 
 
 
