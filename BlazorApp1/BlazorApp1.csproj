@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.6.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.6.0" PrivateAssets="all" />
-    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
+    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +32,9 @@
     </Reference>
     <Reference Include="BlazorGameSnakeComponent">
       <HintPath>..\..\BlazorGameSnake\BlazorGameSnakeComponent\bin\Debug\netstandard2.0\BlazorGameSnakeComponent.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorLoanCalculatorComponent">
+      <HintPath>..\..\BlazorLoanCalculator\BlazorLoanCalculatorComponent\bin\Debug\netstandard2.0\BlazorLoanCalculatorComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorPasswordPatternComponent">
       <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
