@@ -36,6 +36,9 @@
     <Reference Include="BlazorLoanCalculatorComponent">
       <HintPath>..\..\BlazorLoanCalculator\BlazorLoanCalculatorComponent\bin\Debug\netstandard2.0\BlazorLoanCalculatorComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorPaintComponent">
+      <HintPath>..\..\BlazorPaint\BlazorPaintComponent\bin\Debug\netstandard2.0\BlazorPaintComponent.dll</HintPath>
+    </Reference>
     <Reference Include="BlazorPasswordPatternComponent">
       <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
     </Reference>
