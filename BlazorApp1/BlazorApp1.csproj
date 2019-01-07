@@ -30,6 +30,9 @@
     <Reference Include="BlazorClockSvgComponent">
       <HintPath>..\..\BlazorClockSVG\BlazorClockSvgComponent\bin\Debug\netstandard2.0\BlazorClockSvgComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorExcelComponent">
+      <HintPath>..\..\BlazorExcel\BlazorExcelComponent\bin\Debug\netstandard2.0\BlazorExcelComponent.dll</HintPath>
+    </Reference>
     <Reference Include="BlazorGameSnakeComponent">
       <HintPath>..\..\BlazorGameSnake\BlazorGameSnakeComponent\bin\Debug\netstandard2.0\BlazorGameSnakeComponent.dll</HintPath>
     </Reference>
