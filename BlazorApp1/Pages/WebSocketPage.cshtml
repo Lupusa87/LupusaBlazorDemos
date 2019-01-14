@@ -1,0 +1,173 @@
+﻿@page "/WebSocketPage"
+
+
+@addTagHelper *, BlazorWebSocketHelper
+@using BlazorWebSocketHelper;
+@using BlazorWebSocketHelper.Classes;
+
+
+<h3 style="color:darkred">This is Websocket sample</h3>
+<br />
+<br />
+
+<h4>WebSocket helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebSocketHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+<br />
+
+<div style="margin:5px">
+
+
+    <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WsConnect">@Ws_Button</button>
+
+    <span style="margin:5px">URL</span>
+    <input bind="@Ws_URL" style="margin:5px;width:250px" />
+
+
+    <span style="width:120px;margin:5px">status:@Ws_Status</span>
+
+
+    <button class="btn btn-primary" style="margin:5px" onclick="@WsGetStatus">Get status</button>
+
+</div>
+
+
+<br />
+
+<div style="margin:5px">
+    <input style="margin:5px;width:250px" bind="@Ws_Message" />
+    <button class="btn btn-primary" style="margin:5px" onclick="@WsSendMessage">Send</button>
+
+</div>
+
+
+<br />
+
+
+<span style="margin:5px">Log:</span>
+<br />
+
+@foreach (var item in WebSocketHelper1.Log)
+{
+    <br />
+    <CompMessage bwsMessage="@item" parent="@this" />
+    <br />
+
+}
+
+
+
+@functions
+{
+//https://www.websocket.org/echo.html
+public string Ws_URL = "wss://echo.websocket.org"; // "ws://192.168.1.17:9000/Data/";
+
+protected WebSocketHelper WebSocketHelper1;
+
+
+
+protected string Ws_Button = "connect";
+
+
+protected string Ws_Status = "undefined";
+
+
+protected string Ws_Message;
+
+
+protected override void OnInit()
+{
+    WsConnect();
+
+    base.OnInit();
+}
+
+public void WsOnStateChange(short par_state)
+{
+    Ws_Status = WebSocketHelper1.bwsState.ToString();
+
+    if (WebSocketHelper1.bwsState == BwsEnums.BwsState.Close)
+    {
+        WebSocketHelper1.Dispose();
+    }
+
+
+    StateHasChanged();
+}
+
+
+public void WsOnError(string par_error)
+{
+
+    BwsJsInterop.Alert(par_error);
+}
+
+
+public void WsOnMessage(string par_message)
+{
+    StateHasChanged();
+}
+
+
+public void WsConnect()
+{
+
+
+    if (Ws_Button == "connect")
+    {
+
+        WebSocketHelper1 = new WebSocketHelper(Ws_URL);
+
+        WebSocketHelper1.OnStateChange = WsOnStateChange;
+        WebSocketHelper1.OnMessage = WsOnMessage;
+        WebSocketHelper1.OnError = WsOnError;
+
+
+        Ws_Button = "disconnect";
+    }
+    else
+    {
+
+        WebSocketHelper1.Close();
+
+        Ws_Button = "connect";
+    }
+
+
+}
+
+
+
+
+
+public void WsSendMessage()
+{
+    if (WebSocketHelper1.bwsState == BwsEnums.BwsState.Open)
+    {
+        if (!string.IsNullOrEmpty(Ws_Message))
+        {
+            WebSocketHelper1.send(Ws_Message);
+            Ws_Message = string.Empty;
+            StateHasChanged();
+        }
+        else
+        {
+            BwsJsInterop.Alert("Please input message");
+        }
+    }
+    else
+    {
+        BwsJsInterop.Alert("Connection is closed");
+    }
+}
+
+public async void WsGetStatus()
+{
+    Ws_Status = await WebSocketHelper1.get_WsStatus();
+    BwsJsInterop.Alert(Ws_Status);
+    StateHasChanged();
+}
+
+
+
+
+}

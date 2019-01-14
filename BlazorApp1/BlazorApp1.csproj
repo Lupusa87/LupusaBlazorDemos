@@ -51,6 +51,9 @@
     <Reference Include="BlazorTreeVisualizerComponent">
       <HintPath>..\..\BlazorTreeVisualizer\BlazorTreeVisualizerComponent\bin\Debug\netstandard2.0\BlazorTreeVisualizerComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorWebSocketHelper">
+      <HintPath>..\..\BlazorWebSocketHelper\bin\Debug\netstandard2.0\BlazorWebSocketHelper.dll</HintPath>
+    </Reference>
     <Reference Include="DoughnutChartComponent">
       <HintPath>..\..\BlazorDoughnutChartComponent\DoughnutChartComponent\bin\Debug\netstandard2.0\DoughnutChartComponent.dll</HintPath>
     </Reference>
