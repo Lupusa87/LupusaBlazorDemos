@@ -1,0 +1,177 @@
+﻿@page "/SharedWebWorkerPage"
+
+
+@addTagHelper *, BlazorWebWorkerHelper
+@using BlazorWebWorkerHelper;
+@using BlazorWebWorkerHelper.classes;
+
+
+
+<h3 style="color:darkred">This is Dedicated Web Worker sample</h3>
+<br />
+
+<h4>Web Worker helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebWorkerHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+
+<div style="margin:5px">
+
+
+    <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WwCreate">@Ww_Button</button>
+
+    <span style="margin:5px">URL</span>
+    <input bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
+
+
+    <span style="width:120px;margin:5px">status:@Ww_Status</span>
+
+
+</div>
+
+
+
+<br />
+
+<p style="margin:5px">We are generating fake data inside shared web worker.</p>
+
+<p style="margin:5px">This sample simulates new user registration live notices.</p>
+
+<p style="margin:5px">You can duplicate this tab and see <b>how two or more tabs can consume same data from one shared worker</b>.</p>
+
+<br />
+<p style="margin:5px">Please use <b>chrome</b> for expected behavior.</p>
+
+
+@*<div style="margin:5px">
+        <input style="margin:5px;width:250px" bind="@Ww_Message" />
+        <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage">Send</button>
+
+    </div>*@
+
+
+<br />
+
+
+<span style="font-size:16px;margin:5px"><b>New users list:</b></span>
+<br />
+
+@foreach (var item in WebWorkerHelper1.Log.OrderByDescending(x => x.ID))
+{
+    <br />
+    <CompWwMessage bWwMessage="@item" parent="@this" />
+    <br />
+
+}
+
+
+
+@functions
+{
+
+public bool IsDisabled = true;
+
+//https://www.WebWorker.org/echo.html
+public string Ww_URL = "SharedWebWorker1.js";
+
+protected WebWorkerHelper WebWorkerHelper1;
+
+
+
+protected string Ww_Button = "connect";
+
+
+protected string Ww_Status = "null";
+
+
+protected string Ww_Message;
+
+
+protected override void OnInit()
+{
+    WwCreate();
+
+    base.OnInit();
+}
+
+public void WwOnStateChange(short par_state)
+{
+    Console.WriteLine("WwOnStateChange " + par_state);
+    Ww_Status = WebWorkerHelper1.bwwState.ToString();
+
+    StateHasChanged();
+}
+
+
+public void WwOnError(string par_error)
+{
+
+    BwwJsInterop.Alert(par_error);
+}
+
+
+public void WwOnMessage(string par_message)
+{
+    StateHasChanged();
+}
+
+
+public void WwCreate()
+{
+
+
+    if (Ww_Button == "connect")
+    {
+
+
+        WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, BwwEnums.BWorkerType.shared);
+        WebWorkerHelper1.OnStateChange = WwOnStateChange;
+        Ww_Status = BwwEnums.BwwState.Open.ToString();
+        WebWorkerHelper1.LogMaxCount = 8;
+
+        WebWorkerHelper1.OnMessage = WwOnMessage;
+        WebWorkerHelper1.OnError = WwOnError;
+
+        IsDisabled = false;
+
+        Ww_Button = "disconnect";
+    }
+    else
+    {
+        WebWorkerHelper1.send("close");
+        WebWorkerHelper1.Dispose();
+
+        IsDisabled = true;
+
+        Ww_Button = "connect";
+    }
+
+
+}
+
+
+
+
+
+public void WwSendMessage()
+{
+    if (WebWorkerHelper1.bwwState == BwwEnums.BwwState.Open)
+    {
+        if (!string.IsNullOrEmpty(Ww_Message))
+        {
+            WebWorkerHelper1.send(Ww_Message);
+            Ww_Message = string.Empty;
+            StateHasChanged();
+        }
+        else
+        {
+            BwwJsInterop.Alert("Please input message");
+        }
+    }
+    else
+    {
+        BwwJsInterop.Alert("Connection is closed");
+    }
+}
+
+
+}

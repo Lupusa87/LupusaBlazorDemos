@@ -1,0 +1,226 @@
+﻿@page "/DedicatedWebWorkerPage"
+
+
+@addTagHelper *, BlazorWebWorkerHelper
+@using BlazorWebWorkerHelper;
+@using BlazorWebWorkerHelper.classes;
+
+
+
+<h3 style="color:darkred">This is Shared Web Worker sample</h3>
+<br />
+
+
+<h4>Web Worker helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebWorkerHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+
+<div style="margin:5px">
+
+
+    <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WwCreate">@Ww_Button</button>
+
+    <span style="margin:5px">URL</span>
+    <input bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
+
+
+    <span style="width:120px;margin:5px">status:@Ww_Status</span>
+
+
+</div>
+
+
+<br />
+
+<p style="margin:5px">We can calculate <b>fibonacci numbers</b> direct or using web worker.</p>
+
+<p style="margin:5px">Web worker is not bloking UI and brings result when calculation is done, without web worker UI gets froozen while calculating.</p>
+
+<p style="margin:5px">Difference can noticed best for parameters <b>between 40-45</b> depending on your device performace. Greater value can take long time to calculate</p>
+
+<br />
+<div style="margin:5px">
+    <input style="margin:5px;width:250px" bind="@Ww_Message" />
+    <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage" disabled="@IsDisabled">Send to worker</button>
+    <button class="btn btn-primary" style="margin:5px" onclick="@WwCalculateJS">Calculate direct</button>
+</div>
+
+
+<br />
+
+
+<span style="font-size:16px;margin:5px"><b>Log:</b></span>
+<br />
+
+@foreach (var item in WebWorkerHelper1.Log)
+{
+    <br />
+    <CompWwMessage bWwMessage="@item" parent="@this" />
+    <br />
+
+}
+
+
+
+@functions
+{
+
+
+    public bool IsDisabled = true;
+
+    //https://www.WebWorker.org/echo.html
+    public string Ww_URL = "WebWorker1.js";
+
+    protected WebWorkerHelper WebWorkerHelper1;
+
+
+
+    protected string Ww_Button = "connect";
+
+
+    protected string Ww_Status = "null";
+
+
+    protected string Ww_Message;
+
+
+    protected override void OnInit()
+    {
+        _create(false);
+
+        base.OnInit();
+    }
+
+    public void WwOnStateChange(short par_state)
+    {
+        Console.WriteLine("WwOnStateChange " + par_state);
+        Ww_Status = WebWorkerHelper1.bwwState.ToString();
+
+        StateHasChanged();
+    }
+
+
+    public void WwOnError(string par_error)
+    {
+
+        BwwJsInterop.Alert(par_error);
+    }
+
+
+    public void WwOnMessage(string par_message)
+    {
+        StateHasChanged();
+    }
+
+    public void WwCreate()
+    {
+        _create();
+    }
+
+
+    private void _create(bool Refresh = true)
+    {
+
+
+        if (Ww_Button == "connect")
+        {
+
+
+            WebWorkerHelper1 = new WebWorkerHelper(Ww_URL);
+
+            WebWorkerHelper1.OnStateChange = WwOnStateChange;
+            Ww_Status = BwwEnums.BwwState.Open.ToString();
+
+            WebWorkerHelper1.OnMessage = WwOnMessage;
+            WebWorkerHelper1.OnError = WwOnError;
+
+            IsDisabled = false;
+            Ww_Button = "disconnect";
+        }
+        else
+        {
+
+            Ww_Status = BwwEnums.BwwState.Close.ToString();
+            WebWorkerHelper1.Dispose();
+            IsDisabled = true;
+            Ww_Button = "connect";
+        }
+
+        if (Refresh)
+        {
+            StateHasChanged();
+        }
+    }
+
+
+
+
+
+    public void WwSendMessage()
+    {
+        if (WebWorkerHelper1.bwwState == BwwEnums.BwwState.Open)
+        {
+            if (!string.IsNullOrEmpty(Ww_Message))
+            {
+                WebWorkerHelper1.send(Ww_Message);
+                Ww_Message = string.Empty;
+                StateHasChanged();
+            }
+            else
+            {
+                BwwJsInterop.Alert("Please input message");
+            }
+        }
+        else
+        {
+            BwwJsInterop.Alert("Connection is closed");
+        }
+    }
+
+
+
+    public async void WwCalculateJS()
+    {
+
+        if (!string.IsNullOrEmpty(Ww_Message))
+        {
+            int arg = 0;
+            if (int.TryParse(Ww_Message, out arg))
+            {
+                //  BwwJsInterop.Alert(fib(arg).ToString());
+                BwwJsInterop.Alert((await BApp1JsInterop.CalcFib(arg)).ToString());
+                Ww_Message = string.Empty;
+                StateHasChanged();
+            }
+            else
+            {
+                BwwJsInterop.Alert("Please input valid integer");
+            }
+
+        }
+        else
+        {
+            BwwJsInterop.Alert("Please input message");
+        }
+
+    }
+
+
+
+    //private int fib(int num)
+    //{
+    //    var result = 0;
+
+    //    if (num < 2)
+    //    {
+    //        result = num;
+    //    }
+    //    else
+    //    {
+    //        result = fib(num - 1) + fib(num - 2);
+    //    }
+
+    //    return result;
+    //}
+
+}

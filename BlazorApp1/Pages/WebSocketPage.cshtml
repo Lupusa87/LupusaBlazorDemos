@@ -8,11 +8,11 @@
 
 <h3 style="color:darkred">This is Websocket sample</h3>
 <br />
-<br />
+
 
 <h4>WebSocket helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebSocketHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
 <br />
-<br />
+
 
 <div style="margin:5px">
 
@@ -20,13 +20,13 @@
     <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WsConnect">@Ws_Button</button>
 
     <span style="margin:5px">URL</span>
-    <input bind="@Ws_URL" style="margin:5px;width:250px" />
+    <input bind="@Ws_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
 
 
     <span style="width:120px;margin:5px">status:@Ws_Status</span>
 
 
-    <button class="btn btn-primary" style="margin:5px" onclick="@WsGetStatus">Get status</button>
+    @* <button class="btn btn-primary" style="margin:5px" onclick="@WsGetStatus">Get status</button>*@
 
 </div>
 
@@ -34,8 +34,8 @@
 <br />
 
 <div style="margin:5px">
-    <input style="margin:5px;width:250px" bind="@Ws_Message" />
-    <button class="btn btn-primary" style="margin:5px" onclick="@WsSendMessage">Send</button>
+    <input style="margin:5px;width:250px" bind="@Ws_Message" disabled="@IsDisabled" />
+    <button class="btn btn-primary" style="margin:5px" onclick="@WsSendMessage" disabled="@IsDisabled">Send</button>
 
 </div>
 
@@ -58,6 +58,10 @@
 
 @functions
 {
+
+
+public bool IsDisabled = true;
+
 //https://www.websocket.org/echo.html
 public string Ws_URL = "wss://echo.websocket.org"; // "ws://192.168.1.17:9000/Data/";
 
@@ -121,6 +125,7 @@ public void WsConnect()
         WebSocketHelper1.OnMessage = WsOnMessage;
         WebSocketHelper1.OnError = WsOnError;
 
+        IsDisabled = false;
 
         Ws_Button = "disconnect";
     }
@@ -128,7 +133,7 @@ public void WsConnect()
     {
 
         WebSocketHelper1.Close();
-
+        IsDisabled = true;
         Ws_Button = "connect";
     }
 
