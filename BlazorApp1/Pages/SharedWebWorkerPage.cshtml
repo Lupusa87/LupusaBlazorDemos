@@ -42,11 +42,12 @@
 <p style="margin:5px">Please use <b>chrome</b> for expected behavior.</p>
 
 
-@*<div style="margin:5px">
-        <input style="margin:5px;width:250px" bind="@Ww_Message" />
-        <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage">Send</button>
+<div style="margin:5px">
+    <input style="margin:5px;width:500px" bind="@Ww_Message" disabled />
+    <button class="btn btn-primary" style="margin:5px" onclick="@GenerateNew">Generate New User</button>
+    <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage" disabled="@IsDisabled">Register</button>
 
-    </div>*@
+</div>
 
 
 <br />
@@ -137,7 +138,7 @@ public void WwCreate()
     }
     else
     {
-        WebWorkerHelper1.send("close");
+        WebWorkerHelper1.send("cmdclose");
         WebWorkerHelper1.Dispose();
 
         IsDisabled = true;
@@ -150,6 +151,15 @@ public void WwCreate()
 
 
 
+
+public async void GenerateNew()
+{
+
+
+    Ww_Message = await BApp1JsInterop.GenerateNewUser();
+    StateHasChanged();
+
+}
 
 
 public void WwSendMessage()

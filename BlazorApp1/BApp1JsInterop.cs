@@ -14,5 +14,10 @@ namespace BlazorApp1
                 "BApp1JsFunctions.calcfib",
                 num);
         }
+
+        public static Task<string> GenerateNewUser()
+        {
+            return JSRuntime.Current.InvokeAsync<string>("BApp1JsFunctions.generateNewUser");
+        }
     }
 }

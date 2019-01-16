@@ -45,7 +45,7 @@ namespace BlazorApp1.Components
                 builder.AddAttribute(k++, "style", "position:absolute;top:0px;cursor:pointer;color:green");
             }
 
-            builder.AddContent(k++, bwwMessage.ID + " " + bwwMessage.Date.ToString("HH:mm:ss.fff") + " " + bwwMessage.MessageType.ToString() + ": " + bwwMessage.Message);
+            builder.AddContent(k++, bwwMessage.MessageType.ToString() + " " + bwwMessage.Message);
 
             builder.CloseElement();
 
