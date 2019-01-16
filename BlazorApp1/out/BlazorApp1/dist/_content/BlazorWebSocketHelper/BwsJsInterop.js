@@ -2,7 +2,6 @@ var WebSockets_array = [];
 
 function WsOnOpen(e, dotnethelper) {
     dotnethelper.invokeMethodAsync('InvokeStateChanged', 1);
-    console.log("onopen:1");
 }
 
 function WsOnClose(e, dotnethelper) {
@@ -18,7 +17,7 @@ function WsOnMessage(e, dotnethelper) {
     dotnethelper.invokeMethodAsync('InvokeOnMessage', e.data);
 }
 
-window.BwsJsInterop = {
+window.BwsJsFunctions = {
     alert: function (message) {
         return alert(message);
     },
@@ -96,7 +95,6 @@ window.BwsJsInterop = {
 
         if (index > -1) {
             result = WebSockets_array[index].ws.readyState;
-            console.log(result);
         }
        
         return result;
