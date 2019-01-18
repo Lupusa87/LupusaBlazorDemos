@@ -59,8 +59,14 @@ onconnect = function (e) {
 
     port.addEventListener('message', function (e) {
 
-        if (e.data === 'cmdclose') {
-            self.close();
+        if (e.data === 'CmdDisconnect') {
+
+            clients.splice(clients.indexOf(port), 1);
+
+            if (clients.length === 0) {
+
+                self.close();
+            }
         }
         else {
 
