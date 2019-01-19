@@ -1,9 +1,9 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@*<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Blazor clock component</a>
     <button class="navbar-toggler" onclick=@ToggleNavMenu>
         <span class="navbar-toggler-icon"></span>
     </button>
-</div>
+</div>*@
 
 <div class=@(collapseNavMenu ? "collapse" : null) onclick=@ToggleNavMenu>
     <ul class="nav flex-column">
@@ -78,10 +78,15 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="SWWPage2">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Shared Web Worker 2
+            </NavLink>
+        </li>
+        @*<li class="nav-item px-3">
             <NavLink class="nav-link" href="RawHTML">
                 <span class="oi oi-plus" aria-hidden="true"></span> Raw HTML
             </NavLink>
-        </li>
+        </li>*@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="DonationPage">
                 <span class="oi oi-plus" aria-hidden="true"></span> Donation

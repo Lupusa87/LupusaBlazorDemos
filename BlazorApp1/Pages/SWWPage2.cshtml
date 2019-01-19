@@ -1,0 +1,194 @@
+﻿@page "/SWWPage2"
+
+@addTagHelper *, BlazorWebWorkerHelper
+@using BlazorWebWorkerHelper;
+@using BlazorWebWorkerHelper.classes;
+@using classes;
+
+
+<h3 style="color:darkred">This is Dedicated Web Worker sample</h3>
+<br />
+
+<h4>Web Worker helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebWorkerHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+
+<div style="margin:5px">
+
+
+    <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WwCreate">@Ww_Button</button>
+
+    <span style="margin:5px">URL</span>
+    <input bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
+
+
+    <span style="width:120px;margin:5px">status:@Ww_Status</span>
+
+
+</div>
+
+<br />
+
+<p style="margin:5px">You can duplicate this tab and see <b>how two or more tabs can consume same data from one shared worker</b>.</p>
+
+<p style="margin:5px">Please use <b>chrome</b> for expected behavior.</p>
+
+
+<div style="margin:5px">
+    <input style="margin:5px;width:500px" bind="@Ww_Message" disabled="@IsDisabled" />
+    <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage" disabled="@IsDisabled">Send</button>
+
+</div>
+
+
+<br />
+
+
+
+
+<KendoGrid Data=@log_list Pageable=true PageSize=10 Sortable=true>
+    <KendoGridColumn Field=@nameof(BWorkerMessage.Date)>
+        <Template>
+            @($"{(context as BWorkerMessage).Date:HH:mm:ss.fff}")
+        </Template>
+    </KendoGridColumn>
+    <KendoGridColumn Field=@nameof(BWorkerMessage.GUID) />
+    <KendoGridColumn Field=@nameof(BWorkerMessage.ClientID) />
+    <KendoGridColumn Field=@nameof(BWorkerMessage.Caption) />
+
+</KendoGrid>
+
+
+
+@functions
+{
+
+
+    protected List<BWorkerMessage> log_list = new List<BWorkerMessage>();
+
+    public bool IsDisabled = true;
+
+    //https://www.WebWorker.org/echo.html
+    public string Ww_URL = "SharedWebWorker2.js";
+
+    protected WebWorkerHelper WebWorkerHelper1;
+
+
+
+    protected string Ww_Button = "connect";
+
+
+    protected string Ww_Status = "null";
+
+
+    protected string Ww_Message;
+
+
+    protected override void OnInit()
+    {
+        WwCreate();
+
+        base.OnInit();
+    }
+
+    public void WwOnStateChange(short par_state)
+    {
+
+        Ww_Status = WebWorkerHelper1.bwwState.ToString();
+
+        StateHasChanged();
+    }
+
+
+    public void WwOnError(string par_error)
+    {
+
+        BwwJsInterop.Alert(par_error);
+    }
+
+
+    public void WwOnMessage(string par_message)
+    {
+
+        BWorkerMessage b = Json.Deserialize<BWorkerMessage>(par_message);
+        b.Date = new DateTime(1970, 1, 1).AddMilliseconds(b.TimeStamp);
+
+        log_list.Add(b);
+
+        StateHasChanged();
+    }
+
+
+    public void WwCreate()
+    {
+
+
+        if (Ww_Button == "connect")
+        {
+
+
+            WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, BwwEnums.BWorkerType.shared);
+            WebWorkerHelper1.DoLog = false;
+            WebWorkerHelper1.OnStateChange = WwOnStateChange;
+            Ww_Status = BwwEnums.BwwState.Open.ToString();
+            WebWorkerHelper1.LogMaxCount = 8;
+
+            WebWorkerHelper1.OnMessage = WwOnMessage;
+            WebWorkerHelper1.OnError = WwOnError;
+
+            IsDisabled = false;
+
+            Ww_Button = "disconnect";
+        }
+        else
+        {
+
+            log_list = new List<BWorkerMessage>();
+
+            WebWorkerHelper1.send("CmdDisconnect");
+            WebWorkerHelper1.Dispose();
+
+            IsDisabled = true;
+
+            Ww_Button = "connect";
+        }
+
+
+    }
+
+
+
+
+    public async void GenerateNew()
+    {
+
+
+        Ww_Message = await BApp1JsInterop.GenerateNewUser();
+        StateHasChanged();
+
+    }
+
+
+    public void WwSendMessage()
+    {
+        if (WebWorkerHelper1.bwwState == BwwEnums.BwwState.Open)
+        {
+            if (!string.IsNullOrEmpty(Ww_Message))
+            {
+                WebWorkerHelper1.send(Ww_Message);
+                Ww_Message = string.Empty;
+                StateHasChanged();
+            }
+            else
+            {
+                BwwJsInterop.Alert("Please input message");
+            }
+        }
+        else
+        {
+            BwwJsInterop.Alert("Connection is closed");
+        }
+    }
+
+
+}
