@@ -59,6 +59,9 @@
     <Reference Include="BlazorWebWorkerHelper">
       <HintPath>..\..\BlazorWebWorkerHelper\bin\Debug\netstandard2.0\BlazorWebWorkerHelper.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorWindowHelper">
+      <HintPath>..\..\BlazorWindowHelper\bin\Debug\netstandard2.0\BlazorWindowHelper.dll</HintPath>
+    </Reference>
     <Reference Include="DoughnutChartComponent">
       <HintPath>..\..\BlazorDoughnutChartComponent\DoughnutChartComponent\bin\Debug\netstandard2.0\DoughnutChartComponent.dll</HintPath>
     </Reference>
