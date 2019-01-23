@@ -26,10 +26,7 @@ namespace BlazorWebSocketWebWorker.Client.Components
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
 
-
             int k = -1;
-
-
 
             builder.OpenElement(k++, "div");
             builder.AddAttribute(k++, "id", "listitem" + bwsMessage.ID); // + Guid.NewGuid().ToString("d").Substring(1, 4));
@@ -49,6 +46,8 @@ namespace BlazorWebSocketWebWorker.Client.Components
                 builder.AddAttribute(k++, "style", "position:absolute;top:0px;cursor:pointer;color:green");
             }
 
+
+
             switch (bwsMessage.TransportType)
             {
                 case BwsTransportType.Text:
@@ -60,11 +59,13 @@ namespace BlazorWebSocketWebWorker.Client.Components
                     break;
                 case BwsTransportType.ArrayBuffer:
                     builder.AddContent(k++, bwsMessage.ID + " " +
-                        bwsMessage.Date.ToString("HH:mm:ss.fff") + " " +
-                        bwsMessage.MessageType.ToString() + " " +
-                        bwsMessage.TransportType.ToString().ToLower() + ": " +
-                        Encoding.UTF8.GetString(bwsMessage.MessageBinary) +
-                        " [" + ByteArrayToVisualString(bwsMessage.MessageBinary) + "]");
+                       bwsMessage.Date.ToString("HH:mm:ss.fff") + " " +
+                       bwsMessage.MessageType.ToString() + " " +
+                       bwsMessage.TransportType.ToString().ToLower() + ": " +
+                       bwsMessage.Message +
+                       " [" + bwsMessage.MessageBinaryVisual +
+                       "]");
+                    //}
                     break;
                 case BwsTransportType.Blob:
                     break;
@@ -79,29 +80,9 @@ namespace BlazorWebSocketWebWorker.Client.Components
             builder.CloseElement();
 
 
+            //BlazorTimeAnalyzer.Add("BuildRenderTree", MethodBase.GetCurrentMethod());
+
             base.BuildRenderTree(builder);
-        }
-
-        private string ByteArrayToVisualString(byte[] par_b)
-        {
-
-            if (par_b.Length > 0)
-            {
-                StringBuilder s = new StringBuilder();
-                for (int i = 0; i < par_b.Length; i++)
-                {
-                    s.Append(par_b[i] + ",");
-                }
-                s.Remove(s.Length - 1, 1);
-
-                return s.ToString();
-
-            }
-
-
-            return string.Empty;
-
-
         }
 
         public void Dispose()
