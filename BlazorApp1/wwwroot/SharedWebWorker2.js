@@ -1,32 +1,47 @@
-﻿function createGuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
-
-function convertUTCDateToLocalDate(date) {
-
-    date = new Date(date);
-
-    var localOffset = date.getTimezoneOffset() * 60000;
-
-    var localTime = date.getTime();
-
-    date = localTime - localOffset;
-
-    return date;
-
-};
-
-
-
-
-
+﻿importScripts('lib/lupEnums.js');
+importScripts('lib/lupFunctions.js');
 
 var clients = [];
 var messages = [];
+
+var TextOrBinary = false;
+
+
+
+
+function myPush(msg, prt) {
+
+    var b;
+    if (TextOrBinary === false) {
+
+        b = {
+            Cmd: 0,
+            isBinary: false,
+            binarydata: null,
+            data: msg,
+            ClientID: clients.indexOf(prt) + 1
+        };
+
+    }
+    else {
+
+        var q = new TextEncoder("utf-8").encode(msg);
+
+        b = {
+            Cmd: 0,
+            isBinary: true,
+            binarydata: Array.from(new Int8Array(q)),
+            data: '',
+            ClientID: clients.indexOf(prt) + 1
+        };
+    }
+
+    messages.push(b);
+
+    clients.forEach(function (client) {
+        client.postMessage(b);
+    });
+}
 
 onconnect = function (e) {
     var port = e.ports[0];
@@ -35,49 +50,45 @@ onconnect = function (e) {
     clients.push(port);
 
 
-    console.log("connected new");
-    console.log("messages to push " + messages.length);
+   
     if (messages.length > 0) {
         messages.forEach(function (msg) {
-            console.log("pushed " + msg);
             port.postMessage(msg);
         });
     }
-    console.log("sync done");
+
 
     port.addEventListener('message', function (e) {
 
-        if (e.data === 'CmdDisconnect') {
+        switch (e.data.cmd) {
+            case CommandType.WW.Send:
 
-            clients.splice(clients.indexOf(port), 1);
+                var s;
+                if (e.data.msg instanceof Object) {
+                    s = new TextDecoder("utf-8").decode(e.data.msg);
+                }
+                else {
+                    s = e.data.msg;
+                }
 
-            if (clients.length === 0) {
+                myPush(s, port);
+                
+                break;
 
-                self.close();
-            }
+            case CommandType.WW.Disconnect:
 
+                clients.splice(clients.indexOf(port), 1);
+
+                if (clients.length === 0) {
+
+                    self.close();
+                }
+
+                break;
+            case CommandType.MultyPurpose.Item1:
+                TextOrBinary = e.data.msg;
+                break;
         }
-        else {
-
-
-            var b = {
-                GUID: createGuid(),
-                Caption: e.data,
-                TimeStamp: convertUTCDateToLocalDate(Date.now()),
-                ClientID: clients.indexOf(port) + 1
-            };
-
-
-            var a = JSON.stringify(b);
-            messages.push(a);
-
-            clients.forEach(function (client) {
-                client.postMessage(a);
-            });
-        }
-
-
-
 
     });
 

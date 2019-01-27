@@ -120,6 +120,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="classes\" />
     <Folder Include="wwwroot\sounds\" />
   </ItemGroup>
 

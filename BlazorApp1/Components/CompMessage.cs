@@ -8,9 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using static BlazorWebSocketHelper.Classes.BwsEnums;
 
-namespace BlazorWebSocketWebWorker.Client.Components
+namespace BlazorApp1.Components
 {
-
 
     public class CompMessage : BlazorComponent, IDisposable
     {
@@ -80,7 +79,6 @@ namespace BlazorWebSocketWebWorker.Client.Components
             builder.CloseElement();
 
 
-            //BlazorTimeAnalyzer.Add("BuildRenderTree", MethodBase.GetCurrentMethod());
 
             base.BuildRenderTree(builder);
         }
@@ -90,4 +88,5 @@ namespace BlazorWebSocketWebWorker.Client.Components
 
         }
     }
+
 }

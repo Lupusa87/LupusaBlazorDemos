@@ -1,5 +1,9 @@
-﻿@page "/DedicatedWebWorkerPage"
+﻿@*@page "/"*@
+@page "/DedicatedWebWorkerPage"
 
+
+
+@inherits DedicatedWebWorkerPage_Logic
 
 @addTagHelper *, BlazorWebWorkerHelper
 @using BlazorWebWorkerHelper;
@@ -39,8 +43,17 @@
 <p style="margin:5px">Difference can noticed best for parameters <b>between 40-45</b> depending on your device performace. Greater value can take long time to calculate</p>
 
 <br />
+
+<div style="vertical-align:middle;margin:5px">
+    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 0)" onchange="@(() => Cmd_SetTransport(0))" /> Text
+    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 1)" onchange="@(() => Cmd_SetTransport(1))" /> Binary
+
+</div>
 <div style="margin:5px">
     <input style="margin:5px;width:250px" bind="@Ww_Message" />
+
+
+
     <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage" disabled="@IsDisabled">Send to worker</button>
     <button class="btn btn-primary" style="margin:5px" onclick="@WwCalculateJS">Calculate direct</button>
 </div>
@@ -52,7 +65,7 @@
 <span style="font-size:16px;margin:5px"><b>Log:</b></span>
 <br />
 
-@foreach (var item in WebWorkerHelper1.Log)
+@foreach (var item in WebWorkerHelper1.Log.OrderByDescending(x=>x.ID))
 {
     <br />
     <CompWwMessage bWwMessage="@item" parent="@this" />
@@ -60,167 +73,3 @@
 
 }
 
-
-
-@functions
-{
-
-
-    public bool IsDisabled = true;
-
-    //https://www.WebWorker.org/echo.html
-    public string Ww_URL = "WebWorker1.js";
-
-    protected WebWorkerHelper WebWorkerHelper1;
-
-
-
-    protected string Ww_Button = "connect";
-
-
-    protected string Ww_Status = "null";
-
-
-    protected string Ww_Message;
-
-
-    protected override void OnInit()
-    {
-        _create(false);
-
-        base.OnInit();
-    }
-
-    public void WwOnStateChange(short par_state)
-    {
-        
-        Ww_Status = WebWorkerHelper1.bwwState.ToString();
-
-        StateHasChanged();
-    }
-
-
-    public void WwOnError(string par_error)
-    {
-
-        BwwJsInterop.Alert(par_error);
-    }
-
-
-    public void WwOnMessage(string par_message)
-    {
-        StateHasChanged();
-    }
-
-    public void WwCreate()
-    {
-        _create();
-    }
-
-
-    private void _create(bool Refresh = true)
-    {
-
-
-        if (Ww_Button == "connect")
-        {
-
-
-            WebWorkerHelper1 = new WebWorkerHelper(Ww_URL);
-
-            WebWorkerHelper1.OnStateChange = WwOnStateChange;
-            Ww_Status = BwwEnums.BwwState.Open.ToString();
-
-            WebWorkerHelper1.OnMessage = WwOnMessage;
-            WebWorkerHelper1.OnError = WwOnError;
-
-            IsDisabled = false;
-            Ww_Button = "disconnect";
-        }
-        else
-        {
-
-            Ww_Status = BwwEnums.BwwState.Close.ToString();
-            WebWorkerHelper1.Dispose();
-            IsDisabled = true;
-            Ww_Button = "connect";
-        }
-
-        if (Refresh)
-        {
-            StateHasChanged();
-        }
-    }
-
-
-
-
-
-    public void WwSendMessage()
-    {
-        if (WebWorkerHelper1.bwwState == BwwEnums.BwwState.Open)
-        {
-            if (!string.IsNullOrEmpty(Ww_Message))
-            {
-                WebWorkerHelper1.send(Ww_Message);
-                Ww_Message = string.Empty;
-                StateHasChanged();
-            }
-            else
-            {
-                BwwJsInterop.Alert("Please input message");
-            }
-        }
-        else
-        {
-            BwwJsInterop.Alert("Connection is closed");
-        }
-    }
-
-
-
-    public async void WwCalculateJS()
-    {
-
-        if (!string.IsNullOrEmpty(Ww_Message))
-        {
-            int arg = 0;
-            if (int.TryParse(Ww_Message, out arg))
-            {
-                //  BwwJsInterop.Alert(fib(arg).ToString());
-                BwwJsInterop.Alert((await BApp1JsInterop.CalcFib(arg)).ToString());
-                Ww_Message = string.Empty;
-                StateHasChanged();
-            }
-            else
-            {
-                BwwJsInterop.Alert("Please input valid integer");
-            }
-
-        }
-        else
-        {
-            BwwJsInterop.Alert("Please input message");
-        }
-
-    }
-
-
-
-    //private int fib(int num)
-    //{
-    //    var result = 0;
-
-    //    if (num < 2)
-    //    {
-    //        result = num;
-    //    }
-    //    else
-    //    {
-    //        result = fib(num - 1) + fib(num - 2);
-    //    }
-
-    //    return result;
-    //}
-
-}

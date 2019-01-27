@@ -1,5 +1,8 @@
-﻿@page "/SharedWebWorkerPage"
+﻿@*@page "/"*@
+@page "/SharedWebWorkerPage"
 
+
+@inherits SharedWebWorkerPage_Logic
 
 @addTagHelper *, BlazorWebWorkerHelper
 @using BlazorWebWorkerHelper;
@@ -42,6 +45,11 @@
 <p style="margin:5px">Please use <b>chrome</b> for expected behavior.</p>
 
 
+<div style="vertical-align:middle;margin:5px">
+    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 0)" onchange="@(() => Cmd_SetTransport(0))" /> Text
+    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 1)" onchange="@(() => Cmd_SetTransport(1))" /> Binary
+
+</div>
 <div style="margin:5px">
     <input style="margin:5px;width:500px" bind="@Ww_Message" disabled />
     <button class="btn btn-primary" style="margin:5px" onclick="@GenerateNew">Generate New User</button>
@@ -66,122 +74,3 @@
 
 
 
-@functions
-{
-
-public bool IsDisabled = true;
-
-//https://www.WebWorker.org/echo.html
-public string Ww_URL = "SharedWebWorker1.js";
-
-protected WebWorkerHelper WebWorkerHelper1;
-
-
-
-protected string Ww_Button = "connect";
-
-
-protected string Ww_Status = "null";
-
-
-protected string Ww_Message;
-
-
-protected override void OnInit()
-{
-    WwCreate();
-
-    base.OnInit();
-}
-
-public void WwOnStateChange(short par_state)
-{
-
-    Ww_Status = WebWorkerHelper1.bwwState.ToString();
-
-    StateHasChanged();
-}
-
-
-public void WwOnError(string par_error)
-{
-
-    BwwJsInterop.Alert(par_error);
-}
-
-
-public void WwOnMessage(string par_message)
-{
-    StateHasChanged();
-}
-
-
-public void WwCreate()
-{
-
-
-    if (Ww_Button == "connect")
-    {
-
-
-        WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, BwwEnums.BWorkerType.shared);
-        WebWorkerHelper1.OnStateChange = WwOnStateChange;
-        Ww_Status = BwwEnums.BwwState.Open.ToString();
-        WebWorkerHelper1.LogMaxCount = 8;
-
-        WebWorkerHelper1.OnMessage = WwOnMessage;
-        WebWorkerHelper1.OnError = WwOnError;
-
-        IsDisabled = false;
-
-        Ww_Button = "disconnect";
-    }
-    else
-    {
-        WebWorkerHelper1.send("CmdDisconnect");
-        WebWorkerHelper1.Dispose();
-
-        IsDisabled = true;
-
-        Ww_Button = "connect";
-    }
-
-
-}
-
-
-
-
-public async void GenerateNew()
-{
-
-
-    Ww_Message = await BApp1JsInterop.GenerateNewUser();
-    StateHasChanged();
-
-}
-
-
-public void WwSendMessage()
-{
-    if (WebWorkerHelper1.bwwState == BwwEnums.BwwState.Open)
-    {
-        if (!string.IsNullOrEmpty(Ww_Message))
-        {
-            WebWorkerHelper1.send(Ww_Message);
-            Ww_Message = string.Empty;
-            StateHasChanged();
-        }
-        else
-        {
-            BwwJsInterop.Alert("Please input message");
-        }
-    }
-    else
-    {
-        BwwJsInterop.Alert("Connection is closed");
-    }
-}
-
-
-}

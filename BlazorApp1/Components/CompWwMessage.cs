@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Blazor.RenderTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using static BlazorWebWorkerHelper.classes.BwwEnums;
 
 namespace BlazorApp1.Components
 {
+
     public class CompWwMessage : BlazorComponent, IDisposable
     {
 
@@ -36,7 +39,7 @@ namespace BlazorApp1.Components
 
 
 
-            if (bwwMessage.MessageType == BwwEnums.BwwMessageType.send)
+            if (bwwMessage.MessageType == BwwMessageType.send)
             {
                 builder.AddAttribute(k++, "style", "position:absolute;top:0px;cursor:pointer;color:blue");
             }
@@ -45,7 +48,51 @@ namespace BlazorApp1.Components
                 builder.AddAttribute(k++, "style", "position:absolute;top:0px;cursor:pointer;color:green");
             }
 
-            builder.AddContent(k++, bwwMessage.MessageType.ToString() + " " + bwwMessage.Message);
+
+            switch (bwwMessage.MessageType)
+            {
+                case BwwMessageType.send:
+
+                    switch (bwwMessage.TransportType)
+                    {
+                        case BwwTransportType.Text:
+                            builder.AddContent(k++, bwwMessage.MessageType.ToString() + ": " + bwwMessage.WwBag.data);
+                            break;
+                        case BwwTransportType.Binary:
+                            string d = Encoding.UTF8.GetString(bwwMessage.WwBag.binarydata);
+                            builder.AddContent(k++, bwwMessage.MessageType.ToString() + ": " + d +
+                               " [" + string.Join(", ", bwwMessage.WwBag.binarydata) +
+                               "]");
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    break;
+                case BwwMessageType.received:
+
+
+                    switch (bwwMessage.TransportType)
+                    {
+                        case BwwTransportType.Text:
+                            builder.AddContent(k++, bwwMessage.MessageType.ToString() + ": " + bwwMessage.WwBag.data);
+                            break;
+                        case BwwTransportType.Binary:
+                            builder.AddContent(k++, bwwMessage.MessageType.ToString() + ": " + Encoding.UTF8.GetString(bwwMessage.WwBag.binarydata) +
+                               " [" + string.Join(", ", bwwMessage.WwBag.binarydata) +
+                               "]");
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
 
             builder.CloseElement();
 
@@ -62,4 +109,5 @@ namespace BlazorApp1.Components
 
         }
     }
+
 }

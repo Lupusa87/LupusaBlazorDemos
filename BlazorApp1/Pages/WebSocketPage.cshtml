@@ -1,5 +1,8 @@
 ﻿@page "/WebSocketPage"
 
+@inherits WebSocketPage_Logic
+
+
 @addTagHelper *, BlazorWebSocketHelper
 @using BlazorWebSocketHelper;
 @using BlazorWebSocketHelper.Classes;
@@ -14,26 +17,18 @@
 
 
 <div style="margin:5px">
-
-
+   
     <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WsConnect">@Ws_Button</button>
-
     <span style="margin:5px">URL</span>
     <input bind="@Ws_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
-
-
     <span style="width:120px;margin:5px">status:@Ws_Status</span>
-
-
-    @* <button class="btn btn-primary" style="margin:5px" onclick="@WsGetStatus">Get status</button>*@
-
 </div>
 
 
 <br />
 <div style="vertical-align:middle;margin:5px">
-    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 0)" onchange="@(() => cmd_SetTransport(0))" /> Text
-    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 1)" onchange="@(() => cmd_SetTransport(1))" /> Array Buffer
+    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 0)" onchange="@(() => Cmd_SetTransport(0))" /> Text
+    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 1)" onchange="@(() => Cmd_SetTransport(1))" /> Array Buffer
 
 </div>
 <div style="margin:5px">
@@ -64,224 +59,3 @@
 }
 
 
-@functions
-{
-protected int TransportCode = 0;
-
-public bool IsDisabled = true;
-
-//https://www.websocket.org/echo.html
-public string Ws_URL = "wss://demos.kaazing.com/echo"; //"wss://echo.websocket.org"; // "ws://192.168.1.17:9000/Data/";
-
-public WebSocketHelper WebSocketHelper1;
-
-protected List<BwsMessage> log = new List<BwsMessage>();
-
-protected string Ws_Button = "connect";
-
-
-protected string Ws_Status = "undefined";
-
-
-protected string Ws_Message = string.Empty;
-
-
-protected override void OnInit()
-{
-    WsConnect();
-
-    base.OnInit();
-}
-
-protected override void OnAfterRender()
-{
-
-    base.OnAfterRender();
-}
-
-public void WsOnStateChange(short par_state)
-{
-    Ws_Status = WebSocketHelper1.bwsState.ToString();
-
-    if (WebSocketHelper1.bwsState == BwsEnums.BwsState.Close)
-    {
-        WebSocketHelper1.Dispose();
-    }
-
-
-    StateHasChanged();
-}
-
-
-public void cmd_SetTransport(int Par_transportCode)
-{
-    if (TransportCode != Par_transportCode)
-    {
-        TransportCode = Par_transportCode;
-
-        BwsTransportType b = (BwsTransportType)(TransportCode);
-
-
-        if (WebSocketHelper1.bwsTransportType != b)
-        {
-            WebSocketHelper1.SetTransportType(b);
-        };
-
-
-    }
-}
-
-
-
-
-
-public void WsOnError(string par_error)
-{
-
-    BwsJsInterop.Alert(par_error);
-}
-
-
-public void WsOnMessage(BwsMessage par_message)
-{
-
-    par_message.ID = GetNewIDFromLog();
-    log.Add(par_message);
-
-
-    StateHasChanged();
-
-    //BlazorTimeAnalyzer.Log();
-}
-
-
-public void WsConnect()
-{
-
-
-    if (Ws_Button == "connect")
-    {
-
-        WebSocketHelper1 = new WebSocketHelper(Ws_URL, (BwsEnums.BwsTransportType)(TransportCode));
-        WebSocketHelper1.DoLog = false;
-        WebSocketHelper1.OnStateChange = WsOnStateChange;
-        WebSocketHelper1.OnMessage = WsOnMessage;
-        WebSocketHelper1.OnError = WsOnError;
-
-        IsDisabled = false;
-        log = new List<BwsMessage>();
-        Ws_Button = "disconnect";
-    }
-    else
-    {
-
-        WebSocketHelper1.Close();
-        IsDisabled = true;
-        Ws_Button = "connect";
-        log = new List<BwsMessage>();
-    }
-
-
-}
-
-
-
-public void WsSendMessage()
-{
-
-    //BlazorTimeAnalyzer.Add("WsSendMessage 1", MethodBase.GetCurrentMethod());
-    if (WebSocketHelper1.bwsState == BwsEnums.BwsState.Open)
-    {
-        if (!string.IsNullOrEmpty(Ws_Message))
-        {
-
-
-            switch (WebSocketHelper1.bwsTransportType)
-            {
-                case BwsEnums.BwsTransportType.Text:
-                    log.Add(new BwsMessage()
-                    {
-                        ID = GetNewIDFromLog(),
-                        Date = DateTime.Now,
-                        Message = Ws_Message,
-                        MessageType = BwsEnums.BwsMessageType.send,
-                        TransportType = WebSocketHelper1.bwsTransportType,
-                    });
-                    WebSocketHelper1.send(Ws_Message);
-                    break;
-                case BwsEnums.BwsTransportType.ArrayBuffer:
-
-                    byte[] data = Encoding.UTF8.GetBytes(Ws_Message);
-                    BwsMessage b = new BwsMessage()
-                    {
-                        ID = GetNewIDFromLog(),
-                        Date = DateTime.Now,
-                        Message = Ws_Message,
-                        MessageBinary = data,
-                        MessageType = BwsEnums.BwsMessageType.send,
-                        TransportType = WebSocketHelper1.bwsTransportType,
-                    };
-
-
-                    b.MessageBinaryVisual = WebSocketHelper1.send(b.MessageBinary);
-
-                    log.Add(b);
-
-                    break;
-                case BwsEnums.BwsTransportType.Blob:
-                    break;
-                default:
-                    break;
-            }
-
-            Ws_Message = string.Empty;
-
-        }
-        else
-        {
-            BwsJsInterop.Alert("Please input message");
-        }
-    }
-    else
-    {
-        BwsJsInterop.Alert("Connection is closed");
-    }
-}
-
-
-
-private int GetNewIDFromLog()
-{
-
-    if (log.Any())
-    {
-        return log.Max(x => x.ID) + 1;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-public async void WsGetStatus()
-{
-    Ws_Status = await WebSocketHelper1.get_WsStatus();
-    BwsJsInterop.Alert(Ws_Status);
-    StateHasChanged();
-}
-
-public void ClearLog()
-{
-    if (log.Any())
-    {
-        log = new List<BwsMessage>();
-        StateHasChanged();
-    }
-}
-
-
-
-
-
-
-}

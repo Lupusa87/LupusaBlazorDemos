@@ -1,13 +1,17 @@
-﻿@page "/SWWPage2"
+﻿@page "/SwwWsPage"
 
-@inherits SWWPage2_Logic
+
+@inherits SwwWsPage_Logic
+@*@implements IDisposable*@
+
 
 @addTagHelper *, BlazorWebWorkerHelper
 @using BlazorWebWorkerHelper;
 @using BlazorWebWorkerHelper.classes;
 
 
-<h3 style="color:darkred">This is Shared Web Worker sample</h3>
+
+<h3 style="color:darkred">This is Shared Web Worker sample with Web Socket inside</h3>
 <br />
 
 <h4>Web Worker helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebWorkerHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
@@ -16,16 +20,19 @@
 
 <div style="margin:5px">
 
-
     <button class="btn btn-primary" style="width:120px;margin:5px" onclick="@WwCreate">@Ww_Button</button>
-
+    <span style="margin:5px">Shared web worker</span>
     <span style="margin:5px">URL</span>
     <input bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
-
-
     <span style="width:120px;margin:5px">status:@Ww_Status</span>
+</div>
 
-
+<div style="margin:5px; margin-left:140px">
+    <span style="margin:5px">Nested web socket</span>
+    @*<button class="btn btn-primary" style="width:120px;margin:5px" disabled="@IsDisabled" onclick="@WsCreate">@Ws_Button</button>*@
+    <span style="margin:5px">URL</span>
+    <input bind="@Ws_URL" style="margin:5px;width:250px" disabled="@(!WsIsDisabled)" />
+    <span style="width:120px;margin:5px">status:@Ws_Status</span>
 </div>
 
 <br />
@@ -37,14 +44,15 @@
 
 
 
+<br />
 <div style="vertical-align:middle;margin:5px">
-    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 0)" onchange="@(() => Cmd_SetTransport(0))" /> Text
-    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 1)" onchange="@(() => Cmd_SetTransport(1))" /> Binary
+    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@WsIsDisabled" checked="@(TransportCode == 0)" onchange="@(() => cmd_SetTransport(0))" /> Text
+    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@WsIsDisabled" checked="@(TransportCode == 1)" onchange="@(() => cmd_SetTransport(1))" /> Binary
 
 </div>
 <div style="margin:5px">
-    <input style="margin:5px;width:500px" bind="@Ww_Message" disabled="@IsDisabled" />
-    <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage" disabled="@IsDisabled">Send</button>
+    <input style="margin:5px;width:500px" bind="@Ww_Message" disabled="@WsIsDisabled" />
+    <button class="btn btn-primary" style="margin:5px" onclick="@WwSendMessage" disabled="@WsIsDisabled">Send</button>
 
 </div>
 
@@ -65,4 +73,5 @@
     <KendoGridColumn Field=@nameof(SwwWs_Item.Caption) />
 
 </KendoGrid>
+
 
