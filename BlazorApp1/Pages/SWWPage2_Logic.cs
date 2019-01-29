@@ -132,7 +132,7 @@ namespace BlazorApp1.Pages
             else
             {
                 log_list = new List<SwwWs_Item>();
-                WebWorkerHelper1.Send(BwwEnums.BCommandType.WwDisconnect, string.Empty);
+                WebWorkerHelper1.Send(BCommandType.WwDisconnect, "any", string.Empty);
                 WebWorkerHelper1.Dispose();
 
                 IsDisabled = true;
@@ -166,14 +166,14 @@ namespace BlazorApp1.Pages
                     {
                         case BwwTransportType.Text:
 
-                            WebWorkerHelper1.Send(BCommandType.send, Ww_Message);
+                            WebWorkerHelper1.Send(BCommandType.send, Ww_Message, string.Empty);
                             Ww_Message = string.Empty;
                             StateHasChanged();
 
                             break;
                         case BwwTransportType.Binary:
                             byte[] data = Encoding.UTF8.GetBytes(Ww_Message);
-                            WebWorkerHelper1.Send(BCommandType.send, data);
+                            WebWorkerHelper1.Send(BCommandType.send, data, string.Empty);
 
                             Ww_Message = string.Empty;
                             StateHasChanged();
@@ -207,7 +207,7 @@ namespace BlazorApp1.Pages
                 if (WebWorkerHelper1.bwwTransportType != b)
                 {
                     WebWorkerHelper1.SetTransportType(b);
-                    WebWorkerHelper1.Send(BCommandType.MultyPurposeItem1, TransportCode.ToString(), false);
+                    WebWorkerHelper1.Send(BCommandType.MultyPurposeItem1, TransportCode.ToString(), string.Empty, false);
                 };
 
 

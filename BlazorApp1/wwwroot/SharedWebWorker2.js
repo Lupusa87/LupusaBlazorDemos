@@ -30,7 +30,7 @@ function myPush(msg, prt) {
         b = {
             Cmd: 0,
             isBinary: true,
-            binarydata: Array.from(new Int8Array(q)),
+            binarydata: q,
             data: '',
             ClientID: clients.indexOf(prt) + 1
         };

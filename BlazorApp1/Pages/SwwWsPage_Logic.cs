@@ -14,7 +14,7 @@ using static BlazorWebWorkerHelper.classes.BwwEnums;
 
 namespace BlazorApp1.Pages
 {
-    public class SwwWsPage_Logic: BlazorComponent
+    public class SwwWsPage_Logic : BlazorComponent
     {
         protected int TransportCode = 0;
 
@@ -63,12 +63,13 @@ namespace BlazorApp1.Pages
 
         public void WwOnMessage(BwwMessage par_message)
         {
+
             BwwBag b = par_message.WwBag;
 
             if (par_message.TransportType == BwwTransportType.Text)
             {
-                
-                
+
+
                 BResultType r = (BResultType)b.Cmd;
                 switch (r)
                 {
@@ -81,8 +82,9 @@ namespace BlazorApp1.Pages
                             ClientID = b.ClientID,
                         };
 
-                        log_list.Insert(0,i);
+                        log_list.Insert(0, i);
 
+                        BlazorWindowHelper.BlazorTimeAnalyzer.Log();
                         StateHasChanged();
                         break;
                     case BResultType.StateChange:
@@ -104,14 +106,14 @@ namespace BlazorApp1.Pages
                         break;
                     case BResultType.MultyPurposeItem1:
                         WsCreateInternal(b.data);
-                        break; 
+                        break;
                     default:
                         break;
                 }
             }
             else
             {
-                
+
                 BResultType r = (BResultType)b.Cmd;
                 switch (r)
                 {
@@ -120,12 +122,12 @@ namespace BlazorApp1.Pages
                         {
                             GUID = Guid.NewGuid().ToString(),
                             Date = DateTime.Now,
-                            Caption = Encoding.UTF8.GetString(b.binarydata) + " [" + string.Join(", ", b.binarydata) + "]",
+                            Caption = Encoding.UTF8.GetString(b.binarydata) + " [" + string.Join(", ", b.binarydata.Take(100)) + "]",
                             ClientID = b.ClientID,
                         };
 
-                        log_list.Insert(0,i);
-                        
+                        log_list.Insert(0, i);
+                        BlazorWindowHelper.BlazorTimeAnalyzer.Log();
                         StateHasChanged();
                         break;
                     case BResultType.StateChange:
@@ -135,10 +137,10 @@ namespace BlazorApp1.Pages
                         break;
                 }
             }
-           
-           
 
-           
+
+
+
         }
 
 
@@ -183,7 +185,7 @@ namespace BlazorApp1.Pages
             WsClose();
 
 
-            WebWorkerHelper1.Send(BCommandType.WwDisconnect, "any");
+            WebWorkerHelper1.Send(BCommandType.WwDisconnect, "any", string.Empty);
             WebWorkerHelper1.Dispose();
 
             IsDisabled = true;
@@ -191,14 +193,14 @@ namespace BlazorApp1.Pages
             Ww_Button = "connect";
         }
 
-            public void WsCreate()
+        public void WsCreate()
         {
             if (Ws_Button == "connect")
             {
 
-                WebWorkerHelper1.Send(BCommandType.MultyPurposeItem1, Ws_URL);
+                WebWorkerHelper1.Send(BCommandType.MultyPurposeItem1, Ws_URL, string.Empty);
 
-                
+
                 WsIsDisabled = false;
 
                 Ws_Button = "disconnect";
@@ -215,7 +217,7 @@ namespace BlazorApp1.Pages
         {
             foreach (var item in WebWorkerHelper1.Ws_List)
             {
-                WebWorkerHelper1.Send(BCommandType.WsRemove, item.id);
+                WebWorkerHelper1.Send(BCommandType.WsRemove, item.id, string.Empty);
             }
 
             WsIsDisabled = true;
@@ -226,10 +228,10 @@ namespace BlazorApp1.Pages
 
         private void WsCreateInternal(string ExistingWsID)
         {
-           
+
             if (ExistingWsID.Equals("null", StringComparison.InvariantCultureIgnoreCase))
             {
-              
+
                 BWebSocket b = new BWebSocket(WebWorkerHelper1._id)
                 {
                     bWebSocketID = GetNewIDFromWebSocketsList(),
@@ -239,11 +241,11 @@ namespace BlazorApp1.Pages
                 WebWorkerHelper1.Ws_List.Add(b);
                 WebWorkerHelper1.Active_WebSocket_ID = b.bWebSocketID;
 
-                WebWorkerHelper1.Send(BCommandType.WsAdd, Json.Serialize(new { b.id, b.url }));
+                WebWorkerHelper1.Send(BCommandType.WsAdd, b.id, b.url);
             }
             else
             {
-                
+
                 BWebSocket b = new BWebSocket(WebWorkerHelper1._id)
                 {
                     bWebSocketID = GetNewIDFromWebSocketsList(),
@@ -253,10 +255,10 @@ namespace BlazorApp1.Pages
                 WebWorkerHelper1.Ws_List.Add(b);
                 WebWorkerHelper1.Active_WebSocket_ID = b.bWebSocketID;
 
-                WebWorkerHelper1.Send(BCommandType.MultyPurposeItem2, b.id);
+                WebWorkerHelper1.Send(BCommandType.MultyPurposeItem2, b.id, string.Empty);
             }
 
-         
+
         }
 
         private ushort GetNewIDFromWebSocketsList()
@@ -286,7 +288,8 @@ namespace BlazorApp1.Pages
 
         public void WwSendMessage()
         {
-
+            BlazorWindowHelper.BlazorTimeAnalyzer.Reset();
+            BlazorWindowHelper.BlazorTimeAnalyzer.Add("WwSendMessage", MethodBase.GetCurrentMethod());
             if (WebWorkerHelper1.bwwState == BwwState.Open)
             {
                 if (!string.IsNullOrEmpty(Ww_Message))
@@ -302,15 +305,15 @@ namespace BlazorApp1.Pages
                         {
                             case BwwTransportType.Text:
 
-                                WebWorkerHelper1.Send(BCommandType.send,
-                                Json.Serialize(new { wsID = bWebSocket.id, wsMessage = Ww_Message }));
+                                WebWorkerHelper1.Send(BCommandType.send, Ww_Message, bWebSocket.id);
                                 Ww_Message = string.Empty;
                                 StateHasChanged();
 
                                 break;
                             case BwwTransportType.Binary:
-                                byte[] data = Encoding.UTF8.GetBytes(Json.Serialize(new { wsID = bWebSocket.id, wsMessage = Ww_Message }));
-                                WebWorkerHelper1.Send(BCommandType.send, data);
+
+                                WebWorkerHelper1.Send(BCommandType.send, Encoding.UTF8.GetBytes(Ww_Message), bWebSocket.id);
+
                                 Ww_Message = string.Empty;
                                 StateHasChanged();
                                 break;
@@ -346,7 +349,7 @@ namespace BlazorApp1.Pages
 
                 WebWorkerHelper1.SetTransportType((BwwTransportType)(TransportCode));
 
-                
+
             }
         }
 

@@ -10,22 +10,22 @@ function WsOnClose(e) {
 
 function WsOnError(e) {
     OnSocketMessage("3", 1);
-   console.log("invoked WsOnError - " + e.message);
+    console.log("invoked WsOnError - " + e.message);
 
 }
 
 function WsOnMessage(e) {
 
-    OnSocketMessage(e.data,0);
+    OnSocketMessage(e.data, 0);
 }
 
 
-function WsAdd(obj) {
-   
+function WsAdd(par_id, par_url) {
+
     var b = {
-        id: obj.id,
-        url: obj.url,
-        ws: new WebSocket(obj.url)
+        id: par_id,
+        url: par_url,
+        ws: new WebSocket(par_url)
     };
 
     OnSocketMessage("0", 1);
@@ -40,65 +40,66 @@ function WsAdd(obj) {
     return true;
 }
 
-function WsSetBinaryType(obj) {
-        var result = true;
-        var index = WebSockets_array.findIndex(x => x.id === obj.wsID);
+function WsSetBinaryType(wsID, wsBinaryType) {
+    var result = true;
+    var index = WebSockets_array.findIndex(x => x.id === wsID);
 
     if (index > -1) {
-            WebSockets_array[index].ws.binaryType = obj.wsBinaryType;
-        }
-        else {
-            result = false;
-        }
 
-        return result;
-}
-
-    function WsClose(WsID) {
-        var result = true;
-        var index = WebSockets_array.findIndex(x => x.id === WsID);
-
-        if (index > -1) {
-            OnSocketMessage("2", 1);
-            WebSockets_array[index].ws.close();
-        }
-        else {
-            result = false;
-        }
-
-        return result;
-}
-
-   function WsRemove(WsID) {
-        var result = true;
-        var index = WebSockets_array.findIndex(x => x.id === WsID);
-
-        if (index > -1) {
-            OnSocketMessage("2", 1);
-            WebSockets_array[index].ws.close();
-            WebSockets_array.splice(index, 1);
-        }
-        else {
-            result = false;
-        }
-
-        return result;
+        WebSockets_array[index].ws.binaryType = wsBinaryType;
+    }
+    else {
+        result = false;
     }
 
-function WsSend(obj) {
-        var result = false;
+    return result;
+}
 
-        var index = WebSockets_array.findIndex(x => x.id === obj.wsID);
+function WsClose(WsID) {
+    var result = true;
+    var index = WebSockets_array.findIndex(x => x.id === WsID);
 
-        if (index > -1) {
-          
-            WebSockets_array[index].ws.send(obj.wsMessage);
-          
-            result = true;
+    if (index > -1) {
+        OnSocketMessage("2", 1);
+        WebSockets_array[index].ws.close();
+    }
+    else {
+        result = false;
+    }
 
-        }
+    return result;
+}
 
-        return result;
+function WsRemove(WsID) {
+    var result = true;
+    var index = WebSockets_array.findIndex(x => x.id === WsID);
+
+    if (index > -1) {
+        OnSocketMessage("2", 1);
+        WebSockets_array[index].ws.close();
+        WebSockets_array.splice(index, 1);
+    }
+    else {
+        result = false;
+    }
+
+    return result;
+}
+
+function WsSend(wsID, wsMessage) {
+    var result = false;
+
+    var index = WebSockets_array.findIndex(x => x.id === wsID);
+
+    if (index > -1) {
+
+        WebSockets_array[index].ws.send(wsMessage);
+
+        result = true;
+
+    }
+
+    return result;
 }
 
 
