@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <!--added 7/2/18-->
-    <UseRazorBuildServer>false</UseRazorBuildServer>
+    <!--<UseRazorBuildServer>false</UseRazorBuildServer>-->
  
     <RunCommand>dotnet</RunCommand>
     <RunArguments>blazor serve</RunArguments>
@@ -46,6 +46,9 @@
     </Reference>
     <Reference Include="BlazorPasswordPatternComponent">
       <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorPerformanceChartComponent">
+      <HintPath>..\..\BlazorPerformanceChart\BlazorPerformanceChartComponent\bin\Debug\netstandard2.0\BlazorPerformanceChartComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorRawHtmlRendererComponent">
       <HintPath>..\..\BlazorRawHtmlRenderer\BlazorRawHtmlRendererComponent\bin\Debug\netstandard2.0\BlazorRawHtmlRendererComponent.dll</HintPath>
