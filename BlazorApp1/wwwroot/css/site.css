@@ -10,6 +10,10 @@ app {
     flex-direction: column;
 }
 
+input[type="range"] {
+    transform: rotateZ(-270deg);
+}
+
 .top-row {
     height: 3.5rem;
     display: flex;

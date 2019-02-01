@@ -31,8 +31,6 @@ namespace BlazorApp1.Pages
         private bool IsFirstLoad = true;
 
 
-
-
         protected override void OnAfterRender()
         {
             if (IsFirstLoad)
@@ -67,6 +65,7 @@ namespace BlazorApp1.Pages
 
         private void ChartSettings1_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            Console.WriteLine("aaa");
             BPChart1.Redraw();
         }
 
@@ -105,6 +104,7 @@ namespace BlazorApp1.Pages
 
 
             ChartSettings1 = b;
+
             StateHasChanged();
             BPChart1.Redraw();
 
@@ -181,8 +181,10 @@ namespace BlazorApp1.Pages
 
         public void Start()
         {
+
             BPChart1.PointsList = Points_List;
             timer1 = new Timer(Timer1Callback, null, 0, TimerSpeed);
+
         }
 
 
@@ -209,14 +211,23 @@ namespace BlazorApp1.Pages
         public void Timer1Callback(object o)
         {
 
+
             GeneratePoint();
             BPChart1.PointsList = Points_List;
+            //BPChart1.Redraw();
+
+
             StateHasChanged();
+
+
+
+
         }
 
 
         public void Timer2Callback(object o)
         {
+
             BPChart1.Redraw();
             timer2.Dispose();
         }
