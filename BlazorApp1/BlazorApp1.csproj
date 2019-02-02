@@ -53,6 +53,9 @@
     <Reference Include="BlazorRawHtmlRendererComponent">
       <HintPath>..\..\BlazorRawHtmlRenderer\BlazorRawHtmlRendererComponent\bin\Debug\netstandard2.0\BlazorRawHtmlRendererComponent.dll</HintPath>
     </Reference>
+    <Reference Include="BlazorSharedWebWorkerWebSocketHelper">
+      <HintPath>..\..\BlazorSharedWebWorkerWebSocketHelper\bin\Debug\netstandard2.0\BlazorSharedWebWorkerWebSocketHelper.dll</HintPath>
+    </Reference>
     <Reference Include="BlazorTreeVisualizerComponent">
       <HintPath>..\..\BlazorTreeVisualizer\BlazorTreeVisualizerComponent\bin\Debug\netstandard2.0\BlazorTreeVisualizerComponent.dll</HintPath>
     </Reference>
