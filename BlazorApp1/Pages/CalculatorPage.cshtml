@@ -1,19 +1,21 @@
 ﻿@page "/CalculatorPage"
-@addTagHelper *, BlazorCalculatorComponent
-@using BlazorCalculatorComponent;
+@using Microsoft.AspNetCore.Blazor.Services
+@inject IUriHelper uriHelper
 
 
-<h3 style="color:darkred">This is blazor Calculator</h3>
 <br />
-
-<h5>It is displaying previous actions, also you can use old result in new expessions by clicing on them.</h5>
-
-
-
-
+<h3>Redirecting</h3>
 <br />
 
 
 
+@functions
+{ 
+    protected override void OnInit()
+        {
 
-<CompBlazorCalculator></CompBlazorCalculator>
+
+            uriHelper.NavigateTo("https://lupblazorcalculator.z20.web.core.windows.net/");
+            base.OnInit();
+        }
+}

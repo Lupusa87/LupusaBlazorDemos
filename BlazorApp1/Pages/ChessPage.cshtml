@@ -1,92 +1,23 @@
-﻿@addTagHelper *, BlazorChessComponent
-@using BlazorChessComponent
-@using System.Threading;
+﻿@page "/ChessPage"
 
-@page "/ChessPage"
 
-<div style="background-color:lightblue">
-    <table>
-        <tr>
-            <td width="700" align="center" style="margin: 5px">
-               <CompBlazorChess ref="@CompBlazorChess_Player" PlayerOrOpposite="true" BoardOpacity="1.0"></CompBlazorChess>
-            </td>
+@using Microsoft.AspNetCore.Blazor.Services
+@inject IUriHelper uriHelper
+
+
+<br />
+<h3>Redirecting</h3>
+<br />
 
 
 
-            <td width="700" align="center" style="margin: 5px">
-                <CompBlazorChess ref="@CompBlazorChess_Opposite" PlayerOrOpposite="false" BoardOpacity="0.8"></CompBlazorChess>
-            </td>
-        </tr>
-    </table>
-</div>
-
-@functions{
-
-    bool Isloaded = false;
+@functions
+{
+protected override void OnInit()
+{
 
 
-    CompBlazorChess CompBlazorChess_Player;
-    CompBlazorChess CompBlazorChess_Opposite;
-
-    Timer timer_Game;
-
-    protected override void OnAfterRender()
-    {
-
-        CompBlazorChess_Player.MadeMove += PlayerMadeMoveCallback;
-        CompBlazorChess_Opposite.MadeMove += OppositeMadeMoveCallback;
-
-        CompBlazorChess_Player.GameOver += GameOverCallback;
-        CompBlazorChess_Opposite.GameOver += GameOverCallback;
-
-
-        base.OnAfterRender();
-
-        if (!Isloaded)
-        {
-            timer_Game = new Timer(TimerGameCallback, null, 1000, 1000);
-            Isloaded = true;
-        }
-
-
-    }
-
-
-    public void TimerGameCallback(Object stateInfo)
-    {
-
-        CompBlazorChess_Player.TimerTick();
-        CompBlazorChess_Opposite.TimerTick();
-
-    }
-
-
-    private void GameOverCallback()
-    {
-        if (timer_Game != null)
-        {
-            timer_Game.Dispose();
-
-        }
-    }
-
-
-
-
-    private void PlayerMadeMoveCallback(string _move)
-    {
-        CompBlazorChess_Opposite.SetBoardOpacity(1.0);
-        CompBlazorChess_Opposite.ChessEngine1.svlis_gaketeba_misamartidan(_move, CompBlazorChess_Opposite.ChessEngine1.OppositeColor);
-
-    }
-
-
-    private void OppositeMadeMoveCallback(string _move)
-    {
-
-
-        CompBlazorChess_Player.SetBoardOpacity(1.0);
-        CompBlazorChess_Player.ChessEngine1.svlis_gaketeba_misamartidan(_move, CompBlazorChess_Player.ChessEngine1.OppositeColor);
-
-    }
+    uriHelper.NavigateTo("https://lupblazorchess.z20.web.core.windows.net/");
+    base.OnInit();
+}
 }

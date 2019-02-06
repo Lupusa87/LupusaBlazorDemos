@@ -20,20 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="BlazorCalculatorComponent">
-      <HintPath>..\..\BlazorCalculator\BlazorCalculatorComponent\bin\Debug\netstandard2.0\BlazorCalculatorComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorChessComponent">
-      <HintPath>..\..\BlazorChess\BlazorChessComponent\bin\Debug\netstandard2.0\BlazorChessComponent.dll</HintPath>
-    </Reference>
     <Reference Include="BlazorClockCanvasComponent">
       <HintPath>..\..\BlazorClockCanvas\BlazorClockCanvasComponent\bin\Debug\netstandard2.0\BlazorClockCanvasComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorClockSvgComponent">
       <HintPath>..\..\BlazorClockSVG\BlazorClockSvgComponent\bin\Debug\netstandard2.0\BlazorClockSvgComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorExcelComponent">
-      <HintPath>..\..\BlazorExcel\BlazorExcelComponent\bin\Debug\netstandard2.0\BlazorExcelComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorGameSnakeComponent">
       <HintPath>..\..\BlazorGameSnake\BlazorGameSnakeComponent\bin\Debug\netstandard2.0\BlazorGameSnakeComponent.dll</HintPath>
@@ -55,6 +46,9 @@
     </Reference>
     <Reference Include="BlazorSharedWebWorkerWebSocketHelper">
       <HintPath>..\..\BlazorSharedWebWorkerWebSocketHelper\bin\Debug\netstandard2.0\BlazorSharedWebWorkerWebSocketHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="BlazorSpreadsheetComponent">
+      <HintPath>..\..\BlazorSpreadsheet\BlazorSpreadsheetComponent\bin\Debug\netstandard2.0\BlazorSpreadsheetComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorTreeVisualizerComponent">
       <HintPath>..\..\BlazorTreeVisualizer\BlazorTreeVisualizerComponent\bin\Debug\netstandard2.0\BlazorTreeVisualizerComponent.dll</HintPath>

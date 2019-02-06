@@ -74,7 +74,7 @@ namespace BlazorApp1.Pages
         {
             BpcSettings b = new BpcSettings
             {
-                ConsfigurationName = "config_1",
+                ConfigurationName = "config_1",
 
                 StackHeight = rnd1.Next(3, 7) * 10,
                 StackWidth = rnd1.Next(2, 4) * 10,
