@@ -2,32 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!--added 7/2/18-->
-    <!--<UseRazorBuildServer>false</UseRazorBuildServer>-->
- 
     <RunCommand>dotnet</RunCommand>
     <RunArguments>blazor serve</RunArguments>
     <LangVersion>7.3</LangVersion>
-
-    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
-    <PackageReference Include="telerik.ui.for.blazor" Version="0.1.0" />
-    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.8.0-preview-19104-04" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.8.0-preview-19104-04" PrivateAssets="all" />
+    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.8.0-preview-19104-04" />
+
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="BlazorSharedWebWorkerWebSocketHelper">
       <HintPath>..\..\BlazorSharedWebWorkerWebSocketHelper\bin\Debug\netstandard2.0\BlazorSharedWebWorkerWebSocketHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorSpreadsheetComponent">
-      <HintPath>..\..\BlazorSpreadsheet\BlazorSpreadsheetComponent\bin\Debug\netstandard2.0\BlazorSpreadsheetComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorTreeVisualizerComponent">
-      <HintPath>..\..\BlazorTreeVisualizer\BlazorTreeVisualizerComponent\bin\Debug\netstandard2.0\BlazorTreeVisualizerComponent.dll</HintPath>
     </Reference>
     <Reference Include="BlazorWebSocketHelper">
       <HintPath>..\..\BlazorWebSocketHelper\bin\Debug\netstandard2.0\BlazorWebSocketHelper.dll</HintPath>
@@ -38,63 +27,6 @@
     <Reference Include="BlazorWindowHelper">
       <HintPath>..\..\BlazorWindowHelper\bin\Debug\netstandard2.0\BlazorWindowHelper.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\content\1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LogicalName>blazor:file:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\1A.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\1B.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\1K.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\1P.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\1Q.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\1R.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\2A.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\2B.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\2K.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\2P.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\2Q.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\content\images\style3\2R.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\sounds\abc.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\sounds\game_over.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\sounds\take_target.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="classes\" />
-    <Folder Include="wwwroot\sounds\" />
   </ItemGroup>
 
 </Project>

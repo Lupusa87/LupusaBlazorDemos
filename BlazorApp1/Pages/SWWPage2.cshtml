@@ -7,6 +7,7 @@
 @using BlazorWebWorkerHelper.classes;
 
 
+
 <h3 style="color:darkred">This is Shared Web Worker sample</h3>
 <br />
 
@@ -54,15 +55,39 @@
 
 
 
-<KendoGrid Data=@log_list Pageable=true PageSize=10 Sortable=true>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>GUID</th>
+            <th>ClientID</th>
+            <th>Caption</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in log_list)
+        {
+            <tr>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>@item.GUID</td>
+                <td>@item.ClientID</td>
+                <td>@item.Caption</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@*<KendoGrid Data=@log_list Pageable=true PageSize=10 Sortable=true>
     <KendoGridColumn Field=@nameof(SwwWs_Item.Date)>
-        <Template>
-            @($"{(context as SwwWs_Item).Date:HH:mm:ss.fff}")
-        </Template>
-    </KendoGridColumn>
+            <Template>
+                @($"{(Context as SwwWs_Item).Date:HH:mm:ss.fff}")
+            </Template>
+        </KendoGridColumn>
     <KendoGridColumn Field=@nameof(SwwWs_Item.GUID) />
     <KendoGridColumn Field=@nameof(SwwWs_Item.ClientID) />
     <KendoGridColumn Field=@nameof(SwwWs_Item.Caption) />
 
-</KendoGrid>
+</KendoGrid>*@
 

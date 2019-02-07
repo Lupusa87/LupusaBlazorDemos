@@ -1,7 +1,7 @@
 ﻿using BlazorWebSocketHelper;
 using BlazorWebSocketHelper.Classes;
 using BlazorWindowHelper;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using static BlazorWebSocketHelper.Classes.BwsEnums;
 
 namespace BlazorApp1.Pages
 {
-    public class WebSocketPage_Logic: BlazorComponent
+    public class WebSocketPage_Logic: ComponentBase
     {
 
         protected int TransportCode = 0;

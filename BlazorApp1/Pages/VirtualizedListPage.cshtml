@@ -1,58 +1,22 @@
 ﻿@page "/VirtualizedListPage"
 
-
-
-@inherits VirtualizedListPage_Logic
-
-<h3 style="color:darkred">This is virtualized list prototype</h3>
+@using Microsoft.AspNetCore.Components.Services
+@inject IUriHelper uriHelper
 
 
 <br />
-
-<div style="vertical-align: middle; margin: 3px" align="left">
-    <label style="margin:3px">Current Value @CurrValue.ToString("N0")</label>
-    <label style="margin:3px">Max Value @Curr_Items_Count.ToString("N0")</label>
-</div>
-
-<h1>@LogMessage</h1>
-
-
-<label style="margin:3px">Jump to item</label>
-<input type="number" min="0" max="@Curr_Items_Count" step="1" value="1" bind="@RequestedValue" style="margin:3px" />
-
-
-<br />
+<h3>Redirecting</h3>
 <br />
 
-<table>
-    <tr>
-        <td valign="top" width="400" border="1">
-
-            <table border="1" width="400">
-                <tr>
-                    <td>
-
-                        <ul>
-                            @foreach (var item in List_Displayed)
-                            {
-
-                                <li style="line-height:25px">@item.id.ToString("N0") @item.Name</li>
-
-                            }
-
-                        </ul>
-
-                    </td>
-                </tr>
-            </table>
 
 
-        </td>
-        <td valign="top" align="left" width="20">
-            <input type="range" id="slider1" style="width:500px;margin-top:240px; margin-left:-265px" min="0" max="@Curr_Items_Count" step="1" value="1" bind="@CurrValue" />
-
-        </td>
-    </tr>
-</table>
+@functions
+{
+protected override void OnInit()
+{
 
 
+    uriHelper.NavigateTo("https://lupblazorvirtuiallist.z20.web.core.windows.net/");
+    base.OnInit();
+}
+}

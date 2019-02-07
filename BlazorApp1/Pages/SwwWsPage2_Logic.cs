@@ -2,7 +2,7 @@
 using BlazorWebWorkerHelper;
 using BlazorWebWorkerHelper.classes;
 using BlazorWebWorkerHelper.WsClasses;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApp1.Pages
 {
-    public class SwwWsPage2_Logic : BlazorComponent
+    public class SwwWsPage2_Logic : ComponentBase
     {
 
         protected List<SwwWs2_Item> log_list = new List<SwwWs2_Item>();

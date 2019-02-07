@@ -1,13 +1,23 @@
 ﻿@page "/SpreadsheetPage"
 
 
+@using Microsoft.AspNetCore.Components.Services
+@inject IUriHelper uriHelper
 
-@addTagHelper *, BlazorSpreadsheetComponent
-@using BlazorSpreadsheetComponent;
 
-
-<h3 style="color:darkred">This is Blazor Spreadsheet</h3>
 <br />
+<h3>Redirecting</h3>
 <br />
 
-<CompBlazorSpreadsheet></CompBlazorSpreadsheet>
+
+
+@functions
+{
+protected override void OnInit()
+{
+
+
+    uriHelper.NavigateTo("https://lupblazorspreadsheet.z20.web.core.windows.net/");
+    base.OnInit();
+}
+}

@@ -1,6 +1,6 @@
 ﻿using BlazorWebWorkerHelper;
 using BlazorWebWorkerHelper.classes;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using static BlazorWebWorkerHelper.classes.BwwEnums;
 
 namespace BlazorApp1.Pages
 {
-    public class SharedWebWorkerPage_Logic:BlazorComponent
+    public class SharedWebWorkerPage_Logic:ComponentBase
     {
         protected int TransportCode = 0;
 

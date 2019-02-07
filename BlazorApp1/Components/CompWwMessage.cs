@@ -1,6 +1,6 @@
 ﻿using BlazorWebWorkerHelper.classes;
-using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.RenderTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using static BlazorWebWorkerHelper.classes.BwwEnums;
 namespace BlazorApp1.Components
 {
 
-    public class CompWwMessage : BlazorComponent, IDisposable
+    public class CompWwMessage : ComponentBase, IDisposable
     {
 
         [Parameter]
@@ -19,7 +19,7 @@ namespace BlazorApp1.Components
 
 
         [Parameter]
-        protected BlazorComponent parent { get; set; }
+        protected ComponentBase parent { get; set; }
 
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)

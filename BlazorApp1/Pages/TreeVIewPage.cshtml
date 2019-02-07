@@ -1,21 +1,22 @@
 ﻿@page "/TreeViewPage"
-@addTagHelper *, BlazorTreeVisualizerComponent
-@using BlazorTreeVisualizerComponent;
 
-
-<h3 style="color:darkred">This is Tree View</h3>
-<br />
-
-<h5>Under Construction</h5>
-
-
+@using Microsoft.AspNetCore.Components.Services
+@inject IUriHelper uriHelper
 
 
 <br />
+<h3>Redirecting</h3>
+<br />
 
 
-<h3>Tree View</h3>
+
+@functions
+{
+protected override void OnInit()
+{
 
 
-
-<CompBlazorTreeVisualizer TreeVizualizationItemCode="0"></CompBlazorTreeVisualizer>
+    uriHelper.NavigateTo("https://lupblazortreevisualizer.z20.web.core.windows.net/");
+    base.OnInit();
+}
+}
