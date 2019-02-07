@@ -1,12 +1,22 @@
 ﻿@page "/GameSnakePage"
-@addTagHelper *, BlazorGameSnakeComponent
-@using BlazorGameSnakeComponent;
+
+@using Microsoft.AspNetCore.Blazor.Services
+@inject IUriHelper uriHelper
 
 
-<h3 style="color:darkred">This is blazor game - Snake</h3>
 <br />
-<h5>Use arrows to play, if not runs please refresh page</h5>
+<h3>Redirecting</h3>
 <br />
 
 
-<CompBlazorGameSnake></CompBlazorGameSnake>
+
+@functions
+{
+protected override void OnInit()
+{
+
+
+    uriHelper.NavigateTo("https://lupblazorsnake.z20.web.core.windows.net/");
+    base.OnInit();
+}
+}

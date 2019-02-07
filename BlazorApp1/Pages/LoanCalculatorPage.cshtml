@@ -1,16 +1,23 @@
 ﻿@page "/LoanCalculatorPage"
 
 
-@addTagHelper *, BlazorLoanCalculatorComponent
-@using BlazorLoanCalculatorComponent;
-
-
-<h3 style="color:darkred">This is Loan Calculator</h3>
-<br />
-
-<h5>It is calculating montly payment and schedule.</h5>
+@using Microsoft.AspNetCore.Blazor.Services
+@inject IUriHelper uriHelper
 
 
 <br />
+<h3>Redirecting</h3>
+<br />
 
-<CompLoanCalculator></CompLoanCalculator>
+
+
+@functions
+{
+protected override void OnInit()
+{
+
+
+    uriHelper.NavigateTo("https://lupblazorloancalculator.z20.web.core.windows.net/");
+    base.OnInit();
+}
+}

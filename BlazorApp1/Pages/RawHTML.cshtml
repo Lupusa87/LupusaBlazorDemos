@@ -1,67 +1,22 @@
 ﻿@page "/rawhtml"
 
-@addTagHelper *, BlazorRawHtmlRendererComponent
-@using BlazorRawHtmlRendererComponent
+@using Microsoft.AspNetCore.Blazor.Services
+@inject IUriHelper uriHelper
 
-
-
-
-<h4 style="color:blue;">Input Raw html</h4>
-
-<h7>It is experimental and probably won't handle all html inputs</h7>
-<br />
-<div>
-
-    <textarea bind="@_RawHTML" rows="4" cols="50">
-</textarea>
-
-  
-
-    <button class="btn btn-primary" onclick="@cmd_convert">Run</button>
-    <button class="btn btn-primary" onclick="@cmd_clear">Clear</button>
-
-</div>
 
 <br />
-
-<h3 style="color:red;">Result:</h3>
+<h3>Redirecting</h3>
 <br />
-<div>
-
-
-    <CompRawHTML bind-RawHTML="@_RawHTML"></CompRawHTML>
-    
-
-</div>
 
 
 
-
-@functions{
-
-
-
-
-    [Parameter]
-    private string _RawHTML { get; set; } = "<h2>hello</h2>";
+@functions
+{
+protected override void OnInit()
+{
 
 
-
-
-    void cmd_convert()
-    {
-
-
-        StateHasChanged();
-
-    }
-
-    void cmd_clear()
-    {
-
-        _RawHTML = string.Empty;
-
-        StateHasChanged();
-
-    }
+    uriHelper.NavigateTo("https://lupblazorrawhtml.z20.web.core.windows.net/");
+    base.OnInit();
+}
 }

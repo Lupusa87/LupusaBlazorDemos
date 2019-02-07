@@ -64,7 +64,7 @@ input[type="range"] {
     .nav-item a {
         color: #d7d7d7;
         border-radius: 4px;
-        height: 2.5rem;
+        height: 2rem;
         display: flex;
         align-items: center;
         line-height: 3rem;

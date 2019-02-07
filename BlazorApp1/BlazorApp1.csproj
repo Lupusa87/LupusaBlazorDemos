@@ -20,30 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="BlazorClockCanvasComponent">
-      <HintPath>..\..\BlazorClockCanvas\BlazorClockCanvasComponent\bin\Debug\netstandard2.0\BlazorClockCanvasComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorClockSvgComponent">
-      <HintPath>..\..\BlazorClockSVG\BlazorClockSvgComponent\bin\Debug\netstandard2.0\BlazorClockSvgComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorGameSnakeComponent">
-      <HintPath>..\..\BlazorGameSnake\BlazorGameSnakeComponent\bin\Debug\netstandard2.0\BlazorGameSnakeComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorLoanCalculatorComponent">
-      <HintPath>..\..\BlazorLoanCalculator\BlazorLoanCalculatorComponent\bin\Debug\netstandard2.0\BlazorLoanCalculatorComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorPaintComponent">
-      <HintPath>..\..\BlazorPaint\BlazorPaintComponent\bin\Debug\netstandard2.0\BlazorPaintComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorPasswordPatternComponent">
-      <HintPath>..\..\BlazorPasswordPattern\BlazorPasswordPatternComponent\bin\Debug\netstandard2.0\BlazorPasswordPatternComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorPerformanceChartComponent">
-      <HintPath>..\..\BlazorPerformanceChart\BlazorPerformanceChartComponent\bin\Debug\netstandard2.0\BlazorPerformanceChartComponent.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorRawHtmlRendererComponent">
-      <HintPath>..\..\BlazorRawHtmlRenderer\BlazorRawHtmlRendererComponent\bin\Debug\netstandard2.0\BlazorRawHtmlRendererComponent.dll</HintPath>
-    </Reference>
     <Reference Include="BlazorSharedWebWorkerWebSocketHelper">
       <HintPath>..\..\BlazorSharedWebWorkerWebSocketHelper\bin\Debug\netstandard2.0\BlazorSharedWebWorkerWebSocketHelper.dll</HintPath>
     </Reference>
@@ -61,9 +37,6 @@
     </Reference>
     <Reference Include="BlazorWindowHelper">
       <HintPath>..\..\BlazorWindowHelper\bin\Debug\netstandard2.0\BlazorWindowHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="DoughnutChartComponent">
-      <HintPath>..\..\BlazorDoughnutChartComponent\DoughnutChartComponent\bin\Debug\netstandard2.0\DoughnutChartComponent.dll</HintPath>
     </Reference>
   </ItemGroup>
 
