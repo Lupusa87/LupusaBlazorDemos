@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30014.187
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LupusaBlazorDemos", "LupusaBlazorDemos\LupusaBlazorDemos.csproj", "{46C8DA10-0A29-4D96-AA1A-BB2B156C8735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWindowHelper", "..\BlazorWindowHelper\BlazorWindowHelper.csproj", "{CA1C4D21-D018-4974-9589-5B47E312370F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46C8DA10-0A29-4D96-AA1A-BB2B156C8735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C8DA10-0A29-4D96-AA1A-BB2B156C8735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C8DA10-0A29-4D96-AA1A-BB2B156C8735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C8DA10-0A29-4D96-AA1A-BB2B156C8735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA1C4D21-D018-4974-9589-5B47E312370F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA1C4D21-D018-4974-9589-5B47E312370F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA1C4D21-D018-4974-9589-5B47E312370F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA1C4D21-D018-4974-9589-5B47E312370F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6EA3BAE-5BF0-4040-93C2-7212A9250D89}
+	EndGlobalSection
+EndGlobal

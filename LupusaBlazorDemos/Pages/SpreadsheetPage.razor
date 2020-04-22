@@ -1,0 +1,21 @@
+﻿@page "/SpreadsheetPage"
+
+
+@inject NavigationManager navigationManager
+
+<br />
+<h3>Redirecting</h3>
+<br />
+
+
+
+@code
+{
+    protected override void OnInitialized()
+    {
+
+
+        navigationManager.NavigateTo("https://lupblazorspreadsheet.z20.web.core.windows.net/");
+        base.OnInitialized();
+    }
+}

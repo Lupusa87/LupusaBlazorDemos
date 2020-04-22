@@ -1,0 +1,67 @@
+﻿@page "/SharedWebWorkerPage"
+
+
+<h3 style="color:darkred">This is Shared Web Worker sample</h3>
+<br />
+
+<h4>Web Worker helper library for blazor is available on <a href="https://www.nuget.org/packages/BlazorWebWorkerHelper/" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+
+<div style="margin:5px">
+
+
+    <button class="btn btn-primary" style="width:120px;margin:5px" @onclick="@WwCreate">@Ww_Button</button>
+
+    <span style="margin:5px">URL</span>
+    <input bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
+
+
+    <span style="width:120px;margin:5px">status:@Ww_Status</span>
+
+
+</div>
+
+
+
+<br />
+
+<p style="margin:5px">We are generating fake data inside shared web worker.</p>
+
+<p style="margin:5px">This sample simulates new user registration live notices.</p>
+
+<p style="margin:5px">You can duplicate this tab and see <b>how two or more tabs can consume same data from one shared worker</b>.</p>
+
+<br />
+<p style="margin:5px">Please use <b>chrome</b> for expected behavior.</p>
+
+
+<div style="vertical-align:middle;margin:5px">
+    <input type="radio" name="mode" value="1" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 0)" @onchange="@(() => Cmd_SetTransport(0))" /> Text
+    <input type="radio" name="mode" value="2" style="margin:5px" disabled="@IsDisabled" checked="@(TransportCode == 1)" @onchange="@(() => Cmd_SetTransport(1))" /> Binary
+
+</div>
+<div style="margin:5px">
+    <input style="margin:5px;width:500px" bind="@Ww_Message" disabled />
+    <button class="btn btn-primary" style="margin:5px" @onclick="@GenerateNew">Generate New User</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@WwSendMessage" disabled="@IsDisabled">Register</button>
+
+</div>
+
+
+<br />
+
+
+<span style="font-size:16px;margin:5px"><b>New users list:</b></span>
+<br />
+
+@foreach (var item in WebWorkerHelper1.Log.OrderByDescending(x => x.ID))
+{
+    <br />
+    <CompWwMessage bWwMessage="@item" parent="@this" />
+    <br />
+
+}
+
+
+
