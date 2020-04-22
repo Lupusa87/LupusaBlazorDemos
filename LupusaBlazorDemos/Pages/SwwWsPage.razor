@@ -13,7 +13,7 @@
     <button class="btn btn-primary" style="width:120px;margin:5px" @onclick="@WwCreate">@Ww_Button</button>
     <span style="margin:5px">Shared web worker</span>
     <span style="margin:5px">URL</span>
-    <input bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
+    <input @bind="@Ww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
     <span style="width:120px;margin:5px">status:@Ww_Status</span>
 </div>
 
@@ -21,7 +21,7 @@
     <span style="margin:5px">Nested web socket</span>
     @*<button class="btn btn-primary" style="width:120px;margin:5px" disabled="@IsDisabled" @onclick="@WsCreate">@Ws_Button</button>*@
     <span style="margin:5px">URL</span>
-    <input bind="@Ws_URL" style="margin:5px;width:250px" disabled="@(!WsIsDisabled)" />
+    <input @bind="@Ws_URL" style="margin:5px;width:250px" disabled="@(!WsIsDisabled)" />
     <span style="width:120px;margin:5px">status:@Ws_Status</span>
 </div>
 
@@ -41,7 +41,7 @@
 
 </div>
 <div style="margin:5px">
-    <input style="margin:5px;width:500px" bind="@Ww_Message" disabled="@WsIsDisabled" />
+    <input style="margin:5px;width:500px" @bind="@Ww_Message" disabled="@WsIsDisabled" />
     <button class="btn btn-primary" style="margin:5px" @onclick="@WwSendMessage" disabled="@WsIsDisabled">Send</button>
 
 </div>

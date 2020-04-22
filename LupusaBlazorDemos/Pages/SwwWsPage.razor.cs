@@ -40,8 +40,13 @@ namespace LupusaBlazorDemos.Pages
         protected string Ws_Status = "null";
         public bool WsIsDisabled = true;
 
+
+        BwwJsInterop bwwJsInterop;
+
         protected override void OnInitialized()
         {
+            bwwJsInterop = new BwwJsInterop(jsRuntime);
+
             WwCreate();
 
             base.OnInitialized();
@@ -59,7 +64,7 @@ namespace LupusaBlazorDemos.Pages
         public void WwOnError(string par_error)
         {
 
-            BwwJsInterop.Alert(par_error);
+            bwwJsInterop.Alert(par_error);
         }
 
 
@@ -151,7 +156,7 @@ namespace LupusaBlazorDemos.Pages
             if (Ww_Button == "connect")
             {
 
-                WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, Ww_Name, BWorkerType.shared, BwwTransportType.Text)
+                WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, Ww_Name, BWorkerType.shared, BwwTransportType.Text, jsRuntime)
                 {
                     DoLog = false,
                     OnStateChange = WwOnStateChange
@@ -325,18 +330,18 @@ namespace LupusaBlazorDemos.Pages
                     }
                     else
                     {
-                        BwwJsInterop.Alert("Connection to web socket (!) is closed");
+                        bwwJsInterop.Alert("Connection to web socket (!) is closed");
                     }
 
                 }
                 else
                 {
-                    BwwJsInterop.Alert("Please input message");
+                    bwwJsInterop.Alert("Please input message");
                 }
             }
             else
             {
-                BwwJsInterop.Alert("Connection to web worker (!) is closed");
+                bwwJsInterop.Alert("Connection to web worker (!) is closed");
             }
         }
 

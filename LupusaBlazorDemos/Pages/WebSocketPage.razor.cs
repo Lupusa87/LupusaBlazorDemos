@@ -2,6 +2,7 @@
 using BlazorWebSocketHelper.Classes;
 using BlazorWindowHelper;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace LupusaBlazorDemos.Pages
 {
     public partial class WebSocketPage
     {
+        [Inject]
+        IJSRuntime jsRuntime { get; set; }
+
+        BwsJsInterop bwsJsInterop;
 
         protected int TransportCode = 0;
 
@@ -22,7 +27,7 @@ namespace LupusaBlazorDemos.Pages
 
         //https://www.websocket.org/echo.html
         public string Ws_URL = "wss://demos.kaazing.com/echo"; //"wss://echo.websocket.org"; // "ws://192.168.1.17:9000/Data/";
-
+       
         public WebSocketHelper WebSocketHelper1;
 
         protected List<BwsMessage> log = new List<BwsMessage>();
@@ -37,8 +42,11 @@ namespace LupusaBlazorDemos.Pages
 
         protected override void OnInitialized()
         {
+            bwsJsInterop = new BwsJsInterop(jsRuntime);
 
             BlazorWindowHelper.BlazorWindowHelper.Initialize();
+
+            
 
             WsConnect();
 
@@ -82,7 +90,7 @@ namespace LupusaBlazorDemos.Pages
         public void WsOnError(string par_error)
         {
 
-            BwsJsInterop.Alert(par_error);
+            bwsJsInterop.Alert(par_error);
         }
 
 
@@ -106,7 +114,7 @@ namespace LupusaBlazorDemos.Pages
             if (Ws_Button == "connect")
             {
 
-                WebSocketHelper1 = new WebSocketHelper(Ws_URL, (BwsTransportType)(TransportCode))
+                WebSocketHelper1 = new WebSocketHelper(Ws_URL, (BwsTransportType)(TransportCode), jsRuntime)
                 {
                     DoLog = false,
                     OnStateChange = WsOnStateChange,
@@ -187,12 +195,12 @@ namespace LupusaBlazorDemos.Pages
                 }
                 else
                 {
-                    BwsJsInterop.Alert("Please input message");
+                    bwsJsInterop.Alert("Please input message");
                 }
             }
             else
             {
-                BwsJsInterop.Alert("Connection is closed");
+                bwsJsInterop.Alert("Connection is closed");
             }
         }
 
@@ -214,7 +222,7 @@ namespace LupusaBlazorDemos.Pages
         public async void WsGetStatus()
         {
             Ws_Status = await WebSocketHelper1.Get_WsStatus();
-            BwsJsInterop.Alert(Ws_Status);
+            await bwsJsInterop.Alert(Ws_Status);
             StateHasChanged();
         }
 

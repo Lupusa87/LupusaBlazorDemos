@@ -10,14 +10,14 @@
     <button class="btn btn-primary" style="width:120px;margin:5px" @onclick="@SwwCreate">@Sww_Button</button>
     <span style="margin:5px">Shared web worker</span>
     <span style="margin:5px">URL</span>
-    <input bind="@Sww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
+    <input @bind="@Sww_URL" style="margin:5px;width:250px" disabled="@(!IsDisabled)" />
     <span style="width:120px;margin:5px">status:@Sww_Status</span>
 </div>
 
 <div style="margin:5px; margin-left:140px">
     <span style="margin:5px">Nested web socket</span>
     <span style="margin:5px">URL</span>
-    <input bind="@Ws_URL" style="margin:5px;width:250px" disabled="disabled" />
+    <input @bind="@Ws_URL" style="margin:5px;width:250px" disabled="disabled" />
 </div>
 
 <br />
@@ -32,7 +32,7 @@
 <br />
 
 <div style="margin:5px">
-    <input style="margin:5px;width:500px" bind="@Sww_Message" disabled="@IsDisabled" />
+    <input style="margin:5px;width:500px" @bind="@Sww_Message" disabled="@IsDisabled" />
     <button class="btn btn-primary" style="margin:5px" @onclick="@SwwSendMessage" disabled="@IsDisabled">Send</button>
 
 </div>

@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LupusaBlazorDemos", "Lupusa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWindowHelper", "..\BlazorWindowHelper\BlazorWindowHelper.csproj", "{CA1C4D21-D018-4974-9589-5B47E312370F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebSocketHelper", "..\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj", "{3EB6EFBD-2817-4A05-9312-D84FBE396883}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSharedWebWorkerWebSocketHelper", "..\BlazorSharedWebWorkerWebSocketHelper\BlazorSharedWebWorkerWebSocketHelper.csproj", "{04B60676-0FCE-424D-A486-1E97C8FC0443}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebWorkerHelper", "..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj", "{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{CA1C4D21-D018-4974-9589-5B47E312370F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA1C4D21-D018-4974-9589-5B47E312370F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA1C4D21-D018-4974-9589-5B47E312370F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB6EFBD-2817-4A05-9312-D84FBE396883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB6EFBD-2817-4A05-9312-D84FBE396883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB6EFBD-2817-4A05-9312-D84FBE396883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB6EFBD-2817-4A05-9312-D84FBE396883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B60676-0FCE-424D-A486-1E97C8FC0443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B60676-0FCE-424D-A486-1E97C8FC0443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B60676-0FCE-424D-A486-1E97C8FC0443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B60676-0FCE-424D-A486-1E97C8FC0443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

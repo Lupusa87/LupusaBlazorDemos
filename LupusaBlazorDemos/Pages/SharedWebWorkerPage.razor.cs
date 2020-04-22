@@ -35,9 +35,12 @@ namespace LupusaBlazorDemos.Pages
 
         protected string Ww_Message;
 
+        BwwJsInterop bwwJsInterop;
 
         protected override void OnInitialized()
         {
+            bwwJsInterop = new BwwJsInterop(jsRuntime);
+
             WwCreate();
 
             base.OnInitialized();
@@ -55,7 +58,7 @@ namespace LupusaBlazorDemos.Pages
         public void WwOnError(string par_error)
         {
 
-            BwwJsInterop.Alert(par_error);
+            bwwJsInterop.Alert(par_error);
         }
 
 
@@ -73,7 +76,7 @@ namespace LupusaBlazorDemos.Pages
             {
 
 
-                WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, Ww_Name, BWorkerType.shared, BwwTransportType.Text)
+                WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, Ww_Name, BWorkerType.shared, BwwTransportType.Text, jsRuntime)
                 {
                     LogMaxCount = 8,
                     OnStateChange = WwOnStateChange
@@ -145,12 +148,12 @@ namespace LupusaBlazorDemos.Pages
                 }
                 else
                 {
-                    BwwJsInterop.Alert("Please input message");
+                    bwwJsInterop.Alert("Please input message");
                 }
             }
             else
             {
-                BwwJsInterop.Alert("Connection is closed");
+                bwwJsInterop.Alert("Connection is closed");
             }
         }
 

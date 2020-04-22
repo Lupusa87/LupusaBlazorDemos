@@ -15,11 +15,15 @@ namespace LupusaBlazorDemos.Pages
 {
     public partial class SwwWsPage2
     {
+        [Inject]
+        IJSRuntime jsRuntime { get; set; }
 
         protected List<SwwWs2_Item> log_list = new List<SwwWs2_Item>();
 
         public bool IsDisabled = true;
 
+        BSwwWsJsInterop bSwwWsJsInterop;
+        BwwJsInterop bwwJsInterop;
 
         protected SharedWebWorkerWebSocketHelper SharedWebWorkerWebSocketHelper1;
 
@@ -33,8 +37,14 @@ namespace LupusaBlazorDemos.Pages
         //This is only for UI, If you need actual change check SharedWebWorkerWebSocket2.js
         public string Ws_URL = "wss://demos.kaazing.com/echo";
 
+
+
+
         protected override void OnInitialized()
         {
+            bSwwWsJsInterop = new BSwwWsJsInterop(jsRuntime);
+            bwwJsInterop = new BwwJsInterop(jsRuntime);
+
             SwwCreate();
 
             base.OnInitialized();
@@ -52,7 +62,7 @@ namespace LupusaBlazorDemos.Pages
         public void SwwOnError(string par_error)
         {
 
-            BSwwWsJsInterop.Alert(par_error);
+            bSwwWsJsInterop.Alert(par_error);
         }
 
 
@@ -81,7 +91,7 @@ namespace LupusaBlazorDemos.Pages
             if (Sww_Button == "connect")
             {
 
-                SharedWebWorkerWebSocketHelper1 = new SharedWebWorkerWebSocketHelper(Sww_URL, Sww_Name)
+                SharedWebWorkerWebSocketHelper1 = new SharedWebWorkerWebSocketHelper(Sww_URL, Sww_Name, jsRuntime)
                 {
                     OnStateChange = SwwOnStateChange
                 };
@@ -132,12 +142,12 @@ namespace LupusaBlazorDemos.Pages
                 }
                 else
                 {
-                    BwwJsInterop.Alert("Please input message");
+                    bwwJsInterop.Alert("Please input message");
                 }
             }
             else
             {
-                BwwJsInterop.Alert("Connection to web worker is closed");
+                bwwJsInterop.Alert("Connection to web worker is closed");
             }
         }
 

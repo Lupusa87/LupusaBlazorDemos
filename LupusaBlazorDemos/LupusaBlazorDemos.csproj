@@ -12,19 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BlazorSharedWebWorkerWebSocketHelper\BlazorSharedWebWorkerWebSocketHelper.csproj" />
+    <ProjectReference Include="..\..\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj" />
+    <ProjectReference Include="..\..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWindowHelper\BlazorWindowHelper.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="BlazorSharedWebWorkerWebSocketHelper">
-      <HintPath>..\..\BlazorSharedWebWorkerWebSocketHelper\bin\Debug\netstandard2.0\BlazorSharedWebWorkerWebSocketHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorWebSocketHelper">
-      <HintPath>..\..\BlazorWebSocketHelper\bin\Debug\netstandard2.0\BlazorWebSocketHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorWebWorkerHelper">
-      <HintPath>..\..\BlazorWebWorkerHelper\bin\Debug\netstandard2.0\BlazorWebWorkerHelper.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

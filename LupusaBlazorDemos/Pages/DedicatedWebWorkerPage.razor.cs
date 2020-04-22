@@ -40,9 +40,12 @@ namespace LupusaBlazorDemos.Pages
         protected string Ww_Message;
 
 
+        BwwJsInterop bwwJsInterop;
 
         protected override void OnInitialized()
         {
+
+            bwwJsInterop = new BwwJsInterop(jsRuntime);
 
             _create(false);
 
@@ -60,7 +63,7 @@ namespace LupusaBlazorDemos.Pages
         public void WwOnError(string par_error)
         {
 
-            BwwJsInterop.Alert(par_error);
+            bwwJsInterop.Alert(par_error);
         }
 
 
@@ -83,7 +86,7 @@ namespace LupusaBlazorDemos.Pages
             {
 
 
-                WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, string.Empty, BWorkerType.dedicated, BwwTransportType.Text)
+                WebWorkerHelper1 = new WebWorkerHelper(Ww_URL, string.Empty, BWorkerType.dedicated, BwwTransportType.Text, jsRuntime)
                 {
                     OnStateChange = WwOnStateChange,
                     LogMaxCount = 6,
@@ -146,18 +149,18 @@ namespace LupusaBlazorDemos.Pages
                     }
                     else
                     {
-                        BwwJsInterop.Alert("Not valid integer!");
+                        bwwJsInterop.Alert("Not valid integer!");
                     }
 
                 }
                 else
                 {
-                    BwwJsInterop.Alert("Please input message");
+                    bwwJsInterop.Alert("Please input message");
                 }
             }
             else
             {
-                BwwJsInterop.Alert("Connection is closed");
+                bwwJsInterop.Alert("Connection is closed");
             }
         }
 
@@ -172,19 +175,19 @@ namespace LupusaBlazorDemos.Pages
                 if (int.TryParse(Ww_Message, out arg))
                 {
 
-                    BwwJsInterop.Alert((await LBDJsInterop.CalcFib(jsRuntime, arg)).ToString());
+                    bwwJsInterop.Alert((await LBDJsInterop.CalcFib(jsRuntime, arg)).ToString());
                     Ww_Message = string.Empty;
                     StateHasChanged();
                 }
                 else
                 {
-                    BwwJsInterop.Alert("Please input valid integer");
+                    bwwJsInterop.Alert("Please input valid integer");
                 }
 
             }
             else
             {
-                BwwJsInterop.Alert("Please input message");
+                bwwJsInterop.Alert("Please input message");
             }
 
         }
