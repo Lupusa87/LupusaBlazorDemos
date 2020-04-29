@@ -1,6 +1,7 @@
 ﻿using BlazorWebWorkerHelper;
 using BlazorWebWorkerHelper.classes;
 using BlazorWebWorkerHelper.WsClasses;
+using BlazorWindowHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -35,7 +36,7 @@ namespace LupusaBlazorDemos.Pages
         protected string Ww_Status = "null";
         protected string Ww_Message = "abc";
 
-        public string Ws_URL = "wss://demos.kaazing.com/echo";
+        public string Ws_URL = "wss://echo.websocket.org";
         protected string Ws_Button = "connect";
         protected string Ws_Status = "null";
         public bool WsIsDisabled = true;
@@ -46,6 +47,7 @@ namespace LupusaBlazorDemos.Pages
         protected override void OnInitialized()
         {
             bwwJsInterop = new BwwJsInterop(jsRuntime);
+            BWHJsInterop.jsRuntime = jsRuntime;
 
             WwCreate();
 
@@ -70,12 +72,11 @@ namespace LupusaBlazorDemos.Pages
 
         public void WwOnMessage(BwwMessage par_message)
         {
-
+           
             BwwBag b = par_message.WwBag;
 
             if (par_message.TransportType == BwwTransportType.Text)
             {
-
 
                 BResultType r = (BResultType)b.Cmd;
                 switch (r)
@@ -88,10 +89,11 @@ namespace LupusaBlazorDemos.Pages
                             Caption = b.data,
                             ClientID = b.ClientID,
                         };
-
+                      
                         log_list.Insert(0, i);
-
-                        BlazorWindowHelper.BlazorTimeAnalyzer.LogAll();
+              
+                        //BlazorTimeAnalyzer.LogAll();
+                      
                         StateHasChanged();
                         break;
                     case BResultType.StateChange:
@@ -134,7 +136,7 @@ namespace LupusaBlazorDemos.Pages
                         };
 
                         log_list.Insert(0, i);
-                        BlazorWindowHelper.BlazorTimeAnalyzer.LogAll();
+                        //BlazorTimeAnalyzer.LogAll();
                         StateHasChanged();
                         break;
                     case BResultType.StateChange:
@@ -295,8 +297,8 @@ namespace LupusaBlazorDemos.Pages
 
         public void WwSendMessage()
         {
-            BlazorWindowHelper.BlazorTimeAnalyzer.Reset();
-            BlazorWindowHelper.BlazorTimeAnalyzer.Add("WwSendMessage", MethodBase.GetCurrentMethod());
+            //BlazorTimeAnalyzer.Reset();
+            //BlazorTimeAnalyzer.Add("WwSendMessage", MethodBase.GetCurrentMethod());
             if (WebWorkerHelper1.bwwState == BwwState.Open)
             {
                 if (!string.IsNullOrEmpty(Ww_Message))
@@ -311,11 +313,9 @@ namespace LupusaBlazorDemos.Pages
                         switch (WebWorkerHelper1.bwwTransportType)
                         {
                             case BwwTransportType.Text:
-
                                 WebWorkerHelper1.Send(BCommandType.send, Ww_Message, bWebSocket.id);
                                 Ww_Message = string.Empty;
                                 StateHasChanged();
-
                                 break;
                             case BwwTransportType.Binary:
 

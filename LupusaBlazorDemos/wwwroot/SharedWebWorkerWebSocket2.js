@@ -29,7 +29,7 @@ onconnect = function (e) {
 
 
     if (WebSocket1 === null) {
-        WsAdd("wss://demos.kaazing.com/echo");
+        WsAdd("wss://echo.websocket.org");
     }
 
     port.start();

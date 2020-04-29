@@ -2,6 +2,7 @@
 using BlazorWebWorkerHelper;
 using BlazorWebWorkerHelper.classes;
 using BlazorWebWorkerHelper.WsClasses;
+using BlazorWindowHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -35,7 +36,7 @@ namespace LupusaBlazorDemos.Pages
 
 
         //This is only for UI, If you need actual change check SharedWebWorkerWebSocket2.js
-        public string Ws_URL = "wss://demos.kaazing.com/echo";
+        public string Ws_URL = "wss://echo.websocket.org";
 
 
 
@@ -44,6 +45,7 @@ namespace LupusaBlazorDemos.Pages
         {
             bSwwWsJsInterop = new BSwwWsJsInterop(jsRuntime);
             bwwJsInterop = new BwwJsInterop(jsRuntime);
+            BWHJsInterop.jsRuntime = jsRuntime;
 
             SwwCreate();
 
@@ -127,8 +129,8 @@ namespace LupusaBlazorDemos.Pages
 
         public void SwwSendMessage()
         {
-            //BlazorWindowHelper.BlazorTimeAnalyzer.Reset();
-            //BlazorWindowHelper.BlazorTimeAnalyzer.Add("WwSendMessage", MethodBase.GetCurrentMethod());
+            //BlazorTimeAnalyzer.Reset();
+            //BlazorTimeAnalyzer.Add("WwSendMessage", MethodBase.GetCurrentMethod());
 
             if (SharedWebWorkerWebSocketHelper1.bSwwWsState == BSwwWsState.Open)
             {

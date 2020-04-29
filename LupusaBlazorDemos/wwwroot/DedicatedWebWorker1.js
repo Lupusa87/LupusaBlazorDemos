@@ -25,6 +25,7 @@ onmessage = function (e) {
                     data: '',
                     ClientID: 0
                 };
+
                 postMessage(b);
             }
         }

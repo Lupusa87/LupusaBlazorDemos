@@ -26,8 +26,8 @@ namespace LupusaBlazorDemos.Pages
         public bool IsDisabled = true;
 
         //https://www.websocket.org/echo.html
-        public string Ws_URL = "wss://demos.kaazing.com/echo"; //"wss://echo.websocket.org"; // "ws://192.168.1.17:9000/Data/";
-       
+        public string Ws_URL = "wss://echo.websocket.org"; //"wss://demos.kaazing.com/echo"; // "ws://192.168.1.17:9000/Data/";
+
         public WebSocketHelper WebSocketHelper1;
 
         protected List<BwsMessage> log = new List<BwsMessage>();
