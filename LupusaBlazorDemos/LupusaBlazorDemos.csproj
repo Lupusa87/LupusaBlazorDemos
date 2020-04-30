@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWindowHelper\BlazorWindowHelper.csproj" />
+    <ProjectReference Include="..\BlazorCounterHelper\BlazorCounterHelper.csproj" />
   </ItemGroup>
 
 </Project>

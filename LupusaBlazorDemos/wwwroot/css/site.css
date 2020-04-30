@@ -100,8 +100,8 @@ input[type="range"] {
     }
 
     .sidebar {
-        width: 250px;
-        height: 100vh;
+       /* width: 250px;*/
+        height: 150vh;
         position: sticky;
         top: 0;
     }

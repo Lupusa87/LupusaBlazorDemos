@@ -2,7 +2,40 @@
 
 
 <br />
-<h2>Hello World</h2>
+<h3>Hello World</h3>
 <br />
 <br />
-<h3>Please use left menu to choose any blazor demo</h3>
+<h4>Please use left menu to choose any blazor demo</h4>
+
+<br />
+<br />
+
+
+@if (counters == null)
+{
+    <h5>Latest Activities:</h5>
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h5>Latest @counters.Count Activities:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Source</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var counter in counters)
+            {
+                <tr>
+                    <td>@LocalFunctions.ToLocalDate(counter.Date).ToString("MM/dd/yyyy HH:mm:ss.fff")</td>
+                    <td>@counter.Source</td>
+                    <td>@counter.Action</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

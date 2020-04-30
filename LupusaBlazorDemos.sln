@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSharedWebWorkerWebSoc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebWorkerHelper", "..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj", "{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCounterHelper", "BlazorCounterHelper\BlazorCounterHelper.csproj", "{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

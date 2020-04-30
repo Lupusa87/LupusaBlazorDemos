@@ -45,7 +45,7 @@ namespace LupusaBlazorDemos.Pages
         {
             bSwwWsJsInterop = new BSwwWsJsInterop(jsRuntime);
             bwwJsInterop = new BwwJsInterop(jsRuntime);
-            BWHJsInterop.jsRuntime = jsRuntime;
+           
 
             SwwCreate();
 

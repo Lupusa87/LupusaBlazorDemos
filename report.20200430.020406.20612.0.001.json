@@ -1,0 +1,388 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200430.020406.20612.0.001.json",
+    "dumpEventTime": "2020-04-30T02:04:06Z",
+    "dumpEventTimeStamp": "1588226646978",
+    "processId": 20612,
+    "cwd": "E:\\MyVisualStudioProjects\\MyBlazorProjects\\LupusaBlazorDemos",
+    "commandLine": [
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Preview\\MSBuild\\Microsoft\\VisualStudio\\NodeJs\\node.exe",
+      "--expose-gc",
+      "--max_old_space_size=3072",
+      "C:\\Program Files (x86)\\Microsoft SDKs\\TypeScript\\3.8\\tsserver.js",
+      "--cancellationPipeName",
+      "\\\\.\\pipe\\tsserver-cancellation-ProjectHost-23784",
+      "--useSingleInferredProject",
+      "--locale",
+      "en-US",
+      "--suppressDiagnosticEvents",
+      "--enableTelemetry",
+      "--allowLocalPluginLoads",
+      "--npmLocation",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Preview\\MSBuild\\Microsoft\\VisualStudio\\NodeJs\\npm.cmd",
+      "--globalPlugins",
+      "@vsintellicode/typescript-intellicode-plugin",
+      "--pluginProbeLocations",
+      "C:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\PREVIEW\\COMMON7\\IDE\\EXTENSIONS\\MICROSOFT\\INTELLICODE\\TypeScriptAssets",
+      "--typingSafeListLocation",
+      "c:\\program files (x86)\\microsoft visual studio\\2019\\preview\\common7\\ide\\commonextensions\\microsoft\\typescript\\typingSafeList.json",
+      "--eventPort",
+      "49895"
+    ],
+    "nodejsVersion": "v12.13.1",
+    "wordSize": 32,
+    "arch": "ia32",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.13.1",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "5",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.13.1/node-v12.13.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.13.1/node-v12.13.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.13.1/win-x86/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.17763",
+    "osVersion": "Windows 10 Home",
+    "osMachine": "i686",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 13371703,
+        "nice": 0,
+        "sys": 10812781,
+        "idle": 200871843,
+        "irq": 1800703
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 9169984,
+        "nice": 0,
+        "sys": 4455671,
+        "idle": 211430375,
+        "irq": 94984
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 12677859,
+        "nice": 0,
+        "sys": 7090328,
+        "idle": 205287843,
+        "irq": 126406
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 10724546,
+        "nice": 0,
+        "sys": 4949468,
+        "idle": 209382000,
+        "irq": 82843
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 12689062,
+        "nice": 0,
+        "sys": 7113484,
+        "idle": 205253468,
+        "irq": 129750
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 9406031,
+        "nice": 0,
+        "sys": 6026437,
+        "idle": 209623578,
+        "irq": 84140
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 13567781,
+        "nice": 0,
+        "sys": 7181796,
+        "idle": 204306437,
+        "irq": 116609
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6700T CPU @ 2.80GHz",
+        "speed": 2808,
+        "user": 10244968,
+        "nice": 0,
+        "sys": 5428953,
+        "idle": 209382093,
+        "irq": 92515
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "3c:f8:62:3c:05:af",
+        "address": "fe80::b137:1d8c:ddc2:ee7c",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 17
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "3c:f8:62:3c:05:af",
+        "address": "192.168.1.152",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-HHMHCHT"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x016c4468",
+      "symbol": "std::basic_streambuf<char,std::char_traits<char> >::`vftable'+64"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 46215168,
+    "totalCommittedMemory": 46215168,
+    "usedMemory": 43204548,
+    "availableMemory": 3204071840,
+    "memoryLimit": 3246391296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 262008,
+        "used": 22100,
+        "available": 239908
+      },
+      "new_space": {
+        "memorySize": 1048576,
+        "committedMemory": 1048576,
+        "capacity": 1048032,
+        "used": 1048024,
+        "available": 8
+      },
+      "old_space": {
+        "memorySize": 22614016,
+        "committedMemory": 22614016,
+        "capacity": 22593048,
+        "used": 20610324,
+        "available": 1982724
+      },
+      "code_space": {
+        "memorySize": 1212416,
+        "committedMemory": 1212416,
+        "capacity": 1147392,
+        "used": 745440,
+        "available": 401952
+      },
+      "map_space": {
+        "memorySize": 528384,
+        "committedMemory": 528384,
+        "capacity": 527928,
+        "used": 304840,
+        "available": 223088
+      },
+      "large_object_space": {
+        "memorySize": 20217856,
+        "committedMemory": 20217856,
+        "capacity": 20202172,
+        "used": 20202172,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 331776,
+        "committedMemory": 331776,
+        "capacity": 271648,
+        "used": 271648,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1048032,
+        "used": 0,
+        "available": 1048032
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 54.89,
+    "kernelCpuSeconds": 13.14,
+    "cpuConsumptionPercent": 0.291424,
+    "maxRss": 348090368,
+    "pageFaults": {
+      "IORequired": 327305,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 1787,
+      "writes": 763
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\HP USER\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132294871607256397",
+    "CommonProgramFiles": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-HHMHCHT",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\HP USER",
+    "IIS_BIN": "C:\\Program Files (x86)\\IIS Express",
+    "IIS_DRIVE": "C:",
+    "IIS_SITES_HOME": "C:\\Users\\HP USER\\Documents\\My Web Sites",
+    "IIS_USER_HOME": "C:\\Users\\HP USER\\Documents\\IISExpress",
+    "LOCALAPPDATA": "C:\\Users\\HP USER\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-HHMHCHT",
+    "MSBuildLoadMicrosoftTargetsReadOnly": "true",
+    "MSMPI_BIN": "C:\\Program Files\\Microsoft MPI\\Bin\\",
+    "NUMBER_OF_PROCESSORS": "8",
+    "OneDrive": "C:\\Users\\HP USER\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\HP USER\\OneDrive",
+    "OnlineServices": "Online Services",
+    "OS": "Windows_NT",
+    "Path": "C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI2\\wbin;C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Microsoft MPI\\Bin\\;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Microsoft SQL Server\\140\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\140\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\140\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\140\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\dotnet\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\dotnet\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;c:\\Program Files (x86)\\Microsoft SQL Server\\90\\Tools\\binn\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\HP USER\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\HP USER\\.dotnet\\tools;C:\\Users\\HP USER\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\HP USER\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\HP USER\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\HP USER\\AppData\\Roaming\\npm",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
+    "PkgDefApplicationConfigFile": "C:\\Users\\HP USER\\AppData\\Local\\Microsoft\\VisualStudio\\16.0_09df97b2\\devenv.exe.config",
+    "platformcode": "6J",
+    "PROCESSOR_ARCHITECTURE": "x86",
+    "PROCESSOR_ARCHITEW6432": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 94 Stepping 3, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "5e03",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files (x86)",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PSModulePath": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules;C:\\Program Files (x86)\\Microsoft SQL Server\\140\\Tools\\PowerShell\\Modules\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "RegionCode": "NA",
+    "ServiceHubLogSessionKey": "F447D379",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\HPUSER~1\\AppData\\Local\\Temp",
+    "ThreadedWaitDialogDpiContext": "-4",
+    "TMP": "C:\\Users\\HPUSER~1\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-HHMHCHT",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-HHMHCHT",
+    "USERNAME": "HP USER",
+    "USERPROFILE": "C:\\Users\\HP USER",
+    "VisualStudioDir": "C:\\Users\\HP USER\\Documents\\Visual Studio 2019",
+    "VisualStudioEdition": "Microsoft Visual Studio Community 2019",
+    "VisualStudioVersion": "16.0",
+    "VSAPPIDDIR": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Preview\\Common7\\IDE\\",
+    "VSAPPIDNAME": "devenv.exe",
+    "VSLANG": "1033",
+    "VSSKUEDITION": "Community",
+    "windir": "C:\\WINDOWS"
+  },
+  "sharedObjects": [
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Preview\\MSBuild\\Microsoft\\VisualStudio\\NodeJs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\SspiCli.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\CRYPTBASE.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "\\\\?\\C:\\Program Files (x86)\\Microsoft SDKs\\TypeScript\\3.8\\node_modules\\@microsoft\\typescript-etw\\bin\\ia32\\typescript-etw.node",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}
