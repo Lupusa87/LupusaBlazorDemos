@@ -25,7 +25,19 @@
     <script src="_content/BlazorWebWorkerHelper/BwwJsInterop.js"></script>
     <script src="_content/BlazorWebSocketHelper/BwsJsInterop.js"></script>
     <script src="_content/BlazorSharedWebWorkerWebSocketHelper/BSwwWsJsInterop.js"></script>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script>
+        Blazor.start({
+            loadBootResource: function (type, name, defaultUri, integrity) {
+                switch (type) {
+                    case 'dotnetjs':
+                    case 'dotnetwasm':
+                    case 'timezonedata':
+                        return `https://lupblazortodo.blob.core.windows.net/$web/_framework/wasm/${name}`;
+                }
+            }
+        });
+    </script>
 
 
 </body>

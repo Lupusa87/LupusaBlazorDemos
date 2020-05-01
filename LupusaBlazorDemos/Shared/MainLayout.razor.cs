@@ -13,8 +13,8 @@ namespace LupusaBlazorDemos.Shared
 {
     public partial class MainLayout
     {
-        [Inject]
-        HttpClient httpClient { get; set; }
+        //[Inject]
+        //HttpClient httpClient { get; set; }
 
         [Inject]
         NavigationManager navigationManager { get; set; }
@@ -71,24 +71,11 @@ namespace LupusaBlazorDemos.Shared
 
             if (firstRender)
             {
-
-
-
               BWHelperFunctions.CheckIfMobile();
-
-
-
-
             }
 
             base.OnAfterRender(firstRender);
         }
-
-
-
-      
-
-
 
     }
 
