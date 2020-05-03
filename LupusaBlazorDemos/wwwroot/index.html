@@ -7,7 +7,7 @@
     <title>Blazor Demos</title>
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
 </head>
 <body>
     <app>Loading...</app>
@@ -33,7 +33,7 @@
                     case 'dotnetjs':
                     case 'dotnetwasm':
                     case 'timezonedata':
-                        return `https://lupblazortodo.blob.core.windows.net/$web/_framework/wasm/${name}`;
+                        return `https://lupusacdn.azureedge.net/blazor/rc/${name}`;
                 }
             }
         });
