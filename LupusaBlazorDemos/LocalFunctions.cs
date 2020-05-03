@@ -20,7 +20,6 @@ namespace LupusaBlazorDemos
             {"paintpage", "lupblazorpaint" },
             {"passwordpatternpage", "lupblazorpasswordpattern" },
             {"performancechartpage", "lupblazorperfchart" },
-            {"rawhtml", "lupblazorrawhtml" },
             {"spreadsheetpage", "lupblazorspreadsheet" },
             {"treeviewpage", "lupblazortreevisualizer" },
             {"virtualizedlistpage", "lupblazorvirtuiallist" },
