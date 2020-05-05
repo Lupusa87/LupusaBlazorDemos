@@ -16,7 +16,14 @@
     <ProjectReference Include="..\..\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWindowHelper\BlazorWindowHelper.csproj" />
+    <ProjectReference Include="..\BlazorChessComponent\BlazorChessComponent.csproj" />
+    <ProjectReference Include="..\BlazorClockCanvasComponent\BlazorClockCanvasComponent.csproj" />
+    <ProjectReference Include="..\BlazorClockSvgComponent\BlazorClockSvgComponent.csproj" />
     <ProjectReference Include="..\BlazorCounterHelper\BlazorCounterHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\content\" />
   </ItemGroup>
 
 </Project>

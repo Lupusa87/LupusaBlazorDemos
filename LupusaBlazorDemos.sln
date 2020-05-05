@@ -13,7 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSharedWebWorkerWebSoc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebWorkerHelper", "..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj", "{2CEDCC55-195A-4F37-AF6F-B7874A22BC34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCounterHelper", "BlazorCounterHelper\BlazorCounterHelper.csproj", "{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCounterHelper", "BlazorCounterHelper\BlazorCounterHelper.csproj", "{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorClockSvgComponent", "BlazorClockSvgComponent\BlazorClockSvgComponent.csproj", "{66889D92-14D4-4DDC-B98A-6B5EE75C731E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSvgHelper", "..\BlazorSvgHelper\BlazorSvgHelper\BlazorSvgHelper.csproj", "{2FF0290F-DC55-434B-85D0-949DC511548B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorClockCanvasComponent", "BlazorClockCanvasComponent\BlazorClockCanvasComponent.csproj", "{C54F882B-B706-4A32-A302-3FC6A24AE196}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorChessComponent", "BlazorChessComponent\BlazorChessComponent.csproj", "{DC80A998-2E7B-4EF1-BD6E-860324041C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,22 @@ Global
 		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33F31FE-926D-4F80-ACCC-7DEA2054CD38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66889D92-14D4-4DDC-B98A-6B5EE75C731E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66889D92-14D4-4DDC-B98A-6B5EE75C731E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66889D92-14D4-4DDC-B98A-6B5EE75C731E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66889D92-14D4-4DDC-B98A-6B5EE75C731E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF0290F-DC55-434B-85D0-949DC511548B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF0290F-DC55-434B-85D0-949DC511548B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF0290F-DC55-434B-85D0-949DC511548B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF0290F-DC55-434B-85D0-949DC511548B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54F882B-B706-4A32-A302-3FC6A24AE196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54F882B-B706-4A32-A302-3FC6A24AE196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54F882B-B706-4A32-A302-3FC6A24AE196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54F882B-B706-4A32-A302-3FC6A24AE196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

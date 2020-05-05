@@ -1,0 +1,26 @@
+﻿@implements IDisposable
+
+@*<h2>@city.Name</h2>*@
+
+@*<br />*@
+
+@*<h2>@CurrentTime</h2>*@
+@*<h5>@city.ID</h5>
+
+<h5>@city.CanvasID</h5>
+<p>Current count: @currentCount</p>
+
+<p>log2: @_log2 </p>
+<p>log: @_log </p>*@
+
+<div style="@city.DivClass">
+    <canvas id="@city.TopCanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" style="position: absolute; z-index: 3" />
+    <canvas id="@city.CanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" style="position: absolute; z-index: 2" />
+    <canvas id="@city.BgCanvasID" width="@city.WidthAndHeight" height="@city.WidthAndHeight" style="position: absolute; z-index: 1" />
+</div>
+@*<br />*@
+
+@*<button class="btn btn-primary" onclick=@(() => OnRemoveComponent(this.city.ID))>delete2</button>*@
+
+@*<button class="btn btn-primary" onclick="@EventOnDelete">Delete</button>*@
+

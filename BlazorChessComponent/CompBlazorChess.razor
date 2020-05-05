@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Components.Web;
+
+<div>
+
+    <div style="margin: 5px; font-size:22px;color:darkblue;">
+        <div style="display:inline-block; margin:5px">Opponent</div>
+        <div id="@OppositeTimerID" style="display:inline-block; margin:5px">@OppositeTime</div>
+    </div>
+
+
+    <svg width="500" height="500" @onmousedown="@cmd_mouseDown" opacity="@BoardOpacity" xmlns="http://www.w3.org/2000/svg">
+
+        <rect id="@RectID" x="0" y="0" width="500" height="500" style="fill:lightyellow;stroke-width:5" stroke="@BoardBoorderColor">
+
+        </rect>
+
+        <CompChildShape ChessEngine1="@ChessEngine1"></CompChildShape>
+
+        <CompChildBoard ChessEngine1="@ChessEngine1"></CompChildBoard>
+
+
+    </svg>
+
+
+
+    <div style="margin: 5px; font-size:22px;color:darkblue;">
+        <div style="display:inline-block; margin:5px">Player</div>
+        <div id="@PlayerTimerID" style="display:inline-block; margin:5px">@PlayerTime</div>
+    </div>
+
+    <br>
+
+
+    <svg width="350" height="150" opacity="@BoardOpacity" xmlns="http://www.w3.org/2000/svg">
+
+        <rect id="rect1" x="0" y="0" width="350" height="150" style="fill:lightyellow;stroke:#FFA500;stroke-width:3"></rect>
+
+        <CompChildStat ChessEngine1="@ChessEngine1"></CompChildStat>
+
+    </svg>
+
+    <br>
+    <br>
+    <br>
+
+    <ul>
+        @foreach (string i in ChessEngine1.compSettings.Moves_list)
+        {
+            <li>
+                @i
+            </li>
+
+        }
+    </ul>
+    @*
+        <button class="btn btn-primary" onclick="@cmd_Replay">Replay</button>*@
+
+    @*<br>
+        <br>
+        <br>
+
+
+        <ul>
+            @foreach (string i in ChessEngine1.compSettings.Log_list)
+            {
+                <li>
+                    @i
+                </li>
+
+            }
+        </ul>*@
+
+</div>

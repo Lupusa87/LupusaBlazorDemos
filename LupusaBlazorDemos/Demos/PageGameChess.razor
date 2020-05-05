@@ -1,0 +1,18 @@
+﻿@page "/PageGameChess"
+
+<div style="background-color:lightblue">
+    <table>
+        <tr>
+            <td width="700" align="center" style="margin: 5px">
+                <CompBlazorChess @ref="@CompBlazorChess_Player" PlayerOrOpposite="true" BoardOpacity="1.0"></CompBlazorChess>
+            </td>
+
+
+
+            <td width="700" align="center" style="margin: 5px">
+                <CompBlazorChess @ref="@CompBlazorChess_Opposite" PlayerOrOpposite="false" BoardOpacity="0.8"></CompBlazorChess>
+            </td>
+        </tr>
+    </table>
+</div>
+

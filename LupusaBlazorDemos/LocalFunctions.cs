@@ -11,9 +11,9 @@ namespace LupusaBlazorDemos
         static readonly Dictionary<string, string> UrlsDict = new Dictionary<string, string>()
         {
             {"calculatorpage", "lupblazorcalculator" },
-            {"chesspage", "lupblazorchess" },
-            {"clockcanvas", "lupblazorclockcanvas" },
-            {"clocksvg", "lupblazorclocksvg" },
+           //{"chesspage", "lupblazorchess" },
+           // {"clockcanvas", "lupblazorclockcanvas" },
+           // {"clocksvg", "lupblazorclocksvg" },
             {"doughnutchartpage", "lupblazordoughnutchart" },
             {"gamesnakepage", "lupblazorsnake" },
             {"loancalculatorpage", "lupblazorloancalculator" },

@@ -1,0 +1,87 @@
+﻿@page "/pageclocksvg"
+
+
+<style>
+    .flex-container {
+        display: flex;
+        background-color: lightblue;
+        margin: 10px;
+        padding: 20px;
+    }
+
+        .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 12px;
+        }
+</style>
+
+<h3 style="color:darkred">This is <b>SVG</b> based Clock</h3>
+<br>
+
+@*<div class="flex-container">*@
+
+
+    <CompClockSVG WidthAndHeight="400" TimeDiff="0" />
+
+    @*@foreach (var city in Cities_List)
+        {
+            <button type="button" class="close" aria-label="Close" onclick=@(() => RemoveCity(city))>
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div>
+
+                <Component1 city="@city" ref="@city.component1_related" />
+
+            </div>
+
+
+        }*@
+
+
+
+@*</div>*@
+
+
+
+@*<div class="flex-container">
+
+
+        <div>
+            CityName
+            <input bind="@Curr_City.Name" type="text" placeholder="enter city name" />
+        </div>
+        <div>
+            time diff
+            <input bind="@Curr_City.TimeDiff" type="number" min="-12" max="14" />
+        </div>
+        <div>
+            width/height
+            <input bind="@Curr_City.WidthAndHeight" type="number" min="100" max="500" />
+        </div>
+        <div>
+            Timer Interval
+            <input bind="@Curr_City.TimerInterval" type="number" min="1" max="1000" />
+        </div>
+        <div>
+            Fast Mode
+            <input bind="@Curr_City.FastMode" type="checkbox" />
+        </div>
+
+        <div>
+            Fast mode add secconds count
+            <input bind="@Curr_City.FastMode_Increment" type="number" min="1" max="1000" />
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="@Add_Clock">Add Clock</button>
+        </div>
+
+    </div>*@
+
+
+
+
+
+
