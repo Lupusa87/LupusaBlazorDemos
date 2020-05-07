@@ -25,8 +25,12 @@ namespace LupusaBlazorDemos.Shared
 
         protected override async Task OnInitializedAsync()
         {
+
+            CounterHelper.Initialize();
+
             LocalFunctions.RedirectIfNeeded(navigationManager);
 
+            LBDJsInterop.jsRuntime = jsRuntime;
             BWHJsInterop.jsRuntime = jsRuntime;
 
 
@@ -57,25 +61,26 @@ namespace LupusaBlazorDemos.Shared
                 LocalData.TimezoneOffset = await BWHJsInterop.GetTimezoneOffset();
             }
 
-
-            CounterHelper.Initialize();
-            await CounterHelper.CmdAddCounter(new TSCounter() { Source = navigationManager.Uri, Action = "visit" });
-
             await base.OnInitializedAsync();
 
             return;
         }
 
-        protected override void OnAfterRender(bool firstRender)
+
+        protected async override Task OnAfterRenderAsync(bool firstRender)
         {
 
             if (firstRender)
             {
-              BWHelperFunctions.CheckIfMobile();
+                BWHelperFunctions.CheckIfMobile();
             }
 
-            base.OnAfterRender(firstRender);
+            await CounterHelper.CmdAddCounter(new TSCounter() { Source = navigationManager.Uri, Action = "visit" });
+
+            await base.OnAfterRenderAsync(firstRender);
         }
+
+
 
     }
 

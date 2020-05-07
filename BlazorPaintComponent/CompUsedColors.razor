@@ -1,0 +1,16 @@
+﻿
+<svg id="svgUsedColors" width="300" height="30" xmlns="http://www.w3.org/2000/svg">
+    <rect x=1
+          y=1
+          width=298
+          height=29
+          fill="wheat"
+          stroke="green"
+          stroke_width=2></rect>
+
+        @foreach (var item in UsedColors_List)
+        {
+            <CompChildUsedColor parent="@this" color="@item"></CompChildUsedColor>
+        }
+
+</svg>

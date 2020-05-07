@@ -1,0 +1,48 @@
+﻿@page "/PageFastInterop"
+
+
+<h3 style="color:darkred">This is JS Fast Data Exchanger demo</h3>
+<br />
+
+
+<h4>JS Fast Data Exchanger library for blazor is available on <a href="https://www.nuget.org/packages/BlazorJsFastDataExchanger" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+<br />
+
+
+<h5>This sample multiplies your input 100 000 times, sends to js, reverses it on js side and gets result back.</h5>
+<h5>Fast button is using low level api for sending and receiving data to/from js</h5>
+<br />
+
+<div style="margin:5px">
+    <input style="margin:5px;width:250px" @bind="@JsMessage" disabled="@IsDisabled" />
+    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@JsSendMessage" disabled="@IsDisabled">Send regular</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@JsSendMessageFast" disabled="@IsDisabled">Send fast</button>
+
+
+
+</div>
+
+
+<br />
+
+
+<span style="margin:5px">Log:</span>
+<br />
+
+
+@if (log.Count > 0)
+{
+    @foreach (var item in log)
+    {
+        <br />
+        <span> @item.Length   @LocalFunctions.GetShortenedItem(item)</span>
+        <br />
+
+    }
+}
+
+
+

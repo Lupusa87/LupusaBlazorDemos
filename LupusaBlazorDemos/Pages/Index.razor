@@ -8,32 +8,65 @@
 <h4>Please use left menu to choose any blazor demo</h4>
 
 <br />
+
+
+
+<div style="display:flex">
+    <label style="margin:5px;line-height:30px;color:darkblue;font-size:1.2rem">Period Filter</label>
+    <select style="margin:5px;height:30px;width:120px" @onchange="@ComboFilterOptionsSelectionChanged">
+        @if (FilterOptions.Any())
+        {
+            @for (int i = 0; i < FilterOptions.Count; i++)
+            {
+                @if (i == CurrComboFilterOptionsIndex)
+                {
+                    <option value="@i" selected>@FilterOptions[i]</option>
+                }
+                else
+
+                {
+                    <option value="@i">@FilterOptions[i]</option>
+                }
+            }
+        }
+    </select>
+
+    <input style="margin:5px;height:30px;width:250px" type="datetime-local" format-value="yyyy-MM-ddTHH:mm" disabled="@DisableEdit" @bind="@fromDate" @oninput="@fromDateOnChange" />
+    <input style="margin:5px;height:30px;width:250px" type="datetime-local" format-value="yyyy-MM-ddTHH:mm" disabled="@DisableEdit" @bind="@toDate" @oninput="@toDateOnChange" />
+
+    <button style="height:30px;margin:5px" disabled="@DisableButton" class="btn btn-primary btn-sm" @onclick="@CmdGetReport">Refresh</button>
+    <label style="margin:5px;line-height:30px;color:darkred;font-size:0.9rem">Last refreshed @LastRefreshDate.ToString("hh:mm:ss.fff")</label>
+</div>
+
+
 <br />
 
 
-@if (counters == null)
+
+
+@if (report1 == null)
 {
-    <h5>Latest Activities:</h5>
+    <h5>Activities stat:</h5>
     <p><em>Loading...</em></p>
 }
 else
 {
-    <h5>Latest @counters.Count Activities:</h5>
+<h5>Activities stat:</h5>
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
                 <th>Source</th>
                 <th>Action</th>
+                <th>Count</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var counter in counters)
+            @foreach (var item in report1.OrderBy(x => x.Source).ThenBy(x => x.Action))
             {
-                <tr>
-                    <td>@LocalFunctions.ToLocalDate(counter.Date).ToString("MM/dd/yyyy HH:mm:ss.fff")</td>
-                    <td>@counter.Source</td>
-                    <td>@counter.Action</td>
+                <tr style="height:20px">
+                    <td>@item.Source</td>
+                    <td>@item.Action</td>
+                    <td>@item.Count</td>
                 </tr>
             }
         </tbody>

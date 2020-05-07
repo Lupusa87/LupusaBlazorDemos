@@ -23,6 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorClockCanvasComponent"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorChessComponent", "BlazorChessComponent\BlazorChessComponent.csproj", "{DC80A998-2E7B-4EF1-BD6E-860324041C2C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorGameSnakeComponent", "BlazorGameSnakeComponent\BlazorGameSnakeComponent.csproj", "{0B745A2A-E854-4B6E-93F8-DC0B1DC16BF5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCalculatorComponent", "BlazorCalculatorComponent\BlazorCalculatorComponent.csproj", "{C575385E-4E16-4825-8C12-AC10EA9B95E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPaintComponent", "BlazorPaintComponent\BlazorPaintComponent.csproj", "{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +75,18 @@ Global
 		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC80A998-2E7B-4EF1-BD6E-860324041C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B745A2A-E854-4B6E-93F8-DC0B1DC16BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B745A2A-E854-4B6E-93F8-DC0B1DC16BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B745A2A-E854-4B6E-93F8-DC0B1DC16BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B745A2A-E854-4B6E-93F8-DC0B1DC16BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C575385E-4E16-4825-8C12-AC10EA9B95E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C575385E-4E16-4825-8C12-AC10EA9B95E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C575385E-4E16-4825-8C12-AC10EA9B95E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C575385E-4E16-4825-8C12-AC10EA9B95E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,153 @@
+﻿@implements IDisposable
+
+
+<style>
+
+
+    .i1 {
+        width: 220px;
+        margin: 5px;
+    }
+
+    .b1 {
+        width: 40px;
+    }
+
+    .flex-container {
+        display: flex;
+        background-color: lightblue;
+        margin: 10px;
+        padding: 20px;
+        font-family: Sylfaen;
+        font-size: 18px;
+    }
+
+        .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+
+    .item1 {
+        background-color: wheat;
+        margin: 2px;
+        height: 20px;
+    }
+</style>
+
+
+
+
+
+
+<div class="flex-container">
+
+
+    <table class="table">
+
+        <tr>
+            <td width="300">
+
+
+                <h5 style="margin: 5px">@CurrAnswer</h5>
+
+                <input value="@CurrExpression" class="i1" disabled type="text" />
+
+                <input value="@CurrInput" class="i1" disabled type="text" />
+
+                <br>
+
+
+                <div style="vertical-align: middle; margin: 5px">
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("7"))">7</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("8"))">8</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("9"))">9</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => Cmd_Add_Operator("/"))">/</button>
+                    <button class="btn btn-primary b1" @onclick="@buttonoff_Click">AC</button>
+                </div>
+                <div style="vertical-align: middle; margin: 5px">
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("4"))">4</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("5"))">5</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("6"))">6</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => Cmd_Add_Operator("*"))">*</button>
+                    <button class="btn btn-primary b1" @onclick="@buttonclear_Click">C</button>
+                </div>
+                <div style="vertical-align: middle; margin: 5px">
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("1"))">1</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("2"))">2</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("3"))">3</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => Cmd_Add_Operator("-"))">-</button>
+                    <button class="btn btn-primary b1" @onclick="@buttonBackSpace_Click" title="Backspace">BS</button>
+                </div>
+                <div style="vertical-align: middle; margin: 5px">
+                    <button class="btn btn-primary b1" @onclick="@(e => AddString("0"))">0</button>
+                    <button class="btn btn-primary b1" @onclick="@buttonComp_Click">+/-</button>
+                    <button class="btn btn-primary b1" @onclick="@buttonDot_Click">.</button>
+                    <button class="btn btn-primary b1" @onclick="@(e => Cmd_Add_Operator("+"))">+</button>
+                    <button class="btn btn-primary b1" @onclick="@buttonEQ_Click">=</button>
+                </div>
+                <div style="vertical-align: middle; margin: 5px">
+                    <button class="btn btn-primary b1" @onclick="@Button_Power_2_Click">^2</button>
+                    <button class="btn btn-primary b1" @onclick="@Button_Power_3_Click">^3</button>
+                    <button class="btn btn-primary" style="width:62px" @onclick="@Button_SQRT_Click" title="Square root">SQRT</button>
+                    <button class="btn btn-primary" style="width:62px" @onclick="@Button_CRT_Click" title="Cube root">CRT</button>
+                </div>
+
+
+
+            </td>
+            <td align="left" style="margin: 5px">
+
+
+                <table width="300" style="padding-top: 15px">
+                    <thead>
+                        <tr class="item1">
+                            <th>N (<b>@MyCalculatorOperationsList.Count</b>)</th>
+                            <th align="left">Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @if (MyCalculatorOperationsList.Count > 0)
+                        {
+                            @foreach (var item in MyCalculatorOperationsList.OrderByDescending(x => x.AddDate).Take(20))
+                            {
+                                <tr class="item1">
+                                    <td>@item.ID</td>
+                                    <td align="left"><span @onclick="@(e => CurrInput = item.Answer)">@item.Operation</span></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            @for (int i = 5; i > 0; i--)
+                            {
+                                <tr class="item1">
+                                    <td>@i</td>
+                                    <td align="left"></td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+
+
+            </td>
+
+        </tr>
+    </table>
+
+
+
+
+
+</div>
+
+
+
+
+

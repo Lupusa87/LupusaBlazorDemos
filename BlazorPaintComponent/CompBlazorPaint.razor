@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Components.Web;
+
+<div>
+    <table>
+
+        <tr>
+            <td>
+
+                <button class="btn btn-primary" @onclick="@cmd_clear">Clear</button>
+                <button class="btn btn-primary" @onclick="@cmd_undo">undo</button>
+
+                <br />
+
+
+                <br />
+
+                <div style="vertical-align: middle; margin: 5px">
+                    <button class="btn btn-primary" @onclick="@(e => cmd_Move(classes.BPaintMoveDirection.left))">Left</button>
+                    <button class="btn btn-primary" @onclick="@(e => cmd_Move(classes.BPaintMoveDirection.right))">Right</button>
+
+
+                    <button class="btn btn-primary" @onclick="@(e => cmd_Move(classes.BPaintMoveDirection.up))" style="margin-left:5px">UP</button>
+                    <button class="btn btn-primary" @onclick="@(e => cmd_Move(classes.BPaintMoveDirection.down))">Down</button>
+
+                    <input @bind="@StepSize" type="number" min="1" max="20" style="margin-left:5px" />
+                </div>
+
+                <br />
+
+
+                <br />
+                <div style="vertical-align: middle; margin: 5px">
+                    <input type="radio" name="mode" value="1" checked="@(FigureCode == 1)" @onchange="@(() => FigureCode = 1)" /> Draw
+                    <input type="radio" name="mode" value="2" checked="@(FigureCode == 2)" @onchange="@(() => FigureCode = 2)" /> Line
+
+                </div>
+
+
+                <input bind="@Color1" type="color" @oninput="@cmd_ColorChange" />
+
+                <CompUsedColors @ref="@Curr_CompUsedColors"></CompUsedColors>
+
+                <input @bind="@LineWidth1" type="number" min="1" max="10" @oninput="@cmd_Size_Changed" />
+
+                <input type="range" min="0.1" max="5.0" step="0.1" width="400" @bind="@Curr_Scale_X" @oninput="@cmd_scale_x" />
+                <input type="range" min="0.1" max="5.0" step="0.1" width="400" @bind="@Curr_Scale_Y" @oninput="@cmd_scale_y" />
+
+
+                <div id="PaintArea1" width="1000" height="700" @onmousedown="@cmd_onmousedown" @onmousemove="@cmd_onmousemove" @onmouseup="@cmd_onmouseup">
+                    <CompMySVG @ref="@Curr_CompMySVG" parent="@this" par_width="1000" par_height="700"></CompMySVG>
+
+                </div>
+
+
+            </td>
+            <td valign="top">
+
+                <button class="btn btn-primary" @onclick="@cmd_select_all_objects">select All</button>
+                <button class="btn btn-primary" @onclick="@cmd_unselect_all_objects">Unselect All</button>
+                <button class="btn btn-primary" @onclick="@cmd_delete_object">Delete</button>
+                <button class="btn btn-primary" @onclick="@cmd_duplicate_object">dublicate</button>
+
+                <br />
+
+
+
+
+                <label>Objects List</label>
+
+                <br />
+                <input type="checkbox" @bind="@MultiSelect" /> Multiselect<br>
+
+                <br />
+
+                @if (ObjectsList.Any())
+                {
+
+                    @foreach (var obj in ObjectsList.OrderBy(x => x.SequenceNumber))
+                    {
+                        <CompListItem Par_ID="@obj.ObjectID" parent="@this"></CompListItem>
+                        <br />
+                    }
+
+                }
+
+
+            </td>
+
+        </tr>
+
+
+    </table>
+
+
+
+
+
+
+
+
+
+</div>

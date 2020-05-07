@@ -10,23 +10,26 @@ namespace LupusaBlazorDemos
     {
         static readonly Dictionary<string, string> UrlsDict = new Dictionary<string, string>()
         {
-            {"calculatorpage", "lupblazorcalculator" },
+           // {"calculatorpage", "lupblazorcalculator" },
            //{"chesspage", "lupblazorchess" },
            // {"clockcanvas", "lupblazorclockcanvas" },
            // {"clocksvg", "lupblazorclocksvg" },
-            {"doughnutchartpage", "lupblazordoughnutchart" },
-            {"gamesnakepage", "lupblazorsnake" },
-            {"loancalculatorpage", "lupblazorloancalculator" },
-            {"paintpage", "lupblazorpaint" },
-            {"passwordpatternpage", "lupblazorpasswordpattern" },
-            {"performancechartpage", "lupblazorperfchart" },
-            {"spreadsheetpage", "lupblazorspreadsheet" },
-            {"treeviewpage", "lupblazortreevisualizer" },
-            {"virtualizedlistpage", "lupblazorvirtuiallist" },
+          //  {"doughnutchartpage", "lupblazordoughnutchart" },
+          //  {"gamesnakepage", "lupblazorsnake" },
+          //  {"loancalculatorpage", "lupblazorloancalculator" },
+           // {"paintpage", "lupblazorpaint" },
+          //  {"passwordpatternpage", "lupblazorpasswordpattern" },
+          //  {"performancechartpage", "lupblazorperfchart" },
+          //  {"spreadsheetpage", "lupblazorspreadsheet" },
+          //  {"treeviewpage", "lupblazortreevisualizer" },
+          //  {"virtualizedlistpage", "lupblazorvirtuiallist" },
         };
 
         internal static void RedirectIfNeeded(NavigationManager navigationManager)
         {
+
+            return;
+
             string page;
 
             if (!navigationManager.BaseUri.Equals(navigationManager.Uri))
@@ -55,6 +58,26 @@ namespace LupusaBlazorDemos
             else
             {
                 return d;
+            }
+        }
+
+        public static string GetShortenedItem(string item)
+        {
+            if (!string.IsNullOrEmpty(item))
+            {
+                if (item.Length > 100)
+                {
+                    return item.Substring(0, 100);
+                }
+                else
+                {
+                    return item;
+                }
+
+            }
+            else
+            {
+                return "empty";
             }
         }
     }

@@ -1,0 +1,73 @@
+﻿@using Classes
+@using Microsoft.AspNetCore.Components.Web;
+
+<div>
+
+    <br>
+    <div style="vertical-align: middle; margin: 5px">
+        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Left))">Left</button>
+        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Right))">Right</button>
+
+
+        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Up))" style="margin-left:5px">UP</button>
+        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Down))">Down</button>
+
+
+    </div>
+    <br>
+
+    <svg width="800" height="540" xmlns="http://www.w3.org/2000/svg">
+
+        <rect x="0" y="0" width="800" height="540" style="fill:lightyellow;stroke:#999999;stroke-width:5">
+
+        </rect>
+
+        @if (Board.Walls_List.Count > 1)
+        {
+            <CompChildWalls></CompChildWalls>
+        }
+
+        <CompChildBoard></CompChildBoard>
+
+        <g>
+            <rect x="0" y="500" width="800" height="40" style="fill:lightyellow;stroke:#999999;stroke-width:5">
+            </rect>
+            <text x=20 y="525" fill="green" font-family="Sylfaen" font-size="24">@CurrPoint</text>
+        </g>
+
+    </svg>
+
+
+    <br>
+    <br>
+
+    <div style="vertical-align: middle; margin: 5px" align="left">
+        <button class="btn btn-primary" @onclick="@run">reset</button>
+        <input style="margin: 5px" type="checkbox" @bind="@input_Is_Bot_Mode" /> Bot Mode
+        <input style="margin: 5px" type="checkbox" @bind="@input_Is_Enable_Audio" /> Audio Effects
+        <input style="margin: 5px" type="checkbox" @bind="@Are_Borders_Open" /> Open Borders
+    </div>
+
+    <div style="vertical-align: middle; margin: 5px" align="left">
+        <label style="margin: 5px"> Time interval: </label>
+        <input style="margin: 5px" @bind="@input_speed" type="number" min="1" max="1000" step="1" />
+
+        <label style="margin: 5px"> count X: </label>
+        <input style="margin: 5px" @bind="@input_X_Count" type="number" min="5" max="100" step="1" />
+
+        <label style="margin: 5px"> count y: </label>
+        <input style="margin: 5px" @bind="@input_Y_Count" type="number" min="5" max="100" step="1" />
+    </div>
+    <div style="vertical-align: middle; margin: 5px" align="left">
+        <label style="margin: 5px"> Walls count: </label>
+        <input style="margin: 5px" @bind="@walls_count" type="number" min="0" max="100" step="1" />
+
+        <label style="margin: 5px"> min lenght: </label>
+        <input style="margin: 5px" @bind="@walls_min_length" type="number" min="1" max="10" step="1" />
+
+        <label style="margin: 5px"> max lenght: </label>
+        <input style="margin: 5px" @bind="@walls_max_length" type="number" min="2" max="50" step="1" />
+    </div>
+    <br>
+    <br>
+</div>

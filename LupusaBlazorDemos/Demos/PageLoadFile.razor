@@ -1,0 +1,49 @@
+﻿@page "/PageLoadFile"
+
+
+<h3 style="color:darkred">This is JS Fast Data Exchanger demo</h3>
+<br />
+
+
+<h4>JS Fast Data Exchanger library for blazor is available on <a href="https://www.nuget.org/packages/BlazorJsFastDataExchanger" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+
+<h5>This sample loads seleted file into .net memory</h5>
+<h5>Regular js interop can load max 2mb, above this it gives out of memory error.</h5>
+<h5>Fast button is using low level api for loading file faster, it is tested for 2gb, it will be better if you load large file after refreshing page.</h5>
+<br />
+
+
+<div style="margin:5px">
+    <input type="file" id="fileUpload" />
+
+    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@loadFileRegular" disabled="@IsDisabled">Load file regular</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@loadFileFast" disabled="@IsDisabled">Load file fast</button>
+
+    <span style="margin:5px">@_BinaryInfo.progressInfo</span>
+</div>
+
+
+
+
+<br />
+
+
+<span style="margin:5px">Log:</span>
+<br />
+
+
+@if (log.Count > 0)
+{
+    @foreach (var item in log)
+    {
+        <span style="margin:2px">@LocalFunctions.GetShortenedItem(item)</span>
+        <br />
+
+    }
+}
+
+
+

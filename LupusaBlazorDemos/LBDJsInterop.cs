@@ -8,6 +8,9 @@ namespace LupusaBlazorDemos
 {
     public static class LBDJsInterop
     {
+
+        public static IJSRuntime jsRuntime;
+
         public static ValueTask<int> CalcFib(IJSRuntime jsRuntime, int num)
         {
             return jsRuntime.InvokeAsync<int>(
@@ -18,6 +21,46 @@ namespace LupusaBlazorDemos
         public static ValueTask<string> GenerateNewUser(IJSRuntime jsRuntime)
         {
             return jsRuntime.InvokeAsync<string>("LBDJsFunctions.generateNewUser");
+        }
+
+        internal static ValueTask<string> Alert(string message)
+        {
+            return jsRuntime.InvokeAsync<string>(
+                "LBDJsFunctions.Alert", message);
+        }
+
+        internal static void ProcessData(string variableName)
+        {
+            jsRuntime.InvokeVoidAsync("LBDJsFunctions.ProcessData", variableName);
+        }
+
+
+        internal async static ValueTask<bool> HasFile(string inputFileElementID)
+        {
+            return await jsRuntime.InvokeAsync<bool>("LBDJsFunctions.HasFile", inputFileElementID);
+
+        }
+
+        internal async static ValueTask<bool> ReadFile(string variableName, string inputFileElementID)
+        {
+            return await jsRuntime.InvokeAsync<bool>("LBDJsFunctions.ReadFile", variableName, inputFileElementID);
+
+        }
+
+        internal async static ValueTask<string> GetFile(string variableName, string inputFileElementID)
+        {
+            return await jsRuntime.InvokeAsync<string>("LBDJsFunctions.GetFile", variableName, inputFileElementID);
+
+        }
+
+        internal static ValueTask<bool> SetData(string variableName, string t)
+        {
+            return jsRuntime.InvokeAsync<bool>("LBDJsFunctions.SetData", variableName, t);
+        }
+
+        internal static ValueTask<string> GetData(string variableName)
+        {
+            return jsRuntime.InvokeAsync<string>("LBDJsFunctions.GetData", variableName);
         }
     }
 }
