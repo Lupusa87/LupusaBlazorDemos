@@ -40,10 +40,6 @@ namespace BlazorCounterHelper
                 Content = new StringContent(JsonSerializer.Serialize(content, opt), Encoding.UTF8, "application/json")
             });
 
-            string a = await response.Content.ReadAsStringAsync();
-
-            Console.WriteLine(a);
-
             return JsonSerializer.Deserialize<U>(await response.Content.ReadAsStringAsync(), opt);
 
             //var stringContent = await response.Content.ReadFromJsonAsync<string>();

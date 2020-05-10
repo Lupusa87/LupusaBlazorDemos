@@ -1,12 +1,5 @@
 ﻿@page "/"
-
-
-<br />
-<h3>Hello World</h3>
-<br />
-<br />
 <h4>Please use left menu to choose any blazor demo</h4>
-
 <br />
 
 
@@ -34,7 +27,7 @@
     <input style="margin:5px;height:30px;width:250px" type="datetime-local" format-value="yyyy-MM-ddTHH:mm" disabled="@DisableEdit" @bind="@fromDate" @oninput="@fromDateOnChange" />
     <input style="margin:5px;height:30px;width:250px" type="datetime-local" format-value="yyyy-MM-ddTHH:mm" disabled="@DisableEdit" @bind="@toDate" @oninput="@toDateOnChange" />
 
-    <button style="height:30px;margin:5px" disabled="@DisableButton" class="btn btn-primary btn-sm" @onclick="@CmdGetReport">Refresh</button>
+    <button style="height:30px;margin:5px;width:150px" disabled="@DisableButton" class="btn btn-primary btn-sm" @onclick="@CmdGetReport">Load activities stat</button>
     <label style="margin:5px;line-height:30px;color:darkred;font-size:0.9rem">Last refreshed @LastRefreshDate.ToString("hh:mm:ss.fff")</label>
 </div>
 
@@ -46,12 +39,10 @@
 
 @if (report1 == null)
 {
-    <h5>Activities stat:</h5>
     <p><em>Loading...</em></p>
 }
 else
 {
-<h5>Activities stat:</h5>
     <table class="table">
         <thead>
             <tr>

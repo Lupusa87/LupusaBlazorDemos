@@ -22,8 +22,13 @@
     <ProjectReference Include="..\BlazorClockCanvasComponent\BlazorClockCanvasComponent.csproj" />
     <ProjectReference Include="..\BlazorClockSvgComponent\BlazorClockSvgComponent.csproj" />
     <ProjectReference Include="..\BlazorCounterHelper\BlazorCounterHelper.csproj" />
+    <ProjectReference Include="..\BlazorDoughnutChartComponent\BlazorDoughnutChartComponent.csproj" />
     <ProjectReference Include="..\BlazorGameSnakeComponent\BlazorGameSnakeComponent.csproj" />
+    <ProjectReference Include="..\BlazorLoanCalculatorComponent\BlazorLoanCalculatorComponent.csproj" />
     <ProjectReference Include="..\BlazorPaintComponent\BlazorPaintComponent.csproj" />
+    <ProjectReference Include="..\BlazorPasswordPatternComponent\BlazorPasswordPatternComponent.csproj" />
+    <ProjectReference Include="..\BlazorSpreadsheetComponent\BlazorSpreadsheetComponent.csproj" />
+    <ProjectReference Include="..\BlazorTreeVisualizerComponent\BlazorTreeVisualizerComponent.csproj" />
   </ItemGroup>
 
   <ItemGroup>

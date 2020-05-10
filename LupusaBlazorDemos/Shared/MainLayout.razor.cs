@@ -22,6 +22,10 @@ namespace LupusaBlazorDemos.Shared
         [Inject]
         IJSRuntime jsRuntime { get; set; }
 
+        private string CurrentURI;
+
+
+        bool DisableCounters = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -32,8 +36,9 @@ namespace LupusaBlazorDemos.Shared
 
             LBDJsInterop.jsRuntime = jsRuntime;
             BWHJsInterop.jsRuntime = jsRuntime;
+            BWHJsLocalStorage.jsRuntime = jsRuntime;
 
-
+            await CheckCounterIsDisabled();
 
 
             //if (WebApiFunctions.httpClient is null)
@@ -67,21 +72,46 @@ namespace LupusaBlazorDemos.Shared
         }
 
 
+
+
+
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
 
             if (firstRender)
             {
+                await CheckCounterIsDisabled();
+
                 BWHelperFunctions.CheckIfMobile();
             }
 
-            await CounterHelper.CmdAddCounter(new TSCounter() { Source = navigationManager.Uri, Action = "visit" });
+          
+
+            if (!DisableCounters)
+            {
+                if (!navigationManager.Uri.Equals(CurrentURI))
+                {
+                    CurrentURI = navigationManager.Uri;
+                   
+                    await CounterHelper.CmdAddCounter(new TSCounter() { Source = navigationManager.Uri, Action = "visit" });
+                }
+            }
 
             await base.OnAfterRenderAsync(firstRender);
         }
 
 
+        protected async Task<bool> CheckCounterIsDisabled()
+        {
+            string result = await BWHJsLocalStorage.GetItem("DisableCounters");
 
+            if (!string.IsNullOrEmpty(result))
+            {
+                DisableCounters = result.Equals("1");
+            }
+
+            return true;
+        }
     }
 
 

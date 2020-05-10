@@ -190,6 +190,7 @@ namespace BlazorGameSnakeComponent
         {
             BlazorWindowHelper.BlazorWindowHelper.Initialize();
             BlazorWindowHelper.BWHJsInterop.SetOnOrOff(true);
+            BlazorWindowHelper.BlazorWindowHelper.OnKeyDown = KeyDownFromJS;
             BlazorWindowHelper.BlazorWindowHelper.OnKeyUp = KeyUpFromJS;
 
             Game.points_Count = Game.x_Length * Game.y_Length;
@@ -241,15 +242,57 @@ namespace BlazorGameSnakeComponent
         }
 
 
-        public void KeyUpFromJS(ConsoleKey consoleKey)
+        public void KeyDownFromJS(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
+        {
+
+            if (Game.Is_Enabled)
+            {
+                if (!Game.Is_Bot_Mode)
+                {
+                    
+
+                    if (Game.Is_Started && ctrl && !Game.CtrlDoubleSpeed)
+                    {
+                        Game.CtrlDoubleSpeed = true;
+                        
+                        LocalData.global_speed /= 2;
+                        Game.TimerReset();
+                    }
+
+
+                    if (Game.Is_Started && shift && !Game.ShiftHalfSpeed)
+                    {
+                        Game.ShiftHalfSpeed = true;
+
+                        LocalData.global_speed *= 2;
+                        Game.TimerReset();
+                    }
+                }
+            }
+
+        }
+
+        public void KeyUpFromJS(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
         {
            
             if (Game.Is_Enabled)
             {
                 if (!Game.Is_Bot_Mode)
                 {
+                    if (Game.Is_Started && !ctrl && Game.CtrlDoubleSpeed)
+                    {
+                        Game.CtrlDoubleSpeed = false;
+                        LocalData.global_speed *= 2;
+                        Game.TimerReset();
+                    }
 
-                   
+
+                    if (Game.Is_Started && !shift && Game.ShiftHalfSpeed)
+                    {
+                        Game.ShiftHalfSpeed = false;
+                        LocalData.global_speed /= 2;
+                        Game.TimerReset();
+                    }
 
                     switch (consoleKey)
                     {
@@ -310,8 +353,6 @@ namespace BlazorGameSnakeComponent
             {
                 if (!Game.Is_Bot_Mode)
                 {
-
-                   
 
                     switch (Par_Direction)
                     {

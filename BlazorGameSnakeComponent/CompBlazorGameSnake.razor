@@ -2,17 +2,17 @@
 @using Microsoft.AspNetCore.Components.Web;
 
 <div>
-
-    <br>
     <div style="vertical-align: middle; margin: 5px">
-        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Left))">Left</button>
+        <button class="btn btn-primary" @onclick="@run">reset</button>
+        <input style="margin: 5px" type="checkbox" @bind="@input_Is_Bot_Mode" /> Bot Mode
+        <input style="margin: 5px" type="checkbox" @bind="@input_Is_Enable_Audio" /> Audio Effects
+        <input style="margin: 5px" type="checkbox" @bind="@Are_Borders_Open" /> Open Borders
+
+        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Left))" style="margin-left:20px">Left</button>
         <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Right))">Right</button>
 
-
-        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Up))" style="margin-left:5px">UP</button>
+        <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Up))" style="margin-left:10px">UP</button>
         <button class="btn btn-primary" @onclick="@(e => cmd_Move(DirectionType.Down))">Down</button>
-
-
     </div>
     <br>
 
@@ -39,14 +39,7 @@
 
 
     <br>
-    <br>
 
-    <div style="vertical-align: middle; margin: 5px" align="left">
-        <button class="btn btn-primary" @onclick="@run">reset</button>
-        <input style="margin: 5px" type="checkbox" @bind="@input_Is_Bot_Mode" /> Bot Mode
-        <input style="margin: 5px" type="checkbox" @bind="@input_Is_Enable_Audio" /> Audio Effects
-        <input style="margin: 5px" type="checkbox" @bind="@Are_Borders_Open" /> Open Borders
-    </div>
 
     <div style="vertical-align: middle; margin: 5px" align="left">
         <label style="margin: 5px"> Time interval: </label>
@@ -68,6 +61,4 @@
         <label style="margin: 5px"> max lenght: </label>
         <input style="margin: 5px" @bind="@walls_max_length" type="number" min="2" max="50" step="1" />
     </div>
-    <br>
-    <br>
 </div>

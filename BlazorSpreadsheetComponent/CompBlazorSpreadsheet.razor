@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Components.Web;
+
+<span>@Curr_Address</span>
+<input @bind="Curr_Value" @onclick="@Cmd_Select_Referenced_Cells" />
+<button class="btn btn-primary" @onclick="@Cmd_Update">update</button>
+
+<br />
+<br />
+
+<CompTable parent="@this"></CompTable>

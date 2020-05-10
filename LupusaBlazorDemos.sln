@@ -29,6 +29,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCalculatorComponent",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPaintComponent", "BlazorPaintComponent\BlazorPaintComponent.csproj", "{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDoughnutChartComponent", "BlazorDoughnutChartComponent\BlazorDoughnutChartComponent.csproj", "{03A71CFA-6CB2-414C-8D18-34BB3731E8A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorLoanCalculatorComponent", "BlazorLoanCalculatorComponent\BlazorLoanCalculatorComponent.csproj", "{5B68FA64-3864-4263-8030-DD97F2627F4D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSpreadsheetComponent", "BlazorSpreadsheetComponent\BlazorSpreadsheetComponent.csproj", "{0DFCBFC2-4D39-4C3C-835C-870BA691D4B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPasswordPatternComponent", "BlazorPasswordPatternComponent\BlazorPasswordPatternComponent.csproj", "{F8D0845A-F6FD-4D69-8C10-831F7E288429}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTreeVisualizerComponent", "BlazorTreeVisualizerComponent\BlazorTreeVisualizerComponent.csproj", "{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +97,26 @@ Global
 		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88BD7448-D6AA-4C27-BEA2-0B0DEE09D22B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A71CFA-6CB2-414C-8D18-34BB3731E8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A71CFA-6CB2-414C-8D18-34BB3731E8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A71CFA-6CB2-414C-8D18-34BB3731E8A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A71CFA-6CB2-414C-8D18-34BB3731E8A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B68FA64-3864-4263-8030-DD97F2627F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B68FA64-3864-4263-8030-DD97F2627F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B68FA64-3864-4263-8030-DD97F2627F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B68FA64-3864-4263-8030-DD97F2627F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DFCBFC2-4D39-4C3C-835C-870BA691D4B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DFCBFC2-4D39-4C3C-835C-870BA691D4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DFCBFC2-4D39-4C3C-835C-870BA691D4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DFCBFC2-4D39-4C3C-835C-870BA691D4B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D0845A-F6FD-4D69-8C10-831F7E288429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D0845A-F6FD-4D69-8C10-831F7E288429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D0845A-F6FD-4D69-8C10-831F7E288429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D0845A-F6FD-4D69-8C10-831F7E288429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

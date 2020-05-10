@@ -1,0 +1,46 @@
+﻿
+@page "/PageDoughnutChart"
+
+<style>
+    .flex-container {
+        display: flex;
+        background-color: lightblue;
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .flex-container > div {
+        background-color: #f1f1f1;
+        margin: 10px;
+        padding: 20px;
+        font-size: 12px;
+    }
+</style>
+
+
+<h3 style="color:darkred">This is <b>Doughtnut</b> chart component</h3>
+
+
+<br>
+<h5>Use color pickers to set gradient, If you want solid set same color to both.</h5>
+
+
+<br>
+
+
+
+<div class="flex-container">
+
+    <div>
+
+        <CompDoughnutChart WidthAndHeight="400" ForeColor1="@Color1" ForeColor2="@Color2" ActualValue="@CurrValue" />
+        <br>
+        <br>
+        <input type="range" min="1" width="400" max="100" @bind="@CurrValue" />
+
+        <input id="color1" @bind="@Color1" type="color" />
+        <input id="color2" @bind="@Color2" type="color" />
+    </div>
+
+
+</div>

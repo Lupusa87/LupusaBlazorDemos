@@ -18,7 +18,7 @@ namespace BlazorCounterHelper
         private static HttpClient httpClient1;
         private static HttpClient httpClient2;
 
-
+  
         static bool WebOrLocalMode = true;
 
         public static Uri WebApi_Uri
@@ -76,7 +76,7 @@ namespace BlazorCounterHelper
                 httpClient1.DefaultRequestHeaders.Accept.Clear();
                 httpClient1.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-
+                httpClient1.DefaultRequestHeaders.Remove("x-functions-key");
                 httpClient1.DefaultRequestHeaders.Add("x-functions-key", "FIWvxFPsVvuFaq19MW6EYwO1X8z7XTaDk2aFKkBn9hMRRnMbuxvtDA==");
 
                 List<TSReport1> result = await httpClient1.MyPostJsonGetJsonEnumAsync<List<TSReport1>, TSReport1>("Counter/getreport1", tsReport1);
@@ -88,7 +88,7 @@ namespace BlazorCounterHelper
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                PrintError(ex.Message, MethodBase.GetCurrentMethod());
                 return new List<TSReport1>();
             }
 
@@ -105,6 +105,7 @@ namespace BlazorCounterHelper
                 httpClient1.DefaultRequestHeaders.Accept.Clear();
                 httpClient1.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                httpClient1.DefaultRequestHeaders.Remove("x-functions-key");
                 httpClient1.DefaultRequestHeaders.Add("x-functions-key", "SkyBlfY2527Dd2mV/wvdsc0L0F3rESZN3SJyJAr5WK9LeikQMUihew==");
                 List<TSCounter> result = await httpClient1.GetFromJsonAsync<List<TSCounter>>("Counter/getall");
              
@@ -115,7 +116,7 @@ namespace BlazorCounterHelper
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                PrintError(ex.Message, MethodBase.GetCurrentMethod());
                 return new List<TSCounter>();
             }
 
@@ -127,25 +128,41 @@ namespace BlazorCounterHelper
         {
             try
             {
-
+               
                 if (ParTSCounter.Source.Contains("localhost"))
                 {
                     return "OK";
                 }
 
+                ParTSCounter.Source = ParTSCounter.Source.Replace("https://lupblazordemos.z13.web.core.windows.net/", null);
+                ParTSCounter.Source = ParTSCounter.Source.Replace("Page", null);
+                ParTSCounter.Source = ParTSCounter.Source.Replace("page", null);
 
-                httpClient2.DefaultRequestHeaders.Accept.Clear();
-                httpClient2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                int k = ParTSCounter.Source.IndexOf("?");
+                if(k>-1)
+                {
+                    ParTSCounter.Source = ParTSCounter.Source.Substring(0, k);
+                }
 
 
-                ParTSCounter.Source = ParTSCounter.Source.Replace("https://", null);
-                ParTSCounter.Source = ParTSCounter.Source.Replace("http://", null);
+                if (string.IsNullOrEmpty(ParTSCounter.Source))
+                {
+                    ParTSCounter.Source = "Home";
+                }
 
                 CmdTrimEntity(ParTSCounter);
 
+
+                Console.WriteLine(ParTSCounter.Source);
+
                 TSCounter tsCounterForSend = CopyObject<TSCounter>(ParTSCounter);
 
-                httpClient2.DefaultRequestHeaders.Add("x-functions-key", "20bLI4NLXhjZ77Ud5XDiEM9UlDUCkSSAUgXZ53n6/NkcG3vWpXmUvA==");
+
+                httpClient2.DefaultRequestHeaders.Accept.Clear();
+                httpClient2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient2.DefaultRequestHeaders.Remove("x-functions-key");
+                httpClient2.DefaultRequestHeaders.Add("x-functions-key", "WimOOGUL0pnXXHVVw1cMRQF5NCxdnOpjVa5eQpTa8b5s5a3ar94rNA==");
 
                 HttpResponseMessage response = await httpClient2.PostAsJsonAsync("Counter/add", tsCounterForSend);
                 string result = await response.Content.ReadFromJsonAsync<string>();
@@ -159,7 +176,7 @@ namespace BlazorCounterHelper
             catch (Exception ex)
             {
 
-                Console.WriteLine(ex.Message);
+                PrintError(ex.Message, MethodBase.GetCurrentMethod());
                 return ex.Message;
             }
         }
@@ -208,5 +225,20 @@ namespace BlazorCounterHelper
         {
             return date.AddMilliseconds((DateTime.UtcNow- DateTime.Now).TotalMilliseconds);
         }
-  }
+
+
+        public static void PrintError(string pError, MethodBase pMethod)
+        {
+
+            Console.WriteLine("Error:" + pError + " in " + getMethodName(pMethod));
+
+           
+        }
+
+
+        public static string getMethodName(MethodBase Par_Method)
+        {
+            return Par_Method.Name + "." + Par_Method.DeclaringType.FullName;
+        }
+    }
 }

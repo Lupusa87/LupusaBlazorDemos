@@ -204,7 +204,7 @@ namespace BlazorCalculatorComponent
 
         }
 
-        public void KeyUpFromBWH(ConsoleKey consoleKey)
+        public void KeyUpFromBWH(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
         {
 
             switch (consoleKey)

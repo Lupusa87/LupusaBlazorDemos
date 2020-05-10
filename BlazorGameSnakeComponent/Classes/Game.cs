@@ -30,6 +30,9 @@ namespace BlazorGameSnakeComponent.Classes
         public static bool Are_Borders_Open = true;
         public static MyPoint target_position;
         public static bool Is_Enabled_Audio = true;
+        public static bool CtrlDoubleSpeed = false;
+        public static bool ShiftHalfSpeed = false;
+
 
         public static void move_to_direction()
         {
@@ -400,12 +403,21 @@ namespace BlazorGameSnakeComponent.Classes
                 SoundEffect.bg_sound.play();
             }
             Is_Started = true;
-           
 
-            timer = new Timer(TimerCallback, null, 0, LocalData.global_speed);
 
-            
+            TimerReset();
         }
+
+
+        public static void TimerReset()
+        {
+            if (timer != null)
+            {
+              timer.Dispose();
+            }
+            timer = new Timer(TimerCallback, null, 0, LocalData.global_speed);
+        }
+
 
 
         public static void TimerCallback(Object stateInfo)
