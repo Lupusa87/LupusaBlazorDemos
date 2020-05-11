@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using LupusaBlazorDemos.Demos;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,19 @@ namespace LupusaBlazorDemos
         internal static ValueTask<string> GetData(string variableName)
         {
             return jsRuntime.InvokeAsync<string>("LBDJsFunctions.GetData", variableName);
+        }
+
+        internal static ValueTask<bool> HandleDrag(IJSRuntime jsRuntime, string elementID, int id, DotNetObjectReference<PageDragAndDrop> dotnetHelper)
+        {
+            return jsRuntime.InvokeAsync<bool>(
+                "LBDJsFunctions.handleDragStart", elementID, id, dotnetHelper);
+        }
+
+
+        internal static ValueTask<bool> HandleDrop(IJSRuntime jsRuntime, string elementID, int id, DotNetObjectReference<PageDragAndDrop> dotnetHelper)
+        {
+            return jsRuntime.InvokeAsync<bool>(
+                "LBDJsFunctions.handleDrop", elementID, id, dotnetHelper);
         }
     }
 }

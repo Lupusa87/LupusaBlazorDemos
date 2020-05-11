@@ -39,6 +39,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPasswordPatternCompon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTreeVisualizerComponent", "BlazorTreeVisualizerComponent\BlazorTreeVisualizerComponent.csproj", "{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPerformanceChartComponent", "BlazorPerformanceChartComponent\BlazorPerformanceChartComponent.csproj", "{08A3A334-52EB-4640-8CCA-4C44D032D53D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSplitterComponent", "..\BlazorSplitter\BlazorSplitterComponent\BlazorSplitterComponent.csproj", "{60A44F2E-614C-4723-BCB6-14477C603901}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorScrollbarComponent", "..\BlazorScrollbar\BlazorScrollbarComponent\BlazorScrollbarComponent.csproj", "{EE696109-FF87-4E48-A135-B7A0F5F00893}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorVirtualGridComponent", "..\BlazorVirtualGrid\BlazorVirtualGridComponent\BlazorVirtualGridComponent.csproj", "{8763522D-ABAE-463D-9E60-6DC540F645BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +125,22 @@ Global
 		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C807D2-5DCB-4E7F-9827-07C5BA311E04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08A3A334-52EB-4640-8CCA-4C44D032D53D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A3A334-52EB-4640-8CCA-4C44D032D53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A3A334-52EB-4640-8CCA-4C44D032D53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A3A334-52EB-4640-8CCA-4C44D032D53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A44F2E-614C-4723-BCB6-14477C603901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A44F2E-614C-4723-BCB6-14477C603901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A44F2E-614C-4723-BCB6-14477C603901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A44F2E-614C-4723-BCB6-14477C603901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE696109-FF87-4E48-A135-B7A0F5F00893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE696109-FF87-4E48-A135-B7A0F5F00893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE696109-FF87-4E48-A135-B7A0F5F00893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE696109-FF87-4E48-A135-B7A0F5F00893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8763522D-ABAE-463D-9E60-6DC540F645BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8763522D-ABAE-463D-9E60-6DC540F645BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8763522D-ABAE-463D-9E60-6DC540F645BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8763522D-ABAE-463D-9E60-6DC540F645BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

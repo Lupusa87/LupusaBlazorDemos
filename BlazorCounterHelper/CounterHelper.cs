@@ -154,8 +154,6 @@ namespace BlazorCounterHelper
                 CmdTrimEntity(ParTSCounter);
 
 
-                Console.WriteLine(ParTSCounter.Source);
-
                 TSCounter tsCounterForSend = CopyObject<TSCounter>(ParTSCounter);
 
 

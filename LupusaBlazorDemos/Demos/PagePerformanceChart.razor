@@ -1,0 +1,90 @@
+﻿@page "/PagePerformanceChart"
+
+<h3 style="color:darkred">This is Performance Chart sample</h3>
+
+
+<br />
+
+<button class="btn btn-primary" style="width:120px;margin:3px" @onclick="@PcStart">@PcButton</button>
+
+<button class="btn btn-primary" style="width:120px;margin:3px" @onclick="@PcReset">Reset</button>
+
+<label style="margin:3px"> Time interval: </label>
+<input style="margin:3px" @bind="@TimerSpeed" @onclick="@CmdOnIntervalChange" type="number" min="100" max="1000" step="100" />
+
+<br />
+
+<br />
+
+<CompBlazorPerformanceChart @ref="@BPChart1" ChartSettings="@ChartSettings1"></CompBlazorPerformanceChart>
+
+<br />
+
+<table>
+    <tbody>
+        <tr>
+            <td style="vertical-align:top">
+                <input @bind="@ChartSettings1.StackColor" type="color" />
+                <label style="margin:3px">Stack Color</label>
+                <br />
+                <input @bind="@ChartSettings1.AreaColor" type="color" />
+                <label style="margin:3px">Area Color</label>
+                <br />
+                <input @bind="@ChartSettings1.LineColor" type="color" />
+                <label style="margin:3px">Line Color</label>
+                <br />
+                <input @bind="@ChartSettings1.PointStroke" type="color" />
+                <label style="margin:3px">Point Stroke</label>
+                <br />
+                <input @bind="@ChartSettings1.PointFill" type="color" />
+                <label style="margin:3px">Point Fill</label>
+                <br />
+                <input @bind="@ChartSettings1.BoardBorderColor" type="color" />
+                <label style="margin:3px">Board Boorder Color</label>
+                <br />
+                <input @bind="@ChartSettings1.BoardBGColor" type="color" />
+                <label style="margin:3px">Board BG Color</label>
+            </td>
+            <td style="vertical-align:top">
+                <input style="margin:3px" @bind="@ChartSettings1.StackLineWidth" type="number" min="1" max="5" step="1" />
+                <label style="margin:3px">Stack Line Width</label>
+                <br />
+
+                <input style="margin:3px" @bind="@ChartSettings1.LineWidth" type="number" min="1" max="5" step="1" />
+                <label style="margin:3px">Line Width</label>
+                <br />
+
+                <input style="margin:3px" @bind="@ChartSettings1.BoardBorderWidth" type="number" min="1" max="10" step="1" />
+                <label style="margin:3px">Board Boorder Width</label>
+                <br />
+
+                <input style="margin:3px" @bind="@ChartSettings1.PointLineWidth" type="number" min="1" max="5" step="1" />
+                <label style="margin:3px">Point Line Width</label>
+                <br />
+
+                <input style="margin:3px" @bind="@ChartSettings1.PointRadius" type="number" min="1" max="10" step="1" />
+                <label style="margin:3px">Point Radius</label>
+                <br />
+                <input style="margin:3px" @bind="@ChartSettings1.StackWidth" type="number" min="10" max="100" step="10" />
+                <label style="margin:3px"> Stack Width: </label>
+                <br />
+
+                <input style="margin:3px" @bind="@ChartSettings1.StackHeight" type="number" min="10" max="100" step="10" />
+                <label style="margin:3px"> Stack Height: </label>
+                <br />
+            </td>
+            <td style="vertical-align:top">
+
+                <input style="margin:3px" margi type="checkbox" @bind="@ChartSettings1.DrawStack" /> Draw Stack
+                <br />
+                <input style="margin:3px" margi type="checkbox" @bind="@ChartSettings1.DrawPoints" /> Draw Points
+                <br />
+                <input style="margin:3px" margi type="checkbox" @bind="@ChartSettings1.DrawArea" /> Draw Area
+                <br />
+                <br />
+                <br />
+                <button class="btn btn-primary" style="width:220px;margin:3px" @onclick="@GenerateRandomConfiguration">Get Random Configuration</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -13,7 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BlazorScrollbar\BlazorScrollbarComponent\BlazorScrollbarComponent.csproj" />
     <ProjectReference Include="..\..\BlazorSharedWebWorkerWebSocketHelper\BlazorSharedWebWorkerWebSocketHelper.csproj" />
+    <ProjectReference Include="..\..\BlazorSplitter\BlazorSplitterComponent\BlazorSplitterComponent.csproj" />
+    <ProjectReference Include="..\..\BlazorVirtualGrid\BlazorVirtualGridComponent\BlazorVirtualGridComponent.csproj" />
     <ProjectReference Include="..\..\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj" />
     <ProjectReference Include="..\..\BlazorWindowHelper\BlazorWindowHelper.csproj" />
@@ -27,6 +30,7 @@
     <ProjectReference Include="..\BlazorLoanCalculatorComponent\BlazorLoanCalculatorComponent.csproj" />
     <ProjectReference Include="..\BlazorPaintComponent\BlazorPaintComponent.csproj" />
     <ProjectReference Include="..\BlazorPasswordPatternComponent\BlazorPasswordPatternComponent.csproj" />
+    <ProjectReference Include="..\BlazorPerformanceChartComponent\BlazorPerformanceChartComponent.csproj" />
     <ProjectReference Include="..\BlazorSpreadsheetComponent\BlazorSpreadsheetComponent.csproj" />
     <ProjectReference Include="..\BlazorTreeVisualizerComponent\BlazorTreeVisualizerComponent.csproj" />
   </ItemGroup>

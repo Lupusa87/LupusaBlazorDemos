@@ -1,0 +1,22 @@
+﻿@page "/PageVirtualGrid"
+
+<h3 style="color:darkred">This is Blazor Virtual Grid</h3>
+
+<button class="btn btn-primary" style="margin:5px" @onclick="@CmdShowColumnsManager">Columns Manager</button>
+
+
+<button class="btn btn-primary" style="margin:5px" @onclick="@CmdShowStyleDesigner">Style Designer</button>
+
+
+<br />
+
+
+
+@*@if (FirstOrSecond)
+    {*@
+<CompBlazorVirtualGrid @ref="CurrBVG1" SourceList="@list1" TableName="@TableName1" bvgSettings="@bvgSettings1"></CompBlazorVirtualGrid>
+@*}
+    else
+    {
+        <CompBlazorVirtualGrid ref="CurrBVG2" SourceList="@list2" TableName="@TableName2" bvgSettings="@bvgSettings2"></CompBlazorVirtualGrid>
+    }*@
