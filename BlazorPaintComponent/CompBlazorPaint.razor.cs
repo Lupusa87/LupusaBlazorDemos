@@ -1,4 +1,5 @@
 ﻿using BlazorPaintComponent.classes;
+using BlazorWindowHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -39,10 +40,10 @@ namespace BlazorPaintComponent
 
         protected override void OnInitialized()
         {
-            BlazorWindowHelper.BlazorWindowHelper.Initialize();
-            BlazorWindowHelper.BWHJsInterop.SetOnOrOff(true);
-            BlazorWindowHelper.BlazorWindowHelper.OnScroll = OnScroll;
-            BlazorWindowHelper.BlazorWindowHelper.OnResize = OnScroll;
+           
+            BWHJsInterop.SetOnOrOff(true);
+            BWHWindowHelper.OnScroll = OnScroll;
+            BWHWindowHelper.OnResize = OnScroll;
             base.OnInitialized();
         }
 

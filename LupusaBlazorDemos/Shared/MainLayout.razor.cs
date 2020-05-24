@@ -36,7 +36,7 @@ namespace LupusaBlazorDemos.Shared
 
             LBDJsInterop.jsRuntime = jsRuntime;
             BWHJsInterop.jsRuntime = jsRuntime;
-            BWHJsLocalStorage.jsRuntime = jsRuntime;
+          
 
             await CheckCounterIsDisabled();
 
@@ -103,7 +103,7 @@ namespace LupusaBlazorDemos.Shared
 
         protected async Task<bool> CheckCounterIsDisabled()
         {
-            string result = await BWHJsLocalStorage.GetItem("DisableCounters");
+            string result = await BWHJsInterop.LocalStorageGetItem("DisableCounters");
 
             if (!string.IsNullOrEmpty(result))
             {

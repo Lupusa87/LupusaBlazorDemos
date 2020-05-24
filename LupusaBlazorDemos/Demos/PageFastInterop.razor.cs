@@ -50,18 +50,18 @@ namespace LupusaBlazorDemos.Demos
                 log.Add(JsMessage);
 
 
-                BlazorTimeAnalyzer.Reset();
-                BlazorTimeAnalyzer.Add("set data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Reset();
+                BWHTimeAnalyzer.Add("set data", MethodBase.GetCurrentMethod());
                 await LBDJsInterop.SetData("myTmpVar1", JsMessage);
 
-                BlazorTimeAnalyzer.Add("process data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("process data", MethodBase.GetCurrentMethod());
                 LBDJsInterop.ProcessData("myTmpVar1");
 
 
-                BlazorTimeAnalyzer.Add("get data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("get data", MethodBase.GetCurrentMethod());
                 log.Add(await LBDJsInterop.GetData("myTmpVar1"));
 
-                BlazorTimeAnalyzer.LogAll();
+                BWHTimeAnalyzer.LogAll();
 
 
                 JsMessage = string.Empty;
@@ -88,19 +88,19 @@ namespace LupusaBlazorDemos.Demos
                 log.Add(JsMessage);
 
 
-                BlazorTimeAnalyzer.Reset();
-                BlazorTimeAnalyzer.Add("set data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Reset();
+                BWHTimeAnalyzer.Add("set data", MethodBase.GetCurrentMethod());
                 JsFastDataExchanger.SetStringData("myTmpVar1", JsMessage);
 
-                BlazorTimeAnalyzer.Add("process data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("process data", MethodBase.GetCurrentMethod());
                 LBDJsInterop.ProcessData("myTmpVar1");
 
 
-                BlazorTimeAnalyzer.Add("get data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("get data", MethodBase.GetCurrentMethod());
                 log.Add(JsFastDataExchanger.GetStringData("myTmpVar1"));
 
 
-                BlazorTimeAnalyzer.LogAll();
+                BWHTimeAnalyzer.LogAll();
 
                 JsMessage = string.Empty;
 

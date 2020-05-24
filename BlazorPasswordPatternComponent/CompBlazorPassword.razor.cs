@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorWindowHelper;
+using BlazorWindowHelper.Classes;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +27,9 @@ namespace BlazorPasswordPatternComponent
         protected override void OnInitialized()
         {
 
-            BlazorWindowHelper.BlazorWindowHelper.Initialize();
-            BlazorWindowHelper.BWHJsInterop.SetOnOrOff(true);
-            BlazorWindowHelper.BlazorWindowHelper.OnKeyUp = KeyUpFromJS;
+           
+            BWHJsInterop.SetOnOrOff(true);
+            BWHKeyboardHelper.OnKeyUp = KeyUpFromJS;
 
             ComponentSettings.compWidth = CompWidth;
             ComponentSettings.compHeight = CompHeight;
@@ -160,10 +162,10 @@ namespace BlazorPasswordPatternComponent
 
 
 
-        public void KeyUpFromJS(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
+        public void KeyUpFromJS(BWHKeyboardState keyboardState)
         {
 
-            switch (consoleKey)
+            switch (keyboardState.consoleKey)
             {
                 case ConsoleKey.D0:
                     Reset();

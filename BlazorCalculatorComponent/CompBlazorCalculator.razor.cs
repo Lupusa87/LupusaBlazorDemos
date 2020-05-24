@@ -1,4 +1,6 @@
 ﻿using BlazorCalculatorComponent.Classes;
+using BlazorWindowHelper;
+using BlazorWindowHelper.Classes;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -33,16 +35,14 @@ namespace BlazorCalculatorComponent
         protected override void OnInitialized()
         {
 
-            if (!BlazorWindowHelper.BWHJsInterop.IsReady)
+            if (!BWHJsInterop.IsReady)
             {
-                BlazorWindowHelper.BWHJsInterop.jsRuntime = jsRuntime;
-                BlazorWindowHelper.BWHJsInterop.IsReady = true;
+               BWHJsInterop.jsRuntime = jsRuntime;
+               BWHJsInterop.IsReady = true;
             }
 
-
-            BlazorWindowHelper.BlazorWindowHelper.Initialize();
-            BlazorWindowHelper.BWHJsInterop.SetOnOrOff(true);
-            BlazorWindowHelper.BlazorWindowHelper.OnKeyUp = KeyUpFromBWH;
+            BWHJsInterop.SetOnOrOff(true);
+            BWHKeyboardHelper.OnKeyUp = KeyUpFromBWH;
             base.OnInitialized();
         }
 
@@ -204,10 +204,10 @@ namespace BlazorCalculatorComponent
 
         }
 
-        public void KeyUpFromBWH(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
+        public void KeyUpFromBWH(BWHKeyboardState keyboardState)
         {
 
-            switch (consoleKey)
+            switch (keyboardState.consoleKey)
             {
                 case ConsoleKey.D0:
                     AddString("0");

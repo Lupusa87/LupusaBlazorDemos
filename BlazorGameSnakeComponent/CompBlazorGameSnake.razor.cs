@@ -1,4 +1,6 @@
 ﻿using BlazorGameSnakeComponent.Classes;
+using BlazorWindowHelper;
+using BlazorWindowHelper.Classes;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -188,10 +190,10 @@ namespace BlazorGameSnakeComponent
 
         protected override void OnInitialized()
         {
-            BlazorWindowHelper.BlazorWindowHelper.Initialize();
-            BlazorWindowHelper.BWHJsInterop.SetOnOrOff(true);
-            BlazorWindowHelper.BlazorWindowHelper.OnKeyDown = KeyDownFromJS;
-            BlazorWindowHelper.BlazorWindowHelper.OnKeyUp = KeyUpFromJS;
+
+            BWHJsInterop.SetOnOrOff(true);
+            BWHKeyboardHelper.OnKeyDown = KeyDownFromJS;
+            BWHKeyboardHelper.OnKeyUp = KeyUpFromJS;
 
             Game.points_Count = Game.x_Length * Game.y_Length;
             Game.point_Width = Math.Round(LocalData.CompWidth * 1.0 / Game.x_Length, 2);
@@ -242,7 +244,7 @@ namespace BlazorGameSnakeComponent
         }
 
 
-        public void KeyDownFromJS(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
+        public void KeyDownFromJS(BWHKeyboardState keyboardState)
         {
 
             if (Game.Is_Enabled)
@@ -251,7 +253,7 @@ namespace BlazorGameSnakeComponent
                 {
                     
 
-                    if (Game.Is_Started && ctrl && !Game.CtrlDoubleSpeed)
+                    if (Game.Is_Started && keyboardState.ctrl && !Game.CtrlDoubleSpeed)
                     {
                         Game.CtrlDoubleSpeed = true;
                         
@@ -260,7 +262,7 @@ namespace BlazorGameSnakeComponent
                     }
 
 
-                    if (Game.Is_Started && shift && !Game.ShiftHalfSpeed)
+                    if (Game.Is_Started && keyboardState.shift && !Game.ShiftHalfSpeed)
                     {
                         Game.ShiftHalfSpeed = true;
 
@@ -272,14 +274,14 @@ namespace BlazorGameSnakeComponent
 
         }
 
-        public void KeyUpFromJS(ConsoleKey consoleKey, bool ctrl, bool shift, bool alt)
+        public void KeyUpFromJS(BWHKeyboardState keyboardState)
         {
            
             if (Game.Is_Enabled)
             {
                 if (!Game.Is_Bot_Mode)
                 {
-                    if (Game.Is_Started && !ctrl && Game.CtrlDoubleSpeed)
+                    if (Game.Is_Started && !keyboardState.ctrl && Game.CtrlDoubleSpeed)
                     {
                         Game.CtrlDoubleSpeed = false;
                         LocalData.global_speed *= 2;
@@ -287,14 +289,14 @@ namespace BlazorGameSnakeComponent
                     }
 
 
-                    if (Game.Is_Started && !shift && Game.ShiftHalfSpeed)
+                    if (Game.Is_Started && !keyboardState.shift && Game.ShiftHalfSpeed)
                     {
                         Game.ShiftHalfSpeed = false;
                         LocalData.global_speed /= 2;
                         Game.TimerReset();
                     }
 
-                    switch (consoleKey)
+                    switch (keyboardState.consoleKey)
                     {
 
                         case ConsoleKey.DownArrow:

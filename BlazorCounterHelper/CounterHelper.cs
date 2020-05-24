@@ -135,6 +135,7 @@ namespace BlazorCounterHelper
                 }
 
                 ParTSCounter.Source = ParTSCounter.Source.Replace("https://lupblazordemos.z13.web.core.windows.net/", null);
+                ParTSCounter.Source = ParTSCounter.Source.Replace("https://khutsuri.z1.web.core.windows.net/", "khutsuri");
                 ParTSCounter.Source = ParTSCounter.Source.Replace("Page", null);
                 ParTSCounter.Source = ParTSCounter.Source.Replace("page", null);
 

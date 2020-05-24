@@ -69,7 +69,7 @@ namespace LupusaBlazorDemos.Demos
             _BinaryInfo.progressInfo = "done";
             log.Add(".net loaded " + _BinaryInfo.dataLenght + " bytes");
             log.Add("done");
-            BlazorTimeAnalyzer.LogAll();
+            BWHTimeAnalyzer.LogAll();
 
             StateHasChanged();
         }
@@ -82,7 +82,7 @@ namespace LupusaBlazorDemos.Demos
                 log.Add("js loaded " + _BinaryInfo.dataLenght + " bytes");
                 await InvokeAsync(StateHasChanged);
 
-                BlazorTimeAnalyzer.Add("reading in .net", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("reading in .net", MethodBase.GetCurrentMethod());
 
 
                 double gb = BJSFDEHelperMethods.ConvertSize(_BinaryInfo.dataLenght, BJSFDEHelperMethods.SizeUnit.gb);
@@ -151,13 +151,13 @@ namespace LupusaBlazorDemos.Demos
                 await CounterHelper.CmdAddCounter(new TSCounter() { Source = navigationManager.Uri, Action = "ClickButtonRegular" });
 
 
-                BlazorTimeAnalyzer.Reset("Regular mode");
+                BWHTimeAnalyzer.Reset("Regular mode");
 
                 log.Add("started");
                 log.Add("js is loading file...");
                 StateHasChanged();
 
-                BlazorTimeAnalyzer.Add("set data", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("set data", MethodBase.GetCurrentMethod());
 
                 string a = await LBDJsInterop.GetFile(_BinaryInfo.variableName, "fileUpload");
                 log.Add(a);
@@ -165,7 +165,7 @@ namespace LupusaBlazorDemos.Demos
                 log.Add(".net loaded " + a.Length + " bytes");
                 log.Add("done");
 
-                BlazorTimeAnalyzer.LogAll();
+                BWHTimeAnalyzer.LogAll();
                 StateHasChanged();
             }
             else
@@ -186,8 +186,8 @@ namespace LupusaBlazorDemos.Demos
 
                 _BinaryInfo.progressInfo = "started";
                 log.Add("started");
-                BlazorTimeAnalyzer.Reset("Fast mode");
-                BlazorTimeAnalyzer.Add("reading in js", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Reset("Fast mode");
+                BWHTimeAnalyzer.Add("reading in js", MethodBase.GetCurrentMethod());
 
                 _BinaryInfo.progressInfo = "js is loading file...";
                 log.Add("js is loading file...");

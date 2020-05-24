@@ -44,10 +44,6 @@ namespace LupusaBlazorDemos.Pages
         {
             bwsJsInterop = new BwsJsInterop(jsRuntime);
 
-            BlazorWindowHelper.BlazorWindowHelper.Initialize();
-
-            
-
             WsConnect();
 
             base.OnInitialized();
