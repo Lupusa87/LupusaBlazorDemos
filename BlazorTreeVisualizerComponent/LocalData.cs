@@ -12,65 +12,65 @@ namespace BlazorTreeVisualizerComponent
 
     internal static class LocalData
     {
-        internal static int Current_Tree_ID = 0;
+        internal static int CurrentID = 0;
 
         internal static CompBlazorTreeVisualizer compBlazorTreeVisualizer = null;
 
-        internal static Color MyColorPicker_Color = Color.White;
+        internal static Color MyColorPickerColor = Color.White;
 
 
-        internal static List<TreeItem> dynamic_List = new List<TreeItem>();
-        //internal static List<CompChild> Components_List = new List<CompChild>();
+        internal static List<TreeItem> dynamicList = new List<TreeItem>();
+        //internal static List<CompChild> ComponentsList = new List<CompChild>();
 
-        internal static List<string> Column_Headers_List = new List<string>();
-        internal static List<string> Columns_List = new List<string>();
-
-
+        internal static List<string> ColumnHeadersList = new List<string>();
+        internal static List<string> ColumnsList = new List<string>();
 
 
-        internal static bool My_Set_Bold_To_Parents = true;
-
-        internal static int My_Levels_Count = 0;
-        internal static int My_MaxLevel = 0;
-        internal static int My_MinLevel = 0;
-        internal static int My_Tree_Icon_With_And_Heigth = 26;
 
 
-        internal static bool My_Show_All_Rows = false;
-        internal static bool Fill_Full_List = true;
+        internal static bool SetBoldToParents = true;
 
-        internal static bool My_IsLineDashed = false;
-        internal static double My_DashArray_Value = 4;
-        internal static Color MyTree_Line_Color = Color.Red;
-        internal static Color MyTree_MinusOrPlus_Color = Color.Blue;
-        internal static Color MyTree_MinusOrPlus_Border_Color = Color.Black;
-
-        internal static bool MyTree_Use_Gradinet = true;
-
-        internal static Color MyTree_Gradinet_Color_1 = Color.White;
-        internal static Color MyTree_Gradinet_Color_2 = Color.LightGreen;
-        internal static Color MyTree_Gradinet_Color_3 = Color.Green;
+        internal static int LevelsCount = 0;
+        internal static int MaxLevel = 0;
+        internal static int MinLevel = 0;
+        internal static int IconWithAndHeigth = 26;
 
 
-        internal static double MyTree_Line_StrokeThickness = 1;
-        internal static double MyTree_MinusOrPlus_StrokeThickness = 3;
-        internal static double MyTree_MinusOrPlus_Border_StrokeThickness = 2;
+        internal static bool ShowAllRows = false;
+        internal static bool FillFullList = true;
 
-        internal static g Tree_Icon_Minus = null;
-        internal static g Tree_Icon_Minus_Top = null;
-        internal static g Tree_Icon_Minus_Bottom = null;
-        internal static g Tree_Icon_Minus_Top_Bottom = null;
+        internal static bool IsLineDashed = false;
+        internal static double DashArrayValue = 4;
+        internal static Color LineColor = Color.Red;
+        internal static Color MinusOrPlusColor = Color.Blue;
+        internal static Color MinusOrPlusBorderColor = Color.Black;
 
-        internal static g Tree_Icon_Plus = null;
-        internal static g Tree_Icon_Plus_Top = null;
-        internal static g Tree_Icon_Plus_Bottom = null;
-        internal static g Tree_Icon_Plus_Top_Bottom = null;
+        internal static bool UseGradinet = true;
 
-        internal static g Tree_Icon_Item = null;
-        internal static g Tree_Icon_Line = null;
-        internal static g Tree_Icon_LastItem = null;
+        internal static Color GradinetColor1 = Color.White;
+        internal static Color GradinetColor2 = Color.LightGreen;
+        internal static Color GradinetColor3 = Color.Green;
 
-        // internal static LinearGradientBrush My_LinearGradientBrush = null;
+
+        internal static double LineStrokeThickness = 1;
+        internal static double MinusOrPlusStrokeThickness = 3;
+        internal static double MinusOrPlusBorderStrokeThickness = 2;
+
+        internal static g IconMinus = null;
+        internal static g IconMinusTop = null;
+        internal static g IconMinusBottom = null;
+        internal static g IconMinusTopBottom = null;
+
+        internal static g IconPlus = null;
+        internal static g IconPlusTop = null;
+        internal static g IconPlusBottom = null;
+        internal static g IconPlusTopBottom = null;
+
+        internal static g IconItem = null;
+        internal static g IconLine = null;
+        internal static g IconLastItem = null;
+
+        // internal static LinearGradientBrush LinearGradientBrush = null;
     }
     
 }
