@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BlazorTreeVisualizerComponent
 {
-    public static class PublicData
+    public static class PublicDataTree
     {
         public static List<TreeItem> dynamicOriginalList = new List<TreeItem>();
 
