@@ -54,16 +54,16 @@ window.LBDJsFunctions = {
         return alert(message);
     },
     SetData: function (v, t) {
-        this[v] = t;
+        window[v] = t;
         return true;
     },
     GetData: function (v) {
-        var result = this[v];
-        delete this[v];
+        var result = window[v];
+        delete window[v];
         return result;
     },
     ProcessData: function (v) {
-        this[v] = this[v].split("").reverse().join("");
+        window[v] = window[v].split("").reverse().join("");
     },
     HasFile: async function (inputFile) {
         return document.getElementById(inputFile).files.length > 0;
