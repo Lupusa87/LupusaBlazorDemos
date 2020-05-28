@@ -11,6 +11,8 @@ Please send [email](mailto:VakhtangiAbashidze@gmail.com) if you consider to **hi
 
 ![](https://placehold.it/15/ffffff/000000?text=+)   
 
+If you download this repo you have to download another referenced repos too, for some of them you can install [nuget](https://www.nuget.org/profiles/Lupusa87) packages instead.
+
 
 For now best performance has Chrome, you can look at [demo](http://lupusablazordemos.azurewebsites.net).
 
