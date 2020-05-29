@@ -1,15 +1,25 @@
 @inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
 
-<div class="main">
-    <div class="top-row px-4">
-        <HeaderLinks RepoName="LupusaBlazorDemos"></HeaderLinks>
+@if (LBDLocalData.IsLayoutVisible)
+{
+    <div class="sidebar">
+        <NavMenu />
     </div>
 
-    <div class="content px-4">
-        @Body
+    <div class="main">
+        <div class="top-row px-4">
+            <HeaderLinks RepoName="LupusaBlazorDemos"></HeaderLinks>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
     </div>
+}
+else
+{
+<div style="width:100%;background-color:azure;">
+    @Body
 </div>
+}

@@ -3,11 +3,17 @@
 <h3>Tree View</h3>
 
 
-<button class="btn btn-primary" width="400" height="100" style="margin:5px" @onclick="@CmdButtonClick" >delete selected</button>
+<button class="btn btn-primary" width="400" height="100" style="margin:5px" @onclick="@CmdButtonClick">delete selected</button>
 
-   
 
- 
-  <br/>
-  <br />
+
+
+<br />
+<br />
 <CompBlazorTreeVisualizer @ref="treeview" TreeVizualizationItemCode="0"></CompBlazorTreeVisualizer>
+
+
+<br />
+<br />
+<button class="btn btn-primary" width="400" height="100" style="margin:5px" @onclick="@CmdPrintClick">print</button>
+

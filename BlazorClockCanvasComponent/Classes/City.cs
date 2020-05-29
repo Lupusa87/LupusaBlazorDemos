@@ -47,12 +47,12 @@ namespace BlazorClockCanvasComponent.Classes
             string a = Guid.NewGuid().ToString("d").Substring(1, 4);
             CanvasID = "myCanvas_" + a;
 
-            if (!LocalData.Canvases_List.Any(x => x.Equals(CanvasID, StringComparison.InvariantCultureIgnoreCase)))
+            if (!BCCCLocalData.Canvases_List.Any(x => x.Equals(CanvasID, StringComparison.InvariantCultureIgnoreCase)))
             {
 
                 BgCanvasID = "myBgCanvas_" + a;
                 TopCanvasID = "myTopCanvas_" + a;
-                LocalData.Canvases_List.Add(CanvasID);
+                BCCCLocalData.Canvases_List.Add(CanvasID);
             }
             else
             {

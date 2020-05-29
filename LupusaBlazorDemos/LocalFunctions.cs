@@ -8,22 +8,33 @@ namespace LupusaBlazorDemos
 {
     public static class LocalFunctions
     {
+        public static NavigationManager navigationManager { get; set; } = null;
+
+
         static readonly Dictionary<string, string> UrlsDict = new Dictionary<string, string>()
         {
-           // {"calculatorpage", "lupblazorcalculator" },
-           //{"chesspage", "lupblazorchess" },
-           // {"clockcanvas", "lupblazorclockcanvas" },
-           // {"clocksvg", "lupblazorclocksvg" },
-          //  {"doughnutchartpage", "lupblazordoughnutchart" },
-          //  {"gamesnakepage", "lupblazorsnake" },
-          //  {"loancalculatorpage", "lupblazorloancalculator" },
-           // {"paintpage", "lupblazorpaint" },
-          //  {"passwordpatternpage", "lupblazorpasswordpattern" },
-          //  {"performancechartpage", "lupblazorperfchart" },
-          //  {"spreadsheetpage", "lupblazorspreadsheet" },
-          //  {"treeviewpage", "lupblazortreevisualizer" },
-          //  {"virtualizedlistpage", "lupblazorvirtuiallist" },
+            // {"calculatorpage", "lupblazorcalculator" },
+            //{"chesspage", "lupblazorchess" },
+            // {"clockcanvas", "lupblazorclockcanvas" },
+            // {"clocksvg", "lupblazorclocksvg" },
+            //  {"doughnutchartpage", "lupblazordoughnutchart" },
+            //  {"gamesnakepage", "lupblazorsnake" },
+            //  {"loancalculatorpage", "lupblazorloancalculator" },
+            // {"paintpage", "lupblazorpaint" },
+            //  {"passwordpatternpage", "lupblazorpasswordpattern" },
+            //  {"performancechartpage", "lupblazorperfchart" },
+            //  {"spreadsheetpage", "lupblazorspreadsheet" },
+            //  {"treeviewpage", "lupblazortreevisualizer" },
+            //  {"virtualizedlistpage", "lupblazorvirtuiallist" },
         };
+
+        public static void CmdNavigate(string ParRoute = "")
+        {
+            navigationManager.NavigateTo("/" + ParRoute);
+        }
+
+
+        
 
         internal static void RedirectIfNeeded(NavigationManager navigationManager)
         {
@@ -50,10 +61,10 @@ namespace LupusaBlazorDemos
 
         public static DateTime ToLocalDate(DateTime d)
         {
-            if (LocalData.TimezoneOffset != -99999)
+            if (LBDLocalData.TimezoneOffset != -99999)
             {
 
-                return d.AddHours(-LocalData.TimezoneOffset);
+                return d.AddHours(-LBDLocalData.TimezoneOffset);
             }
             else
             {

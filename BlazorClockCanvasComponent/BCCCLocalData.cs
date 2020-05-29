@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BlazorClockCanvasComponent
 {
-    public static class LocalData
+    public static class BCCCLocalData
     {
 
        public static Random rnd1 = new Random();

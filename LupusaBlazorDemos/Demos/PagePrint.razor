@@ -1,0 +1,34 @@
+﻿@page "/print"
+
+
+
+    <style>
+        .Mydiv {
+            margin: auto;
+            width: 1140px;/* width: 21cm;*/
+            min-height: 100vh;
+            background-color: antiquewhite;
+            padding: 20px;
+            overflow: hidden;
+            /*-webkit-print-color-adjust: exact;*/
+        }
+
+        @@media print {
+            @@page {
+                size: A4;
+                background-color: antiquewhite;
+                outline: 2cm green solid;
+            }
+        }
+
+    </style>
+
+
+
+    <div class="Mydiv">
+        <div style="margin:50px">
+            <CompBlazorTreeVisualizer TreeVizualizationItemCode="0"></CompBlazorTreeVisualizer>
+
+        </div>
+    </div>
+    <div class="Mydiv" id="mydiv2" style="height:1500px"></div>

@@ -30,6 +30,11 @@ namespace LupusaBlazorDemos.Shared
         protected override async Task OnInitializedAsync()
         {
 
+            LBDLocalData.mainLayout = this;
+
+
+            LocalFunctions.navigationManager = navigationManager;
+
             CounterHelper.Initialize();
 
             LocalFunctions.RedirectIfNeeded(navigationManager);
@@ -61,9 +66,9 @@ namespace LupusaBlazorDemos.Shared
             //}
 
 
-            if (LocalData.TimezoneOffset == -99999)
+            if (LBDLocalData.TimezoneOffset == -99999)
             {
-                LocalData.TimezoneOffset = await BWHJsInterop.GetTimezoneOffset();
+                LBDLocalData.TimezoneOffset = await BWHJsInterop.GetTimezoneOffset();
             }
 
             await base.OnInitializedAsync();
@@ -112,6 +117,12 @@ namespace LupusaBlazorDemos.Shared
 
             return true;
         }
+
+        public void Refresh()
+        {
+            StateHasChanged();
+        }
+
     }
 
 

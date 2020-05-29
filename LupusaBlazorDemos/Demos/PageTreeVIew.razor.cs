@@ -1,4 +1,5 @@
-﻿using BlazorTreeVisualizerComponent;
+﻿using BlazorClockCanvasComponent;
+using BlazorTreeVisualizerComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,15 @@ namespace LupusaBlazorDemos.Demos
         private void CmdButtonClick()
         {
             treeview.CmdDeleteSelected();
+        }
+
+
+        private void CmdPrintClick()
+        {
+            LBDLocalData.ShouldCallPrintDialog = true;
+            LBDLocalData.IsLayoutVisible = false;
+            LBDLocalData.mainLayout.Refresh();
+            LocalFunctions.CmdNavigate("print");
         }
 
 
