@@ -62,7 +62,7 @@ namespace BlazorPerformanceChartComponent
                 fill = _parent.ChartSettings.BoardBGColor,
             };
 
-            SvgHelper1.Cmd_Render(r1, 0, builder);
+            SvgHelper1.Cmd_Render(r1,0, builder);
 
             base.BuildRenderTree(builder);
         }

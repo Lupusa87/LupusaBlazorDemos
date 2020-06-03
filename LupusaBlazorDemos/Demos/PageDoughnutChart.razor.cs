@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,5 +13,11 @@ namespace LupusaBlazorDemos.Demos
 
         string Color1 = "#fc3807";
         string Color2 = "#52d044";
+
+
+        private void cmdOnInput(ChangeEventArgs a)
+        {
+            CurrValue = int.Parse(a.Value.ToString());
+        }
     }
 }

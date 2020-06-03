@@ -58,7 +58,7 @@ namespace BlazorPerformanceChartComponent
             {
                 SvgHelper SvgHelper1 = new SvgHelper();
 
-                SvgHelper1.Cmd_Render<g>(Paint_Points(), 0, builder);
+                SvgHelper1.Cmd_Render<g>(Paint_Points(),0, builder);
             }
 
             base.BuildRenderTree(builder);

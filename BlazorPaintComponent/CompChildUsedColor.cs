@@ -1,4 +1,5 @@
 ﻿using BlazorSvgHelper;
+using BlazorSvgHelper.Classes;
 using BlazorSvgHelper.Classes.SubClasses;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -37,11 +38,11 @@ namespace BlazorPaintComponent
                 fill = color,
                 stroke = "black",
                 stroke_width = 1,
-                onclick = "notEmpty",
+                onclick = BoolOptionsEnum.Yes,
             };
 
 
-            SvgHelper1.Cmd_Render(c, 0, builder);
+            SvgHelper1.Cmd_Render(c,0, builder);
 
             base.BuildRenderTree(builder);
 
@@ -57,7 +58,7 @@ namespace BlazorPaintComponent
         }
 
 
-        public void ComponentClicked(MouseEventArgs e)
+        public void ComponentClicked(MouseEventArgs e, int id)
         {
             (parent as CompUsedColors).ColorSelected(color);
         }

@@ -1,4 +1,5 @@
 ﻿using BlazorChessComponent.Engine;
+using BlazorSvgHelper.Classes;
 using BlazorSvgHelper.Classes.SubClasses;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -117,7 +118,7 @@ namespace BlazorChessComponent
                         width = ChessEngine1.MyCell.width * 0.8,
                         height = ChessEngine1.MyCell.height * 0.8,
                         href = "content/images/style3/" + Image_Name + ".png",
-                        onclick = "notempty",
+                        onclick =  BoolOptionsEnum.Yes,
                     });
 
                     

@@ -36,7 +36,7 @@ namespace BlazorPaintComponent
         {
             Generate_SVG();
 
-            SvgHelper1.Cmd_Render(_Svg, 0, builder);
+            SvgHelper1.Cmd_Render(_Svg,0, builder);
 
             base.BuildRenderTree(builder);
         }

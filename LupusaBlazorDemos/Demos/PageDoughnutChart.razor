@@ -36,7 +36,7 @@
         <CompDoughnutChart WidthAndHeight="400" ForeColor1="@Color1" ForeColor2="@Color2" ActualValue="@CurrValue" />
         <br>
         <br>
-        <input type="range" min="1" width="400" max="100" @bind="@CurrValue" />
+        <input type="range" min="1" width="400" max="100" @bind="@CurrValue" @oninput="@cmdOnInput" />
 
         <input id="color1" @bind="@Color1" type="color" />
         <input id="color2" @bind="@Color2" type="color" />

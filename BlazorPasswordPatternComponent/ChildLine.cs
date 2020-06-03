@@ -50,7 +50,7 @@ namespace BlazorPasswordPatternComponent
                 });
             }
 
-            SvgHelper1.Cmd_Render(g1, 0, builder);
+            SvgHelper1.Cmd_Render(g1,0, builder);
 
             base.BuildRenderTree(builder);
 

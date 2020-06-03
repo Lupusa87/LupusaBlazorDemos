@@ -1,4 +1,5 @@
-﻿using BlazorSvgHelper.Classes.SubClasses;
+﻿using BlazorSvgHelper.Classes;
+using BlazorSvgHelper.Classes.SubClasses;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -192,9 +193,9 @@ namespace BlazorTreeVisualizerComponent
                 //width = LocalData.IconWithAndHeigth * 2
             };
 
+            g1.onclick = BoolOptionsEnum.Yes;
 
             rect rectangle1 = new rect();
-            rectangle1.onclick = "sas";
             rectangle1.height = LocalData.IconWithAndHeigth;
             rectangle1.width = LocalData.IconWithAndHeigth;
 
@@ -216,8 +217,8 @@ namespace BlazorTreeVisualizerComponent
             if (!ParMinusOrPlus)
             {
                 line line2 = new line();
-                //line2.onclick = "sas";
-                //line2.id = "p"+DateTime.Now.Ticks;
+                //line2.onclick = BoolOptionsEnum.Yes;
+                //line2.StopPropagation = BoolOptionsEnum.Yes;
                 line2.x1 = 27;
                 line2.y1 = 19;
                 line2.x2 = 27;
@@ -234,8 +235,8 @@ namespace BlazorTreeVisualizerComponent
             }
 
             line line1 = new line();
-            //line1.onclick = "sas";
-            //line1.id = "plus2";
+            //line1.onclick =  BoolOptionsEnum.Yes;
+            //line1.StopPropagation = BoolOptionsEnum.Yes;
             line1.x1 = 21;
             line1.y1 = 25;
             line1.x2 = 33;
@@ -396,8 +397,8 @@ namespace BlazorTreeVisualizerComponent
             svg1.id = Pardynamic.ID.ToString();
             svg1.width = Pardynamic.Level * LocalData.IconWithAndHeigth + 10;
             svg1.height = LocalData.IconWithAndHeigth;
+            
 
-          //  svg1.onclick = "aaa";
 
 
             g g1 = null;
@@ -409,6 +410,7 @@ namespace BlazorTreeVisualizerComponent
             #region DetectIconType
             if (Pardynamic.HasChildren)
             {
+                //svg1.onclick = BoolOptionsEnum.Yes;
                 if (Pardynamic.IsExpanded)
                 {
                     TmpIconType = 0;

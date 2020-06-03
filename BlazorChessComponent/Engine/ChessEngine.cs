@@ -1,4 +1,5 @@
-﻿using BlazorSvgHelper.Classes.SubClasses;
+﻿using BlazorSvgHelper.Classes;
+using BlazorSvgHelper.Classes.SubClasses;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -1774,7 +1775,7 @@ namespace BlazorChessComponent.Engine
                 width = _w,
                 height = _h,
                 href = "content/images/style3/" + _img + ".png",
-                onclick = "notempty",
+                onclick = BoolOptionsEnum.Yes,
             });
         }
 

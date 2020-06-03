@@ -24,7 +24,6 @@ namespace BlazorGameSnakeComponent
             set
             {
                 Game.Is_Bot_Mode = value;
-                Console.WriteLine(Game.Is_Bot_Mode);
                 run();
             }
 

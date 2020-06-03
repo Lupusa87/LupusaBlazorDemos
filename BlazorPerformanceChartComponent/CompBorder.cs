@@ -60,7 +60,7 @@ namespace BlazorPerformanceChartComponent
                 stroke_width = _parent.ChartSettings.BoardBorderWidth,
             };
 
-            SvgHelper1.Cmd_Render(r1, 0, builder);
+            SvgHelper1.Cmd_Render(r1,0, builder);
 
             base.BuildRenderTree(builder);
         }

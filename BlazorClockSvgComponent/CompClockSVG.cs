@@ -34,7 +34,7 @@ namespace BlazorClockSvgComponent
             Generate_Clock_SVG();
 
 
-            SvgHelper1.Cmd_Render(_Svg, 0, builder);
+            SvgHelper1.Cmd_Render(_Svg,0, builder);
 
 
         }

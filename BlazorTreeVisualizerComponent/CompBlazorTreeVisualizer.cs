@@ -72,31 +72,16 @@ namespace BlazorTreeVisualizerComponent
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            int k = -1;
-
-
+            int k = 0;
+  
             foreach (var item in LocalData.dynamicList.Where(x => x.IsVisible).OrderBy(x => x.SequenceNumber))
             {
                 builder.OpenComponent<CompChild>(k++);
                 builder.AddAttribute(k++, "ParID", item.ID);
                 builder.AddAttribute(k++, "CompID", item.ID+CmdGetUniqueID());
+                builder.SetKey(item);
                 builder.CloseComponent();
             }
-
-           
-
-            //builder.OpenElement(k++, "br");
-            //builder.CloseElement();
-
-            //builder.OpenElement(k++, "br");
-            //builder.CloseElement();
-
-            //foreach (var item in LocalData.dynamicList.OrderBy(x => x.SequenceNumber))
-            //{
-            //    builder.OpenElement(k++, "div");
-            //    builder.AddContent(k++, item.Column + " " + item.IsVisible + " " + item.IsSelected);
-            //    builder.CloseElement();
-            //}
 
             base.BuildRenderTree(builder);
         }

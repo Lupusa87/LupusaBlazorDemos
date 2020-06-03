@@ -1,4 +1,5 @@
 ﻿using BlazorSvgHelper;
+using BlazorSvgHelper.Classes;
 using BlazorSvgHelper.Classes.SubClasses;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -67,7 +68,7 @@ namespace BlazorPasswordPatternComponent
                 cx = par_i * ComponentSettings.w + ComponentSettings.w * 0.5,
                 cy = par_j * ComponentSettings.h + ComponentSettings.h * 0.5,
                 r = ComponentSettings.r,
-                onclick = "notEmpty",
+                onclick = BoolOptionsEnum.Yes,
                 stroke_width = ComponentSettings.compWidth * 0.01,
                 stroke = StrokeColor,
                 fill = ComponentSettings.BigCircle_Color,
@@ -82,12 +83,12 @@ namespace BlazorPasswordPatternComponent
                 cy = par_j * ComponentSettings.h + ComponentSettings.h * 0.5,
                 r = ComponentSettings.r * 0.4,
                 fill = ComponentSettings.SmallCircle_Color,
-                onclick = "notEmpty",
+                onclick = BoolOptionsEnum.Yes,
                 //CaptureRef = true,
             });
 
 
-            SvgHelper1.Cmd_Render(g1, 0, builder);
+            SvgHelper1.Cmd_Render(g1,0, builder);
 
             base.BuildRenderTree(builder);
 
@@ -122,7 +123,7 @@ namespace BlazorPasswordPatternComponent
         }
 
 
-        public void ComponentClicked(MouseEventArgs e)
+        public void ComponentClicked(MouseEventArgs e, int id)
         {
             ActionClicked?.Invoke(_id);
         }
