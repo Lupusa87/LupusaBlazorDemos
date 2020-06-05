@@ -17,10 +17,22 @@ namespace LupusaBlazorDemos.Demos
 
         public List<CompBlazorSplitter> CompBlazorSplitters_List_Rows = new List<CompBlazorSplitter>();
 
+
         public List<BsSettings> bsSettings_List_Cols { get; set; } = new List<BsSettings>();
 
 
+
+        int VDivHeight1 = 100;
+        int VDivHeight2 = 100;
+
+        int HDivWidth1 = 100;
+        int HDivWidth2 = 100;
+
+
         public List<BsSettings> bsSettings_List_Rows { get; set; } = new List<BsSettings>();
+        public BsSettings bsSettingPanel1 { get; set; } = new BsSettings();
+        public BsSettings bsSettingPanel2 { get; set; } = new BsSettings();
+
 
 
         public List<int> Width_list_Cols = new List<int>();
@@ -82,6 +94,27 @@ namespace LupusaBlazorDemos.Demos
             }
 
 
+
+            bsSettingPanel1 =new BsSettings("HorizontalScrollpanel")
+            {
+                VerticalOrHorizontal = true,
+                index = 0,
+                width = 200,
+                height = 4,
+                BgColor = "#bfbfbf",
+            };
+
+
+            bsSettingPanel2 = new BsSettings("VerticalScrollpanel")
+            {
+                VerticalOrHorizontal = false,
+                index = 0,
+                width = 4,
+                height = 200,
+                BgColor = "#b3ffb3",
+            };
+
+
             base.OnInitialized();
         }
 
@@ -137,6 +170,88 @@ namespace LupusaBlazorDemos.Demos
 
         }
 
+        public void OnPositionChangePanel1(bool b, int index, int p)
+        {
+            if (p>0)
+            {
+                if (VDivHeight1 < 160)
+                {
+                    correctSizesV(p);
+                }
+            }
+            else
+            {
+                if (VDivHeight1 > 40)
+                {
+                    correctSizesV(p);    
+                }
+            }
+        }
 
+        public void correctSizesV(int p)
+        {
+
+            VDivHeight1 += p;
+            VDivHeight2 -= p;
+
+            if (VDivHeight1 > 160) VDivHeight1 = 160;
+            if (VDivHeight2 > 160) VDivHeight2 = 160;
+            if (VDivHeight1 < 40) VDivHeight1 = 40;
+            if (VDivHeight2 < 40) VDivHeight2= 40;
+
+            StateHasChanged();
+        }
+
+            public string cmdGetStyle1Div1()
+        {
+            return "background-color:#bfbfbf;width:200px;min-height:40px;max-height:160px;height:" + VDivHeight1 + "px";
+        }
+        public string cmdGetStyle1Div2()
+        {
+            return "background-color:#b3ffb3;width:200px;min-height:40px;max-height:160px;height:" + VDivHeight2 + "px";
+        }
+
+        public void OnPositionChangePanel2(bool b, int index, int p)
+        {
+            Console.WriteLine(p);
+
+            if (p > 0)
+            {
+                if (HDivWidth1 < 160)
+                {
+                    correctSizesH(p);
+                }
+            }
+            else
+            {
+                if (HDivWidth1 > 40)
+                {
+                    correctSizesH(p);
+                }
+            }
+        }
+
+        public void correctSizesH(int p)
+        {
+
+            HDivWidth1 += p;
+            HDivWidth2 -= p;
+
+            if (HDivWidth1 > 160) HDivWidth1 = 160;
+            if (HDivWidth2 > 160) HDivWidth2 = 160;
+            if (HDivWidth1 < 40) HDivWidth1 = 40;
+            if (HDivWidth2 < 40) HDivWidth2 = 40;
+
+            StateHasChanged();
+        }
+
+        public string cmdGetStyle2Div1()
+        {
+            return "background-color:#bfbfbf;height:200px;min-width:40px;max-width:160px;width:" + HDivWidth1 + "px";
+        }
+        public string cmdGetStyle2Div2()
+        {
+            return "background-color:#b3ffb3;height:200px;min-width:40px;max-width:160px;width:" + HDivWidth2 + "px";
+        }
     }
 }

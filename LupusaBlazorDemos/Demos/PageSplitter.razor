@@ -5,7 +5,9 @@
 
 <br />
 
-<h4>Try to resize column/row</h4>
+<h4>Try to resize column/row or horizontal/vertical divs</h4>
+
+
 
 
 
@@ -49,3 +51,31 @@
 
     </tbody>
 </table>
+
+<br />
+<br />
+<div style="display:flex">
+
+    <div style="width:200px;height:200px;text-align:center;vertical-align:central;justify-content:center">
+        <div style="@cmdGetStyle1Div1()">
+            <span style="margin:5px;color:blue">@VDivHeight1</span>
+        </div>
+        <CompBlazorSplitter OnPositionChange="@OnPositionChangePanel1" bsSettings="@bsSettingPanel1" EnableRender="true"></CompBlazorSplitter>
+        <div style="@cmdGetStyle1Div2()">
+            <span style="margin:5px;color:blue">@VDivHeight2</span>
+        </div>
+    </div>
+
+
+
+
+    <div style="display:flex;margin-left:50px;width:200px;height:200px;text-align:center;vertical-align:central;justify-content:center">
+        <div style="@cmdGetStyle2Div1()">
+            <span style="margin:5px;color:blue">@HDivWidth1</span>
+        </div>
+        <CompBlazorSplitter OnPositionChange="@OnPositionChangePanel2" bsSettings="@bsSettingPanel2" EnableRender="true"></CompBlazorSplitter>
+        <div style="@cmdGetStyle2Div2()">
+            <span style="margin:5px;color:blue">@HDivWidth2</span>
+        </div>
+    </div>
+</div>
