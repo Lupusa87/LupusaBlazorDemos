@@ -1,4 +1,7 @@
-﻿function getArrayBufferFromFileAsync(file, o) {
+﻿var audioCtx;
+
+
+function getArrayBufferFromFileAsync(file, o) {
     const reader = new FileReader();
     return new Promise((resolve, reject) => {
         reader.onload = function () { resolve(reader.result); };
@@ -98,5 +101,21 @@ window.LBDJsFunctions = {
         }
 
         return false;
+    },
+    Beep: function (vol, freq, duration) {
+        if (audioCtx === undefined) {
+            audioCtx = new AudioContext();
+        }
+        v = audioCtx.createOscillator();
+        u = audioCtx.createGain();
+        v.connect(u);
+        v.frequency.value = freq;
+        v.type = "square";
+        u.connect(audioCtx.destination);
+        u.gain.value = vol * 0.01;
+        v.start(audioCtx.currentTime);
+        v.stop(audioCtx.currentTime + duration * 0.001);
+
+        return true;
     }
 };

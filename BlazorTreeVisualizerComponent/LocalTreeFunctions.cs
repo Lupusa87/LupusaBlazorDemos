@@ -627,9 +627,22 @@ namespace BlazorTreeVisualizerComponent
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString() + " " + MethodBase.GetCurrentMethod());
+                PrintError(ex.Message, MethodBase.GetCurrentMethod());
                 //LocalFunctions.DisplayMessage(ex.ToString(), MethodBase.GetCurrentMethod());
             }
+        }
+
+
+        public static void PrintError(string pError, MethodBase pMethod)
+        {
+
+            Console.WriteLine("Error:" + pError + " in " + getMethodName(pMethod));
+
+        }
+
+        public static string getMethodName(MethodBase Par_Method)
+        {
+            return Par_Method.Name + "." + Par_Method.DeclaringType.FullName;
         }
     }
 }

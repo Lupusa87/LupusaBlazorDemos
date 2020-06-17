@@ -231,7 +231,6 @@ namespace BlazorCounterHelper
 
             Console.WriteLine("Error:" + pError + " in " + getMethodName(pMethod));
 
-           
         }
 
 

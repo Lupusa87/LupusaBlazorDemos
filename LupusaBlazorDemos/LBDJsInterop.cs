@@ -76,5 +76,12 @@ namespace LupusaBlazorDemos
             return jsRuntime.InvokeAsync<bool>(
                 "LBDJsFunctions.handleDrop", elementID, id, dotnetHelper);
         }
+
+        public static ValueTask<bool> Beep(int vol, int freq, int duration)
+        {
+            //https://odino.org/emit-a-beeping-sound-with-javascript/
+            return jsRuntime.InvokeAsync<bool>(
+                "LBDJsFunctions.Beep", vol, freq, duration);
+        }
     }
 }

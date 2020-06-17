@@ -193,7 +193,7 @@ namespace BlazorTreeVisualizerComponent
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString(), MethodBase.GetCurrentMethod());
+                LocalTreeFunctions.PrintError(ex.Message, MethodBase.GetCurrentMethod());
                 //LocalFunctions.DisplayMessage(ex.ToString(), MethodBase.GetCurrentMethod());
             }
         }
@@ -232,7 +232,7 @@ namespace BlazorTreeVisualizerComponent
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString(), MethodBase.GetCurrentMethod());
+                LocalTreeFunctions.PrintError(ex.Message, MethodBase.GetCurrentMethod());
                 //LocalFunctions.DisplayMessage(ex.ToString(), MethodBase.GetCurrentMethod());
             }
 
