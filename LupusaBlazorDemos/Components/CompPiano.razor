@@ -1,0 +1,49 @@
+﻿<style>
+
+
+    .key {
+        background-color: white;
+        width: 30px;
+        height: 200px;
+        margin: 5px;
+        border: solid black 1px;
+        text-align: center;
+        display: table;
+        box-shadow: 2px 2px 4px 4px #ccc;
+    }
+    .key:hover {
+        background-color: lightgray;
+    }
+
+    .keyRegular {
+        background-color: white;
+    }
+
+    .keyPressed {
+        background-color: lightgray;
+    }
+
+
+    .letter {
+        margin: 2px;
+        color: darkblue;
+        vertical-align: bottom;
+        display: table-cell;
+        user-select:none;
+    }
+
+</style>
+
+
+<div style="display:flex; margin-top:20px;margin-left:20px">
+
+    @foreach (var item in Keys)
+    {
+        <div class="@getClass(item.IsPressed)" @onmousedown="@(e => Play(item))" @onmouseup="@Stop">
+            <span class="letter">@item.letter</span> 
+        </div>
+    }
+
+
+
+</div>

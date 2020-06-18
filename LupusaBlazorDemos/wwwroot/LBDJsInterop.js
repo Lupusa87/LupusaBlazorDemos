@@ -1,5 +1,5 @@
 ﻿var audioCtx;
-
+var Osctor;
 
 function getArrayBufferFromFileAsync(file, o) {
     const reader = new FileReader();
@@ -116,6 +116,30 @@ window.LBDJsFunctions = {
         v.start(audioCtx.currentTime);
         v.stop(audioCtx.currentTime + duration * 0.001);
 
+        return true;
+    },
+    PianoPlay: function (vol, freq) {
+        if (audioCtx === undefined) {
+            audioCtx = new AudioContext();
+        }
+
+        
+        Osctor = audioCtx.createOscillator();
+        u = audioCtx.createGain();
+        Osctor.connect(u);
+        Osctor.frequency.value = freq;
+        Osctor.type = "square";
+        u.connect(audioCtx.destination);
+        u.gain.value = vol * 0.01;
+        Osctor.start(audioCtx.currentTime);
+        //v.stop(audioCtx.currentTime + duration * 0.001);
+
+        return true;
+    },
+    PianoStop: function () {
+        if (Osctor !== undefined) {
+            Osctor.stop();
+        }
         return true;
     }
 };

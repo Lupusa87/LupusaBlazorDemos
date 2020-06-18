@@ -1,49 +1,64 @@
 ﻿@page "/PageBeep"
 
 
-   <table cellpadding="5">
-       <tr>
-           <td>
-               <span>Volume: </span>
-           </td>
-           <td>
-               <input type="range" min="1" max="100" step="1" width="400" @bind="@CurrVolume" />
-           </td>
-           <td>
-               <span width="150">@CurrVolume</span>
-           </td>
-       </tr>
-        <tr>
-            <td>
-                <span>Frequency: </span>
-            </td>
-            <td>
-                <input type="range" min="1" max="1000" step="1" width="400" @bind="@CurrFrequency" />
-            </td>
-            <td>
-                <span width="150">@CurrFrequency</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span>Duration: </span>
-            </td>
-            <td>
-                <input type="range" min="1" max="1000" step="1" width="400" @bind="@CurrDuration"/>
-            </td>
-            <td>
-                <span width="150">@CurrDuration</span>
-            </td>
-        </tr>
-    </table>
+<table cellpadding="5">
+    <tr>
+        <td>
+            <span>Volume: </span>
+        </td>
+        <td>
+            <input type="range" min="1" max="100" step="1" width="400" @bind="@CurrVolume" />
+        </td>
+        <td>
+            <span width="150">@CurrVolume</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>Frequency: </span>
+        </td>
+        <td>
+            <input type="range" min="1" max="1000" step="1" width="400" @bind="@CurrFrequency" />
+        </td>
+        <td>
+            <span width="150">@CurrFrequency</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>Duration: </span>
+        </td>
+        <td>
+            <input type="range" min="1" max="1000" step="1" width="400" @bind="@CurrDuration" />
+        </td>
+        <td>
+            <span width="150">@CurrDuration</span>
+        </td>
+    </tr>
+</table>
 
 
-   
 
-   <div style="margin:10px">
 
-       <button class="btn btn-primary" style="margin:5px" @onclick="@CmdBeep">beep</button>
+<div style="margin:10px">
 
-       <input style="margin:5px;margin-right:0px;margin-left:15px" type="checkbox" @bind="@AutoPlay" />
-       <span style="margin-left: 0px; margin: 5px">play after change</span>
-   </div>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@CmdBeep">beep</button>
+
+    <input style="margin:5px;margin-right:0px;margin-left:15px" type="checkbox" @bind="@AutoPlay" />
+    <span style="margin-left: 0px; margin: 5px">play after change</span>
+</div>
+
+
+<br />
+<br />
+<br />
+
+
+<h5>You can play piano using mouse or keyboard.</h5>
+
+<div style="margin:10px">
+
+
+    <CompPiano Volume="@CurrVolume"></CompPiano>
+
+</div>
