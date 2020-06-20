@@ -1,6 +1,7 @@
 ﻿using BlazorWindowHelper;
 using BlazorWindowHelper.Classes;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,6 @@ namespace LupusaBlazorDemos.Components
 {
     public partial class CompPiano
     {
-
-        string CurrentKey = string.Empty;
-
-
         [Parameter]
         public int Volume { get; set; }
 
@@ -44,17 +41,16 @@ namespace LupusaBlazorDemos.Components
 
         public void Play(KeyNote key)
         {
-            ReleaseKeys();
+            
             key.IsPressed = true;
-            LBDJsInterop.PianoPlay(Volume,key.freq);
+            LBDJsInterop.PianoPlay(key.letter, Volume, key.freq);
         }
 
 
-        public void Stop()
+        public void Stop(KeyNote key)
         {
-            LBDJsInterop.PianoStop();
-            ReleaseKeys();
-            
+            key.IsPressed = false;
+            LBDJsInterop.PianoStop(key.letter);
         }
 
 
@@ -64,20 +60,20 @@ namespace LupusaBlazorDemos.Components
             string letter = keyboardState.consoleKey.ToString().ToLower();
 
 
-            if (letter != CurrentKey)
+
+
+            if (!string.IsNullOrEmpty(letter))
             {
-                Stop();
-                CurrentKey = letter;
+                if (letter.Length > 1) return;
 
-                if (!string.IsNullOrEmpty(letter))
+
+                char c = letter[0];
+
+
+                if (Keys.Any(x => x.letter == c && !x.IsPressed))
                 {
-                    char c = letter[0];
-
-                    if (Keys.Any(x => x.letter == c))
-                    {
-                        Play(Keys.Single(x => x.letter == c));
-                        StateHasChanged();
-                    }
+                    Play(Keys.Single(x => x.letter == c));
+                    StateHasChanged();
 
                 }
             }
@@ -85,18 +81,28 @@ namespace LupusaBlazorDemos.Components
 
         public void KeyUpFromJS(BWHKeyboardState keyboardState)
         {
-            CurrentKey = string.Empty;
-            Stop();
-            StateHasChanged();
+            string letter = keyboardState.consoleKey.ToString().ToLower();
+
+            if (!string.IsNullOrEmpty(letter))
+            {
+
+                if (letter.Length > 1) return;
+
+                char c = letter[0];
+
+
+                if (Keys.Any(x => x.letter == c && x.IsPressed))
+                {
+
+                    Stop(Keys.Single(x => x.letter == c));
+                    StateHasChanged();
+                }
+
+            }
+
         }
 
-        public void ReleaseKeys()
-        {
-            if (Keys.Any(x => x.IsPressed))
-            {
-                Keys.Single(x => x.IsPressed).IsPressed = false;
-            }
-        }
+       
 
         
 

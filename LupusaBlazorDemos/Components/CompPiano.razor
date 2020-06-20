@@ -39,7 +39,7 @@
 
     @foreach (var item in Keys)
     {
-        <div class="@getClass(item.IsPressed)" @onmousedown="@(e => Play(item))" @onmouseup="@Stop">
+        <div class="@getClass(item.IsPressed)" @onmousedown="@(e => Play(item))" @onmouseup="@(e => Stop(item))">
             <span class="letter">@item.letter</span> 
         </div>
     }

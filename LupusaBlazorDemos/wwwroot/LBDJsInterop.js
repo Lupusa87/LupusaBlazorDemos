@@ -1,4 +1,4 @@
-﻿var audioCtx;
+﻿var audioCtx = new AudioContext();
 var Osctor;
 
 function getArrayBufferFromFileAsync(file, o) {
@@ -118,27 +118,25 @@ window.LBDJsFunctions = {
 
         return true;
     },
-    PianoPlay: function (vol, freq) {
+    PianoPlay: function (l, vol, freq) {
         if (audioCtx === undefined) {
             audioCtx = new AudioContext();
         }
-
-        
-        Osctor = audioCtx.createOscillator();
+        window[l] = audioCtx.createOscillator();
         u = audioCtx.createGain();
-        Osctor.connect(u);
-        Osctor.frequency.value = freq;
-        Osctor.type = "square";
+        window[l].connect(u);
+        window[l].frequency.value = freq;
+        window[l].type = "square";
         u.connect(audioCtx.destination);
         u.gain.value = vol * 0.01;
-        Osctor.start(audioCtx.currentTime);
-        //v.stop(audioCtx.currentTime + duration * 0.001);
-
+        window[l].start(audioCtx.currentTime);
         return true;
     },
-    PianoStop: function () {
-        if (Osctor !== undefined) {
-            Osctor.stop();
+    PianoStop: function (l) {
+        if (window[l] !== undefined) {
+            window[l].stop();
+
+            delete window[l];
         }
         return true;
     }

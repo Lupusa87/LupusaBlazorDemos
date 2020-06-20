@@ -84,18 +84,18 @@ namespace LupusaBlazorDemos
                 "LBDJsFunctions.Beep", vol, freq, duration);
         }
 
-        public static ValueTask<bool> PianoPlay(int vol, int freq)
+        public static ValueTask<bool> PianoPlay(char letter, int vol, int freq)
         {
             //https://odino.org/emit-a-beeping-sound-with-javascript/
             return jsRuntime.InvokeAsync<bool>(
-                "LBDJsFunctions.PianoPlay", vol, freq);
+                "LBDJsFunctions.PianoPlay", letter, vol, freq);
         }
 
-        public static ValueTask<bool> PianoStop()
+        public static ValueTask<bool> PianoStop(char letter)
         {
             //https://odino.org/emit-a-beeping-sound-with-javascript/
             return jsRuntime.InvokeAsync<bool>(
-                "LBDJsFunctions.PianoStop");
+                "LBDJsFunctions.PianoStop", letter);
         }
     }
 }
