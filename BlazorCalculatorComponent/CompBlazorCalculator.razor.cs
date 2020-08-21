@@ -35,14 +35,10 @@ namespace BlazorCalculatorComponent
         protected override void OnInitialized()
         {
 
-            if (!BWHJsInterop.IsReady)
-            {
-               BWHJsInterop.jsRuntime = jsRuntime;
-               BWHJsInterop.IsReady = true;
-            }
-
+            BWHWindowHelper.jsRuntime = jsRuntime;
+            
             BWHJsInterop.SetOnOrOff(true);
-            BWHKeyboardHelper.OnKeyUp = KeyUpFromBWH;
+            BWHKeyboardHelper.OnKeyUp += KeyUpFromBWH;
             base.OnInitialized();
         }
 

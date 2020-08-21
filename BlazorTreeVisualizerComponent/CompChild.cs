@@ -13,8 +13,8 @@ namespace BlazorTreeVisualizerComponent
 {
     public class CompChild : ComponentBase, IDisposable
     {
-        [Inject]
-        IJSRuntime jsRuntime { get; set; }
+        [Parameter]
+        public CompTreeView parent { get; set; }
 
         [Parameter]
         public string CompID { get; set; }
@@ -23,6 +23,7 @@ namespace BlazorTreeVisualizerComponent
         public int ParID { get; set; } = 0;
 
         private SvgHelper SvgHelper1 = new SvgHelper();
+
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -38,47 +39,38 @@ namespace BlazorTreeVisualizerComponent
         {
             int k = 0;
 
-            TreeItem item = LocalData.dynamicList.Single(x => x.ID == ParID);
+            TreeItem item =parent.SourceList.Single(x => x.ID == ParID);
 
             builder.OpenRegion(k++);
             builder.OpenElement(k++, "div");
             builder.AddAttribute(k++, "id", CompID);
-            builder.AddAttribute(k++, "style", "width:400px;max-height:26px;position:relative;");
-
+            builder.AddAttribute(k++, "class", parent.CssClasses.Div);
             builder.OpenRegion(k++);
-            SvgHelper1.Cmd_Render(LocalTreeFunctions.CmdCreateDynamicIcon(item),0, builder, item.ID);
+            SvgHelper1.Cmd_Render(LocalTreeFunctions.CmdCreateDynamicIcon(parent.SourceList,item),0, builder, item.ID);
             builder.CloseRegion();
 
  
-            int marginLeft = 0;
+            int marginLeft = parent.VisualParams.SmalestSizeUnit;
             if (item.HasIcon)
             {
                 builder.OpenElement(k++, "img");
-                builder.AddAttribute(k++, "width", "20");
-                builder.AddAttribute(k++, "height", "20");
                 builder.AddAttribute(k++, "src", item.IconSource);
-                builder.AddAttribute(k++, "style", "position:absolute;top:0px;cursor:pointer;margin:0px;user-select:none;");
+                builder.AddAttribute(k++, "class", parent.CssClasses.Icon);
                 builder.AddAttribute(k++, "onclick", EventCallback.Factory.Create(this, e => CmdItemSelect(item.ID)));
                 builder.CloseElement();
 
-                marginLeft = 25;
+                marginLeft = parent.VisualParams.SmalestSizeUnit*5;
             }
 
             builder.OpenElement(k++, "span");
 
-            if (item.IsSelected)
-            {
-                builder.AddAttribute(k++, "style", "position:absolute;top:0px;cursor:pointer;margin-left:" + marginLeft + "px;background-color:yellow;color:blue;border-style:solid;border-width:1px;border-color:red;");
-            }
-            else
-            {
-                builder.AddAttribute(k++, "style", "position:absolute;top:0px;margin-left:"+marginLeft+"px;cursor:pointer;");
-            }
 
+            builder.AddAttribute(k++, "class", CmdGetSpanClass(item));
+            builder.AddAttribute(k++, "style", "margin-left:" + marginLeft + "px;");
 
             builder.AddAttribute(k++, "onclick", EventCallback.Factory.Create(this, e => CmdItemSelect(item.ID)));
 
-            builder.AddContent(k++, item.Column);
+            builder.AddContent(k++, item.Text);
 
             builder.CloseElement();
 
@@ -90,19 +82,19 @@ namespace BlazorTreeVisualizerComponent
         }
 
 
-        private void CmdItemSelect(int ParID)
+        private async Task CmdItemSelect(int ParID)
         {
+            await parent.ItemOnClick.InvokeAsync(ParID);
+
+            parent.CurrentID = ParID;
+
+            parent.SourceList.Where(x => x.IsSelected).ToList().ForEach(x => x.IsSelected = false);
 
 
-            LocalData.CurrentID = ParID;
-
-            LocalData.dynamicList.Where(x => x.IsSelected).ToList().ForEach(x => x.IsSelected = false);
+            parent.SourceList.Single(x => x.ID == ParID).IsSelected = true;
 
 
-            LocalData.dynamicList.Single(x => x.ID == ParID).IsSelected = true;
-
-
-            LocalData.compBlazorTreeVisualizer.update();
+            parent.Refresh();
         }
 
 
@@ -110,30 +102,43 @@ namespace BlazorTreeVisualizerComponent
         {
             svgclick(ParID);
 
-            LocalData.compBlazorTreeVisualizer.update();
+            parent.Refresh();
+        }
+
+
+        public string CmdGetSpanClass(TreeItem item)
+        {
+            string result = parent.CssClasses.Span;
+
+            if (item.IsSelected)
+            {
+                result += " " + parent.CssClasses.SpanSelected;
+            }
+
+            if (item.HasChildren)
+            {
+                result += " " + parent.CssClasses.SpanWithChildren;
+            }
+
+            return result;
         }
 
 
 
         private void svgclick(int ParID)
         {
-            TreeItem CurrItem = LocalData.dynamicList.Single(x => x.ID == ParID);
+            TreeItem CurrItem = parent.SourceList.Single(x => x.ID == ParID);
             if (CurrItem.HasChildren)
             {
 
                 CurrItem.IsExpanded = !CurrItem.IsExpanded;
 
-               LocalTreeFunctions.CmdChangeVisibility(CurrItem.ID, CurrItem.IsExpanded, true);
+               LocalTreeFunctions.CmdChangeVisibility(parent.SourceList, CurrItem.ID, CurrItem.IsExpanded, true);
 
 
             }
         }
 
-
-        public void ComponentClicked(MouseEventArgs e)
-        {
-            jsRuntime.InvokeVoidAsync("alert", e.ScreenX.ToString());
-        }
 
         public void Dispose()
         {

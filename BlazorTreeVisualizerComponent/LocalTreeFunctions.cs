@@ -14,36 +14,23 @@ namespace BlazorTreeVisualizerComponent
 
         internal static g CmdCreateIconLine()
         {
-            g g1 = new g
+            g g1 = new g();
+
+            line line1 = new line
             {
-               // height = LocalData.IconWithAndHeigth * 2,
-               // width = LocalData.IconWithAndHeigth * 2
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = 0,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.VisualParams.TreeIconBoxSize,
+
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
             };
 
-
-            line line1 = new line();
-
-            if (LocalData.IsLineDashed)
+            if (LocalData.VisualParams.IsLineDashed)
             {
-                line1.x1 = 27;
-                line1.y1 = 2;
-                line1.x2 = 27;
-                line1.y2 = 50;
-            }
-            else
-            {
-                line1.x1 = 27;
-                line1.y1 = 0;
-                line1.x2 = 27;
-                line1.y2 = 52;
-            }
-
-            line1.stroke_width = LocalData.LineStrokeThickness;
-            line1.stroke = LocalData.LineColor.Name;
-
-            if (LocalData.IsLineDashed)
-            {
-                line1.stroke_dasharray = LocalData.DashArrayValue + ", " +LocalData.DashArrayValue;
+                line1.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line1);
@@ -54,127 +41,89 @@ namespace BlazorTreeVisualizerComponent
 
         internal static g CmdCreateIconItem()
         {
-            g g1 = new g
+            g g1 = new g();
+
+            line line1 = new line
             {
-                //height = LocalData.IconWithAndHeigth * 2,
-                //width = LocalData.IconWithAndHeigth * 2
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = 0,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.VisualParams.TreeIconBoxSize,
+
+
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
             };
 
-            line line1 = new line();
-
-            if (LocalData.IsLineDashed)
+            if (LocalData.VisualParams.IsLineDashed)
             {
-                line1.x1 = 27;
-                line1.y1 = 2;
-                line1.x2 = 27;
-                line1.y2 = 52;
-            }
-            else
-            {
-                line1.x1 = 27;
-                line1.y1 = 0;
-                line1.x2 = 27;
-                line1.y2 = 52;
+                line1.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
-
-            line1.stroke_width = LocalData.LineStrokeThickness;
-            line1.stroke = LocalData.LineColor.Name;
-
-            if (LocalData.IsLineDashed)
+            line line2 = new line
             {
-                line1.stroke_dasharray = LocalData.DashArrayValue +" " + LocalData.DashArrayValue;
-            }
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = LocalData.TreeIconBoxSize50,
+                x2 = LocalData.VisualParams.TreeIconBoxSize,
+                y2 = LocalData.TreeIconBoxSize50,
 
-            line line2 = new line();
-            if (LocalData.IsLineDashed)
-            {
-                line2.x1 = 32;
-                line2.y1 = 27;
-                line2.x2 = 48;
-                line2.y2 = 27;
-            }
-            else
-            {
-                line2.x1 = 27;
-                line2.y1 = 27;
-                line2.x2 = 48;
-                line2.y2 = 27;
-            }
 
-            line2.stroke_width = LocalData.LineStrokeThickness;
-            line2.stroke = LocalData.LineColor.Name;
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
+            };
 
-            if (LocalData.IsLineDashed)
+            if (LocalData.VisualParams.IsLineDashed)
             {
-                line2.stroke_dasharray = LocalData.DashArrayValue +", "+ LocalData.DashArrayValue;
+                line2.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line1);
             g1.Children.Add(line2);
 
             return g1;
-            
+
         }
 
 
         internal static g CmdCreateIconLastItem()
         {
-            g g1 = new g
+            g g1 = new g();
+
+
+            line line1 = new line
             {
-                //height = LocalData.IconWithAndHeigth * 2,
-                //width = LocalData.IconWithAndHeigth * 2
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = 0,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.TreeIconBoxSize50,
+
+
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
             };
 
-            line line1 = new line();
-
-            if (LocalData.IsLineDashed)
+            if (LocalData.VisualParams.IsLineDashed)
             {
-                line1.x1 = 27;
-                line1.y1 = 2;
-                line1.x2 = 27;
-                line1.y2 = 28;
-            }
-            else
-            {
-                line1.x1 = 27;
-                line1.y1 = 0;
-                line1.x2 = 27;
-                line1.y2 = 28;
+                line1.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
-
-            line1.stroke_width = LocalData.LineStrokeThickness;
-            line1.stroke = LocalData.LineColor.Name;
-
-            if (LocalData.IsLineDashed)
+            line line2 = new line
             {
-                line1.stroke_dasharray = LocalData.DashArrayValue +", " + LocalData.DashArrayValue;
-            }
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = LocalData.TreeIconBoxSize50,
+                x2 = LocalData.VisualParams.TreeIconBoxSize,
+                y2 = LocalData.TreeIconBoxSize50,
 
-            line line2 = new line();
 
-            if (LocalData.IsLineDashed)
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
+            };
+
+            if (LocalData.VisualParams.IsLineDashed)
             {
-                line2.x1 = 32;
-                line2.y1 = 27;
-                line2.x2 = 48;
-                line2.y2 = 27;
-            }
-            else
-            {
-                line2.x1 = 27;
-                line2.y1 = 27;
-                line2.x2 = 48;
-                line2.y2 = 27;
-            }
-
-            line2.stroke_width = LocalData.LineStrokeThickness;
-            line2.stroke = LocalData.LineColor.Name; 
-
-            if (LocalData.IsLineDashed)
-            {
-                line2.stroke_dasharray = LocalData.DashArrayValue + ", " + LocalData.DashArrayValue;
+                line2.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line1);
@@ -189,84 +138,81 @@ namespace BlazorTreeVisualizerComponent
 
             g g1 = new g
             {
-                //height = LocalData.IconWithAndHeigth * 2,
-                //width = LocalData.IconWithAndHeigth * 2
+                onclick = BoolOptionsEnum.Yes
             };
 
-            g1.onclick = BoolOptionsEnum.Yes;
+            rect rectangle1 = new rect
+            {
+                height = LocalData.TreeIconBoxSize50,
+                width = LocalData.TreeIconBoxSize50,
 
-            rect rectangle1 = new rect();
-            rectangle1.height = LocalData.IconWithAndHeigth;
-            rectangle1.width = LocalData.IconWithAndHeigth;
-
-
-
-            rectangle1.stroke_width = LocalData.MinusOrPlusBorderStrokeThickness;
-            rectangle1.stroke = LocalData.MinusOrPlusBorderColor.Name;
-            rectangle1.fill = "white";
+                stroke_width = LocalData.VisualParams.MinusOrPlusBorderStrokeThickness,
+                stroke = LocalData.VisualParams.MinusOrPlusBorderColor.Name,
+                fill = "transparent",
 
 
-            rectangle1.rx = 4;
-            rectangle1.ry = 4;
+                rx = LocalData.VisualParams.TreeIconBoxSize * 0.1,
+                ry = LocalData.VisualParams.TreeIconBoxSize * 0.1,
 
-            rectangle1.x = 14;
-            rectangle1.y = 12;
+                x = LocalData.TreeIconBoxSize25,
+                y = LocalData.TreeIconBoxSize25
+            };
 
             g1.Children.Add(rectangle1);
 
             if (!ParMinusOrPlus)
             {
-                line line2 = new line();
-                //line2.onclick = BoolOptionsEnum.Yes;
-                //line2.StopPropagation = BoolOptionsEnum.Yes;
-                line2.x1 = 27;
-                line2.y1 = 19;
-                line2.x2 = 27;
-                line2.y2 = 31;
+                line line2 = new line
+                {
+                    x1 = LocalData.TreeIconBoxSize50,
+                    y1 = LocalData.TreeIconBoxSize37,
+                    x2 = LocalData.TreeIconBoxSize50,
+                    y2 = LocalData.TreeIconBoxSize62,
 
-                line2.stroke_width = LocalData.MinusOrPlusStrokeThickness;
-
-
-                line2.stroke = LocalData.MinusOrPlusColor.Name;
+                    stroke_width = LocalData.VisualParams.MinusOrPlusStrokeThickness,
+                    stroke = LocalData.VisualParams.MinusOrPlusColor.Name
+                };
 
 
                 g1.Children.Add(line2);
 
             }
 
-            line line1 = new line();
-            //line1.onclick =  BoolOptionsEnum.Yes;
-            //line1.StopPropagation = BoolOptionsEnum.Yes;
-            line1.x1 = 21;
-            line1.y1 = 25;
-            line1.x2 = 33;
-            line1.y2 = 25;
+            line line1 = new line
+            {
+                x1 = LocalData.TreeIconBoxSize37,
+                y1 = LocalData.TreeIconBoxSize50,
+                x2 = LocalData.TreeIconBoxSize62,
+                y2 = LocalData.TreeIconBoxSize50,
 
 
-            line1.stroke_width = LocalData.MinusOrPlusStrokeThickness;
-            line1.stroke = LocalData.MinusOrPlusColor.Name;
+                stroke_width = LocalData.VisualParams.MinusOrPlusStrokeThickness,
+                stroke = LocalData.VisualParams.MinusOrPlusColor.Name
+            };
 
             g1.Children.Add(line1);
 
 
-            line line3 = new line();
-            line3.x1 = 40;
-            line3.y1 = 25;
-            line3.x2 = 52;
-            line3.y2 = 25;
-
-            
-
-            line3.stroke_width = LocalData.LineStrokeThickness;
-            line3.stroke = Color.Red.Name;
-
-            if (LocalData.IsLineDashed)
+            line line3 = new line
             {
-                line3.stroke_dasharray = LocalData.DashArrayValue + ", " + LocalData.DashArrayValue;
+                x1 = LocalData.TreeIconBoxSize75,
+                y1 = LocalData.TreeIconBoxSize50,
+                x2 = LocalData.VisualParams.TreeIconBoxSize,
+                y2 = LocalData.TreeIconBoxSize50,
+
+
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = Color.Red.Name
+            };
+
+            if (LocalData.VisualParams.IsLineDashed)
+            {
+                line3.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line3);
-            
+
             return g1;
         }
 
@@ -276,26 +222,28 @@ namespace BlazorTreeVisualizerComponent
 
             g g1 = CmdCreateIconMinusOrPlus(ParMinusOrPlus);
 
-           
-            
-            line line1 = new line();
-            line1.x1 = 27;
-            line1.y1 = 0;
-            line1.x2 = 27;
-            line1.y2 = 12;
 
-            line1.stroke_width = LocalData.LineStrokeThickness;
-            line1.stroke = LocalData.LineColor.Name;
 
-            if (LocalData.IsLineDashed)
+            line line1 = new line
             {
-                line1.stroke_dasharray = LocalData.DashArrayValue + ", " + LocalData.DashArrayValue;
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = 0,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.TreeIconBoxSize25,
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
+            };
+
+            if (LocalData.VisualParams.IsLineDashed)
+            {
+                line1.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line1);
 
             return g1;
-            
+
         }
 
 
@@ -304,18 +252,20 @@ namespace BlazorTreeVisualizerComponent
             g g1 = CmdCreateIconMinusOrPlus(ParMinusOrPlus);
 
 
-            line line1 = new line();
-            line1.x1 = 27;
-            line1.y1 = 38;
-            line1.x2 = 27;
-            line1.y2 = 52;
-
-            line1.stroke_width= LocalData.LineStrokeThickness;
-            line1.stroke = LocalData.LineColor.Name;
-
-            if (LocalData.IsLineDashed)
+            line line1 = new line
             {
-                line1.stroke_dasharray = LocalData.DashArrayValue + ", " + LocalData.DashArrayValue;
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = LocalData.TreeIconBoxSize75,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.VisualParams.TreeIconBoxSize,
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
+            };
+
+            if (LocalData.VisualParams.IsLineDashed)
+            {
+                line1.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line1);
@@ -327,33 +277,37 @@ namespace BlazorTreeVisualizerComponent
         {
             g g1 = CmdCreateIconMinusOrPlus(ParMinusOrPlus);
 
-            line line1 = new line();
-            line1.x1 = 27;
-            line1.y1 = 0;
-            line1.x2 = 27;
-            line1.y2 = 12;
-
-           
-            line1.stroke_width = LocalData.LineStrokeThickness;
-            line1.stroke = LocalData.LineColor.Name;
-
-            if (LocalData.IsLineDashed)
+            line line1 = new line
             {
-                line1.stroke_dasharray = LocalData.DashArrayValue + ", " + LocalData.DashArrayValue;
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = 0,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.TreeIconBoxSize25,
+
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
+            };
+
+            if (LocalData.VisualParams.IsLineDashed)
+            {
+                line1.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
-            line line2 = new line();
-            line2.x1 = 27;
-            line2.y1 = 38;
-            line2.x2 = 27;
-            line2.y2 = 52;
-
-            line2.stroke_width = LocalData.LineStrokeThickness;
-            line2.stroke = LocalData.LineColor.Name;
-
-            if (LocalData.IsLineDashed)
+            line line2 = new line
             {
-                line2.stroke_dasharray = LocalData.DashArrayValue + ", " + LocalData.DashArrayValue;
+                x1 = LocalData.TreeIconBoxSize50,
+                y1 = LocalData.TreeIconBoxSize75,
+                x2 = LocalData.TreeIconBoxSize50,
+                y2 = LocalData.VisualParams.TreeIconBoxSize,
+
+                stroke_width = LocalData.VisualParams.LineStrokeThickness,
+                stroke = LocalData.VisualParams.LineColor.Name
+            };
+
+            if (LocalData.VisualParams.IsLineDashed)
+            {
+                line2.stroke_dasharray = LocalData.VisualParams.DashArrayValue + " " + LocalData.VisualParams.DashArrayValue;
             }
 
             g1.Children.Add(line1);
@@ -363,24 +317,24 @@ namespace BlazorTreeVisualizerComponent
             return g1;
         }
 
-        internal static bool CmdCheckIfItemIsLastInThisLevel(int ParID)
+        internal static bool CmdCheckIfItemIsLastInThisLevel(List<TreeItem> SourceList, int ParID)
         {
             bool result = false;
 
             if (ParID > -1)
             {
-                TreeItem Currdynamics = LocalData.dynamicList.Single(x => x.ID == ParID);
+                TreeItem Currdynamics = SourceList.Single(x => x.ID == ParID);
 
                 if (Currdynamics.Level == 1)
                 {
                     return true;
                 }
 
-                List<TreeItem> tmpList = LocalData.dynamicList.Where(x => x.ParentID == Currdynamics.ParentID).OrderBy(x => x.SequenceNumber).ToList();
+                List<TreeItem> tmpList = SourceList.Where(x => x.ParentID == Currdynamics.ParentID).OrderBy(x => x.SequenceNumber).ToList();
 
                 if (tmpList.Count > 0)
                 {
-                    if (ParID == tmpList[tmpList.Count - 1].ID)
+                    if (ParID == tmpList[^1].ID)
                     {
                         return true;
                     }
@@ -390,27 +344,23 @@ namespace BlazorTreeVisualizerComponent
         }
 
 
-        internal static svg CmdCreateDynamicIcon(TreeItem Pardynamic)
+        internal static svg CmdCreateDynamicIcon(List<TreeItem> SourceList, TreeItem Pardynamic)
         {
 
-            svg svg1 = new svg();
-            svg1.id = Pardynamic.ID.ToString();
-            svg1.width = Pardynamic.Level * LocalData.IconWithAndHeigth + 10;
-            svg1.height = LocalData.IconWithAndHeigth;
-            
-
-
+            svg svg1 = new svg
+            {
+                id = Pardynamic.ID.ToString(),
+                width = Pardynamic.Level * LocalData.VisualParams.TreeIconBoxSize,
+                height = LocalData.VisualParams.TreeIconBoxSize
+            };
 
             g g1 = null;
-           
 
-           
             int TmpIconType = -1;
 
             #region DetectIconType
             if (Pardynamic.HasChildren)
             {
-                //svg1.onclick = BoolOptionsEnum.Yes;
                 if (Pardynamic.IsExpanded)
                 {
                     TmpIconType = 0;
@@ -444,10 +394,11 @@ namespace BlazorTreeVisualizerComponent
 
 
             if (TmpIconType > -1)
-                {
+            {
 
 
                 #region GetRelevantIcon
+
                 switch (TmpIconType)
                 {
                     case 0:
@@ -466,11 +417,11 @@ namespace BlazorTreeVisualizerComponent
                         {
                             if (Pardynamic.IsLastItemInLevel)
                             {
-                               g1 = LocalData.IconMinus;
+                                g1 = LocalData.IconMinus;
                             }
                             else
                             {
-                               g1 = LocalData.IconMinusBottom;
+                                g1 = LocalData.IconMinusBottom;
                             }
                         }
                         break;
@@ -479,22 +430,22 @@ namespace BlazorTreeVisualizerComponent
                         {
                             if (Pardynamic.IsLastItemInLevel)
                             {
-                               g1 = LocalData.IconPlusTop;
+                                g1 = LocalData.IconPlusTop;
                             }
                             else
                             {
-                               g1 = LocalData.IconPlusTopBottom;
+                                g1 = LocalData.IconPlusTopBottom;
                             }
                         }
                         else
                         {
                             if (Pardynamic.IsLastItemInLevel)
                             {
-                               g1 = LocalData.IconPlus;
+                                g1 = LocalData.IconPlus;
                             }
                             else
                             {
-                               g1 = LocalData.IconPlusBottom;
+                                g1 = LocalData.IconPlusBottom;
                             }
                         }
                         break;
@@ -510,32 +461,30 @@ namespace BlazorTreeVisualizerComponent
                 }
                 #endregion
 
-
-              
-                g1.transform = "translate(" + (Pardynamic.Level * LocalData.IconWithAndHeigth - LocalData.IconWithAndHeigth) + ",0) scale(0.5, 0.5)";
+                g1.transform = "translate(" + (Pardynamic.Level * LocalData.VisualParams.TreeIconBoxSize - LocalData.VisualParams.TreeIconBoxSize) + ",0)";
 
 
                 svg1.Children.Add(g1);
-                }
+            }
 
             #region AddLinesIfNeeds
             if (Pardynamic.Level > 1)
             {
                 for (int i = 1; i < Pardynamic.Level - 1; i++)
                 {
-                    int k = CmdGetParentIDBySteps(Pardynamic.ID, Pardynamic.Level - i - 1);
+                    int k = CmdGetParentIDBySteps(SourceList, Pardynamic.ID, Pardynamic.Level - i - 1);
                     if (k > 0)
                     {
-                        if (LocalData.dynamicList.Any(x => x.ID == k))
+                        if (SourceList.Any(x => x.ID == k))
                         {
-                            TreeItem tmpdynamics = LocalData.dynamicList.Single(x => x.ID == k);
+                            TreeItem tmpdynamics = SourceList.Single(x => x.ID == k);
 
                             if (!tmpdynamics.IsLastItemInLevel)
                             {
                                 g g2 = LocalData.IconLine;
 
 
-                                g2.transform = "translate(" + (i * LocalData.IconWithAndHeigth) + ",0) scale(0.5, 0.5)";
+                                g2.transform = "translate(" + (i * LocalData.VisualParams.TreeIconBoxSize) + ",0)";
 
                                 svg1.Children.Add(g2);
                             }
@@ -556,18 +505,17 @@ namespace BlazorTreeVisualizerComponent
         }
 
 
-        private static int CmdGetParentIDBySteps(int ParID, int ParSteps)
+        private static int CmdGetParentIDBySteps(List<TreeItem> SourceList, int ParID, int ParSteps)
         {
             int result = -1;
             int TmpID = ParID;
 
-            //try
-            //{
+
             for (int i = 0; i < ParSteps; i++)
             {
-                if (LocalData.dynamicList.Any(x => x.ID == TmpID))
+                if (SourceList.Any(x => x.ID == TmpID))
                 {
-                    TreeItem tmpdynamics = LocalData.dynamicList.Single(x => x.ID == TmpID);
+                    TreeItem tmpdynamics = SourceList.Single(x => x.ID == TmpID);
                     result = tmpdynamics.ParentID;
                     TmpID = tmpdynamics.ParentID;
                 }
@@ -576,23 +524,18 @@ namespace BlazorTreeVisualizerComponent
                     return -1;
                 }
             }
-            //}
-            //catch (Exception ex)
-            //{
 
-            //    MessageBox.Show(this.GetType().Name + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + "\n" + ex.ToString());
-            //}
 
 
             return result;
         }
 
 
-        public static void CmdChangeVisibility(int ParParentID, bool b, bool OneOrAllLevels)
+        public static void CmdChangeVisibility(List<TreeItem> SourceList, int ParParentID, bool b, bool OneOrAllLevels)
         {
             try
             {
-                foreach (TreeItem item in LocalData.dynamicList.Where(x => x.ParentID == ParParentID))
+                foreach (TreeItem item in SourceList.Where(x => x.ParentID == ParParentID))
                 {
                     item.IsVisible = b;
 
@@ -605,22 +548,22 @@ namespace BlazorTreeVisualizerComponent
                             {
                                 if (item.IsExpanded == true)
                                 {
-                                    CmdChangeVisibility(item.ID, true, true);
+                                    CmdChangeVisibility(SourceList, item.ID, true, true);
                                 }
                                 else
                                 {
-                                    CmdChangeVisibility(item.ID, false, true);
+                                    CmdChangeVisibility(SourceList, item.ID, false, true);
                                 }
                             }
                             else
                             {
-                                CmdChangeVisibility(item.ID, b, OneOrAllLevels);
+                                CmdChangeVisibility(SourceList, item.ID, b, OneOrAllLevels);
                             }
                         }
                         else
                         {
                             item.IsExpanded = b;
-                            CmdChangeVisibility(item.ID, b, OneOrAllLevels);
+                            CmdChangeVisibility(SourceList, item.ID, b, OneOrAllLevels);
                         }
                     }
                 }
@@ -628,7 +571,6 @@ namespace BlazorTreeVisualizerComponent
             catch (Exception ex)
             {
                 PrintError(ex.Message, MethodBase.GetCurrentMethod());
-                //LocalFunctions.DisplayMessage(ex.ToString(), MethodBase.GetCurrentMethod());
             }
         }
 
@@ -644,5 +586,14 @@ namespace BlazorTreeVisualizerComponent
         {
             return Par_Method.Name + "." + Par_Method.DeclaringType.FullName;
         }
+
+        public static string CmdGetUniqueID()
+        {
+
+            string a = DateTime.Now.Ticks.ToString();
+
+            return a.Substring(a.Length - 4, 4) + Guid.NewGuid().ToString("d").Substring(1, 4);
+        }
+
     }
 }

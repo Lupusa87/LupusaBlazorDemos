@@ -191,8 +191,8 @@ namespace BlazorGameSnakeComponent
         {
 
             BWHJsInterop.SetOnOrOff(true);
-            BWHKeyboardHelper.OnKeyDown = KeyDownFromJS;
-            BWHKeyboardHelper.OnKeyUp = KeyUpFromJS;
+            BWHKeyboardHelper.OnKeyDown += KeyDownFromJS;
+            BWHKeyboardHelper.OnKeyUp += KeyUpFromJS;
 
             Game.points_Count = Game.x_Length * Game.y_Length;
             Game.point_Width = Math.Round(LocalData.CompWidth * 1.0 / Game.x_Length, 2);

@@ -29,7 +29,7 @@ namespace BlazorPasswordPatternComponent
 
            
             BWHJsInterop.SetOnOrOff(true);
-            BWHKeyboardHelper.OnKeyUp = KeyUpFromJS;
+            BWHKeyboardHelper.OnKeyUp += KeyUpFromJS;
 
             ComponentSettings.compWidth = CompWidth;
             ComponentSettings.compHeight = CompHeight;
