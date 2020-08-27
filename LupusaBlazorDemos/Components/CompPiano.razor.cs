@@ -32,8 +32,8 @@ namespace LupusaBlazorDemos.Components
 
 
             BWHJsInterop.SetOnOrOff(true);
-            BWHKeyboardHelper.OnKeyDown = KeyDownFromJS;
-            BWHKeyboardHelper.OnKeyUp = KeyUpFromJS;
+            BWHKeyboardHelper.OnKeyDown += KeyDownFromJS;
+            BWHKeyboardHelper.OnKeyUp += KeyUpFromJS;
 
             base.OnInitialized();
         }

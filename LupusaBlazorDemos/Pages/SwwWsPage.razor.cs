@@ -47,7 +47,6 @@ namespace LupusaBlazorDemos.Pages
         protected override void OnInitialized()
         {
             bwwJsInterop = new BwwJsInterop(jsRuntime);
-            BWHJsInterop.jsRuntime = jsRuntime;
 
             WwCreate();
 

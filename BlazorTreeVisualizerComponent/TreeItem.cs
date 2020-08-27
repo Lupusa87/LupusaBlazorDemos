@@ -22,7 +22,7 @@ namespace BlazorTreeVisualizerComponent
 
         internal bool IsSelected { get; set; }
 
-        internal bool IsExpanded { get; set; }
+        public bool IsExpanded { get; set; }
 
 
         internal bool IsVisible { get; set; }

@@ -1,19 +1,58 @@
 ﻿@page "/PageTreeView"
 
-<h3>Tree View</h3>
+
+    <style>
+        .trdiv {
+            user-select: none;
+            position: relative;
+            height: 4vh;
+        }
+
+        .trimg {
+            width: 20px;
+            height: 20px;
+            user-select: none;
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .trsp {
+            user-select: none;
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .trspsel {
+            background-color: lightyellow;
+            color: blue;
+            /*outline-style: solid;
+            outline-width: 1px;
+            outline-color: red;*/
+        }
+
+        .trspch {
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+
+    <h3>Tree View</h3>
 
 
-<button class="btn btn-primary" width="400" height="100" style="margin:5px" @onclick="@CmdButtonClick">delete selected</button>
+    <button class="btn btn-primary" width="400" height="100" style="margin:5px" @onclick="@CmdButtonClick">delete selected</button>
 
-<button class="btn btn-primary" width="400" height="100" style="margin:5px; margin-left:10px" @onclick="@CmdPrintClick">print</button>
-
-
-<br />
-<br />
-<CompBlazorTreeVisualizer @ref="treeview" TreeVizualizationItemCode="0"></CompBlazorTreeVisualizer>
+    <button class="btn btn-primary" width="400" height="100" style="margin:5px; margin-left:10px" @onclick="@CmdPrintClick">print</button>
 
 
-<br />
-<br />
+    <br />
+    <br />
+    <CompTreeView @ref="treeview" FirstItemID="0" SourceList="Treelist" VisualParams="visualParams" CssClasses="cssClasses"></CompTreeView>
+
+    <br />
+    <br />
 
 

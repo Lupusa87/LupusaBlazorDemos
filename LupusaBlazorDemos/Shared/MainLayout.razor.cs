@@ -40,7 +40,7 @@ namespace LupusaBlazorDemos.Shared
             LocalFunctions.RedirectIfNeeded(navigationManager);
 
             LBDJsInterop.jsRuntime = jsRuntime;
-            BWHJsInterop.jsRuntime = jsRuntime;
+            BWHWindowHelper.jsRuntime = jsRuntime;
           
 
             await CheckCounterIsDisabled();
@@ -55,15 +55,10 @@ namespace LupusaBlazorDemos.Shared
             //    WebApiFunctions.CmdGetVisitor();
             //}
 
-            //if (LocalData.IsDevelopmentMode)
-            //{
-            //    if (!BlazorWindowHelper.BWHJsInterop.IsReady)
-            //    {
-            //        BlazorWindowHelper.BWHJsInterop.jsRuntime = jsRuntime;
-            //        BlazorWindowHelper.BWHJsInterop.IsReady = true;
-            //    }
-
-            //}
+            
+            
+           
+            
 
 
             if (LBDLocalData.TimezoneOffset == -99999)
@@ -108,7 +103,7 @@ namespace LupusaBlazorDemos.Shared
 
         protected async Task<bool> CheckCounterIsDisabled()
         {
-            string result = await BWHJsInterop.LocalStorageGetItem("DisableCounters");
+            string result = await BWHJsInteropLocalStorage.GetItem("DisableCounters");
 
             if (!string.IsNullOrEmpty(result))
             {
