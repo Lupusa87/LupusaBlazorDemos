@@ -42,8 +42,9 @@
                 switch (type) {
                     case 'dotnetjs':
                     case 'dotnetwasm':
-                        //case 'timezonedata':
-                        return `https://lupusacdn.azureedge.net/blazor/preview7/${name}`;
+                    case 'timezonedata':
+                    case 'globalization':
+                        return `https://lupusacdn.azureedge.net/blazor/preview8/${name}`;
                 }
             }
         });

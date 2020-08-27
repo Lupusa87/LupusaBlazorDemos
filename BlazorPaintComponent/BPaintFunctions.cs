@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BlazorPaintComponent
@@ -91,19 +92,7 @@ namespace BlazorPaintComponent
 
         {
 
-            using (MemoryStream stream = new MemoryStream())
-
-            {
-
-                BinaryFormatter formatter = new BinaryFormatter();
-
-                formatter.Serialize(stream, objSource);
-
-                stream.Position = 0;
-
-                return (T)formatter.Deserialize(stream);
-
-            }
+            return JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(objSource));
 
         }
 

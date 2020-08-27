@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -136,6 +137,7 @@ namespace BlazorCounterHelper
 
                 ParTSCounter.Source = ParTSCounter.Source.Replace("https://lupblazordemos.z13.web.core.windows.net/", null);
                 ParTSCounter.Source = ParTSCounter.Source.Replace("https://khutsuri.z1.web.core.windows.net/", "khutsuri");
+                ParTSCounter.Source = ParTSCounter.Source.Replace("https://khutsuridev.z20.web.core.windows.net/", "khutsuridev");
                 ParTSCounter.Source = ParTSCounter.Source.Replace("Page", null);
                 ParTSCounter.Source = ParTSCounter.Source.Replace("page", null);
 
@@ -182,20 +184,7 @@ namespace BlazorCounterHelper
 
         public static T CopyObject<T>(object objSource)
         {
-
-            using (MemoryStream stream = new MemoryStream())
-            {
-
-                BinaryFormatter formatter = new BinaryFormatter();
-
-                formatter.Serialize(stream, objSource);
-
-                stream.Position = 0;
-
-                return (T)formatter.Deserialize(stream);
-
-            }
-
+            return JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(objSource));
         }
 
         public static void CmdTrimEntity<T>(T Par_entity)
