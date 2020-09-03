@@ -350,8 +350,9 @@ namespace BlazorTreeVisualizerComponent
             svg svg1 = new svg
             {
                 id = Pardynamic.ID.ToString(),
-                width = Pardynamic.Level * LocalData.VisualParams.TreeIconBoxSize,
-                height = LocalData.VisualParams.TreeIconBoxSize
+                //width = Pardynamic.Level * LocalData.VisualParams.TreeIconBoxSize,
+                //height = LocalData.VisualParams.TreeIconBoxSize
+                style = "width:" + Pardynamic.Level * LocalData.VisualParams.TreeIconBoxSize + "px;height:" + LocalData.VisualParams.TreeIconBoxSize + "px;"
             };
 
             g g1 = null;

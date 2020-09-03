@@ -13,7 +13,6 @@ namespace BlazorTreeVisualizerComponent
 
         public int SmalestSizeUnit { get; set; } = 1;
 
-
         public bool IsLineDashed { get; set; } = false;
         public double DashArrayValue { get; set; } = 1;
         public Color LineColor { get; set; } = Color.Red;

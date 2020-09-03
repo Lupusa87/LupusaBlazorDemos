@@ -45,10 +45,6 @@ namespace LupusaBlazorDemos.Demos
 
 
 
-        public async void MeasureWindowSize()
-        {
-            
-        }
 
         private void CmdButtonClick()
         {
@@ -155,6 +151,7 @@ namespace LupusaBlazorDemos.Demos
                 if (k > 0 && k < 8)
                 {
                     item.IconSource = "icons/icon" + k + ".png";
+                   
                 }
             }
 

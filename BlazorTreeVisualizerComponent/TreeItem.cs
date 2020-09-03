@@ -33,8 +33,6 @@ namespace BlazorTreeVisualizerComponent
 
         internal bool HasChildren { get; set; }
 
-        internal bool HasIcon { get; set; }
-
         public string IconSource { get; set; }
     }
 }

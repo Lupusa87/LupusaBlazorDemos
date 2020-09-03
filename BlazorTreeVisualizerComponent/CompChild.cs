@@ -46,32 +46,33 @@ namespace BlazorTreeVisualizerComponent
             builder.AddAttribute(k++, "id", CompID);
             builder.AddAttribute(k++, "class", parent.CssClasses.Div);
             builder.OpenRegion(k++);
+                builder.OpenElement(k++, "div");
+            builder.AddAttribute(k++, "class", "hhh");
             SvgHelper1.Cmd_Render(LocalTreeFunctions.CmdCreateDynamicIcon(parent.SourceList,item),0, builder, item.ID);
+                builder.CloseElement();
             builder.CloseRegion();
 
  
-            int marginLeft = parent.VisualParams.SmalestSizeUnit;
-            if (item.HasIcon)
+            
+            if (!string.IsNullOrEmpty(item.IconSource))
             {
-                builder.OpenElement(k++, "img");
-                builder.AddAttribute(k++, "src", item.IconSource);
-                builder.AddAttribute(k++, "class", parent.CssClasses.Icon);
-                builder.AddAttribute(k++, "onclick", EventCallback.Factory.Create(this, e => CmdItemSelect(item.ID)));
+                builder.OpenElement(k++, "div");
+                builder.AddAttribute(k++, "class", "hhh");
+                    builder.OpenElement(k++, "img");
+                    builder.AddAttribute(k++, "src", item.IconSource);
+                    builder.AddAttribute(k++, "class", parent.CssClasses.Icon);
+                    builder.AddAttribute(k++, "onclick", EventCallback.Factory.Create(this, e => CmdItemSelect(item.ID)));
+                    builder.CloseElement();
                 builder.CloseElement();
-
-                marginLeft = parent.VisualParams.SmalestSizeUnit*5;
             }
 
-            builder.OpenElement(k++, "span");
+            builder.OpenElement(k++, "div");
 
-
-            builder.AddAttribute(k++, "class", CmdGetSpanClass(item));
-            builder.AddAttribute(k++, "style", "margin-left:" + marginLeft + "px;");
-
-            builder.AddAttribute(k++, "onclick", EventCallback.Factory.Create(this, e => CmdItemSelect(item.ID)));
-
-            builder.AddContent(k++, item.Text);
-
+                //builder.OpenElement(k++, "span");
+                builder.AddAttribute(k++, "class", CmdGetSpanClass(item) +" hhh");
+                builder.AddAttribute(k++, "onclick", EventCallback.Factory.Create(this, e => CmdItemSelect(item.ID)));
+                builder.AddContent(k++, item.Text);
+                //builder.CloseElement();
             builder.CloseElement();
 
             builder.CloseElement();

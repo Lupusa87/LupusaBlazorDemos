@@ -48,7 +48,10 @@ namespace BlazorTreeVisualizerComponent
 
         protected override void OnParametersSet()
         {
-            Console.WriteLine("OnParametersSet");
+
+            LocalData.IconLine = null;
+
+
             bootstrap();
             CmdPrepareIcons();
             CmdLoadData();
@@ -148,7 +151,7 @@ namespace BlazorTreeVisualizerComponent
         {
             if (LocalData.IconLine is null)
             {
-                   
+          
                 LocalData.IconLine = LocalTreeFunctions.CmdCreateIconLine();
                 LocalData.IconItem = LocalTreeFunctions.CmdCreateIconItem();
                 LocalData.IconLastItem = LocalTreeFunctions.CmdCreateIconLastItem();
