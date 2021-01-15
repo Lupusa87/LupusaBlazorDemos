@@ -8,9 +8,10 @@
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
+    <link href="LupusaBlazorDemos.styles.css" rel="stylesheet" />
 </head>
 <body>
-    <app>Loading...</app>
+    <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -44,7 +45,7 @@
                     case 'dotnetwasm':
                     case 'timezonedata':
                     case 'globalization':
-                        return `https://lupusacdn.azureedge.net/blazor/preview8/${name}`;
+                        return `https://lupusacdn.azureedge.net/blazor/v5.2/${name}`;
                 }
             }
         });

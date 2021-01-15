@@ -1,25 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
 	  <TargetFramework>net5.0</TargetFramework>
-	  <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
-	  <UseBlazorWebAssembly>true</UseBlazorWebAssembly>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-preview.8.20414.8" />
-	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-preview.8.20414.8" PrivateAssets="all" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.2" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.2" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger.csproj" />
-    <ProjectReference Include="..\..\BlazorScrollbar\BlazorScrollbarComponent\BlazorScrollbarComponent.csproj" />
     <ProjectReference Include="..\..\BlazorSharedWebWorkerWebSocketHelper\BlazorSharedWebWorkerWebSocketHelper.csproj" />
-    <ProjectReference Include="..\..\BlazorSplitter\BlazorSplitterComponent\BlazorSplitterComponent.csproj" />
-    <ProjectReference Include="..\..\BlazorVirtualGrid\BlazorVirtualGridComponent\BlazorVirtualGridComponent.csproj" />
-    <ProjectReference Include="..\..\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj" />
-    <ProjectReference Include="..\..\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj" />
-    <ProjectReference Include="..\..\BlazorWindowHelper\BlazorWindowHelper.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorScrollbar\BlazorScrollbarComponent\BlazorScrollbarComponent.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorSplitter\BlazorSplitterComponent\BlazorSplitterComponent.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorSvgHelper\BlazorSvgHelper\BlazorSvgHelper.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorVirtualGrid\BlazorVirtualGridComponent\BlazorVirtualGridComponent.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorWebSocketHelper\BlazorWebSocketHelper.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorWebWorkerHelper\BlazorWebWorkerHelper.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorWindowHelper\BlazorWindowHelper.csproj" />
     <ProjectReference Include="..\BlazorCalculatorComponent\BlazorCalculatorComponent.csproj" />
     <ProjectReference Include="..\BlazorChessComponent\BlazorChessComponent.csproj" />
     <ProjectReference Include="..\BlazorClockCanvasComponent\BlazorClockCanvasComponent.csproj" />

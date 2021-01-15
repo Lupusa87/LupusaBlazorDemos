@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0-preview.8.20414.8" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.2" />
   </ItemGroup>
 
 
@@ -15,7 +15,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BlazorSvgHelper\BlazorSvgHelper\BlazorSvgHelper.csproj" />
+    <ProjectReference Include="..\..\MyNugetProjects\BlazorSvgHelper\BlazorSvgHelper\BlazorSvgHelper.csproj" />
   </ItemGroup>
 
 </Project>
