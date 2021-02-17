@@ -14,7 +14,7 @@ Please send [email](mailto:VakhtangiAbashidze@gmail.com) if you consider to **hi
 If you download this repo you have to download another referenced repos too, for some of them you can install [nuget](https://www.nuget.org/profiles/Lupusa87) packages instead.
 
 
-For now best performance has Chrome, you can look at [demo](http://lupusablazordemos.azurewebsites.net).
+For now best performance has Chrome, you can look at [demo](https://lupblazordemos.z13.web.core.windows.net/).
 
 All activities, contributions are welcome, I am open for bussines/result oriented communication.
 
